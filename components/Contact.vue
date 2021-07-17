@@ -8,7 +8,7 @@
 
       <div class="flex flex-col">
         <h2 class="text-white font-bold mt-16 mb-4 text-4xl mx-auto">Feel Free To Reach Out To Me</h2>
-        <p class="text-white md:mx-4">Having any issues or solutions you wish to discuss or implement, reach out to me here. I'd be happy to hear your ideas and give you a call</p>
+        <p class="text-white md:mx-4">Having any issues or solutions you wish to discuss or implement, reach out to me here. I'd be happy to hear your ideas and give you a call.</p>
       </div>
 
       <div class="flex flex-col w-full md:w-95pr bg-gray-900 px-4 md:px-8 pb-8 mt-4 md:pt-4">
