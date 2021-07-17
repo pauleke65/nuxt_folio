@@ -1,6 +1,6 @@
 <template>
 
-<header class="w-full fixed inset-y-0 z-100 md:w-0">
+<header class=" fixed inset-y-0 z-100 md:w-0">
 
     <nav class="bd-grid h-12 flex justify-between top-0 items-center">
         <div class="bg-black lg:hidden text-white ml-2 mt-2 text-4xl">
@@ -18,7 +18,7 @@
             <li class="text-3xl text-black mt-16 mb-8"><a class="active" @click="toggleNav" href="#home" >Home</a></li>
             <li class="text-3xl text-black mb-8"><a class="" @click="toggleNav" href="#about" >About</a></li>
             <li class="text-3xl text-black mb-8"><a class="" @click="toggleNav" href="#services" >Services</a></li>
-            <li class="text-3xl text-black mb-8"><a class="" @click="toggleNav" href="#works" >Works</a></li>
+            <li class="text-3xl text-black mb-8"><a class="" @click="toggleNav" href="#portfolio" >Portfolio</a></li>
             <li class="text-3xl text-black mb-8"><router-link to="/blog">My Blog</router-link></li>
             <li class="text-3xl text-black mb-8"><a class="" @click="toggleNav" href="#contact" >Contact</a></li>
         </ul>

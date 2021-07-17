@@ -6,6 +6,7 @@
 
 
 @layer components{
+    
     .nav_menu{
         @apply fixed top-0 -left-100pr w-full h-screen p-12 flex items-center bg-white justify-center duration-300 lg:left-0 lg:w-25pr ;
     }
