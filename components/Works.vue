@@ -1,6 +1,6 @@
 <template>
 
-<section class="bd-grid pb-8 items-center" id="portfolio">
+<section class=" bd-grid pb-8 items-center" id="portfolio">
 
   <div class="flex pt-8 flex-col items-center justify-center">
 
