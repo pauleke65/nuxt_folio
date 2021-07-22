@@ -21,7 +21,7 @@
     
         <input class="mt-4 h-12 pl-4" placeholder="Subject" type="text"/>
         <textarea class="mt-4 h-52 px-4 pt-4" placeholder="Message"/>
-        <button class="text-white text-xl font-semibold bg-yellow-500 w-full mt-4 h-16"><span><i class='bx bxs-message-dots'></i></span> Message Me</button>
+        <button @click="alert_me" class="text-white text-xl font-semibold bg-yellow-500 w-full mt-4 h-16"><span><i class='bx bxs-message-dots'></i></span> Message Me</button>
       </div>
 
   </div>
@@ -32,7 +32,13 @@
 
 <script>
 export default {
-  name: 'Contact'
+  name: 'Contact',
+
+  methods: {
+    alert_me(){
+      alert('Please use the Social Links')
+    }
+  }
 }
 </script>
 

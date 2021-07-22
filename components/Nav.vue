@@ -14,13 +14,13 @@
 
     <div class="flex flex-col items-center justify-center">
         <div>
-        <ul class="">
-            <li class="text-3xl text-black mt-16 mb-8"><a class="active" @click="toggleNav" href="#home" >Home</a></li>
-            <li class="text-3xl text-black mb-8"><a class="" @click="toggleNav" href="#about" >About</a></li>
-            <li class="text-3xl text-black mb-8"><a class="" @click="toggleNav" href="#services" >Services</a></li>
-            <li class="text-3xl text-black mb-8"><a class="" @click="toggleNav" href="#portfolio" >Portfolio</a></li>
+        <ul class="mt-16">
+            <li class="text-3xl text-black mb-8"><a class="active"  @click="toggleNav" href="#home" >Home</a></li>
+            <li class="text-3xl text-black mb-8"><a @click="toggleNav" href="#about" >About</a></li>
+            <li class="text-3xl text-black mb-8"><a @click="toggleNav" href="#services" >Services</a></li>
+            <li class="text-3xl text-black mb-8"><a @click="toggleNav" href="#portfolio" >Portfolio</a></li>
             <li class="text-3xl text-black mb-8"><router-link to="/blog">My Blog</router-link></li>
-            <li class="text-3xl text-black mb-8"><a class="" @click="toggleNav" href="#contact" >Contact</a></li>
+            <li class="text-3xl text-black mb-8"><a @click="toggleNav" href="#contact" >Contact</a></li>
         </ul>
         </div>
 
@@ -38,7 +38,7 @@
                     <a href="https://linkedin.com/in/paul-imoke-010a941bb/"><img src="../assets/images/Linkedin.svg" alt=""></a>
                 </div>
                 <div class="mx-2">
-                    <a href="https://github.com/pauleke65"><img src="../assets/images/GitHub.svg" alt=""></a>
+                    <a href="https://github.com/pauleke65"><img src="../assets/images/github.svg" alt=""></a>
                 </div>
                 <div class="mx-2">
                     <a href="mailto:pauleke65@gmail.com"><img src="../assets/images/At Symbol.svg" alt=""></a>

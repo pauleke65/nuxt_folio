@@ -8,13 +8,17 @@
 
   
 
-      <div class="grid w-full mx-auto mt-8 px-4">
-          <div class="bg-white h-72 flex bg-image">
-            <p class="text-xl font-bold self-center mx-auto">Carousel here</p>
+      
+
+      <router-link class="w-95pr" to="/projects">
+      <div class="w-full mx-auto mt-8 px-4">
+          <div class="bg-white bg-cover h-324px relative flex bg-image">
+            <div class=" self-center mx-auto">
+              <h2 class="font-bold text-5xl text-white">See All Projects Here</h2>
+            </div>
           </div>
       </div>
-
-      <router-link class=" bg-yellow-500 mt-12 rounded-full py-4 px-6 text-white text-xl text-center w-95pr" @click="alert('me')" to="/projects">See All Projects Here</router-link>
+      </router-link>
    
   </div>
 </section>
@@ -25,11 +29,16 @@
 
 <script>
 export default {
-  name: 'Works'
+  name: 'Works',
+  
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.bg-image{
+ -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+ background-image: repeating-radial-gradient(red, yellow 10%, green 20%);
+}
 </style>

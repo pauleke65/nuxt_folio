@@ -20,7 +20,7 @@
 
       <div class="mt-12 md:mt-0">
        <div>
-         <img class="mx-auto" src="../assets/images/MacBook Pro.svg" alt="">
+         <img class="mx-auto" src="../assets/images/MacBook Pro.png" alt="">
        </div>
        <div class="text-white text-center text-2xl">
          <p>Website Development</p>
