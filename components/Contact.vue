@@ -13,15 +13,15 @@
 
       <div class="flex flex-col w-full md:w-95pr bg-gray-900 px-4 md:px-8 pb-8 mt-4 md:pt-4">
         <div class="flex flex-col md:flex-row ">
-        <input class="mt-4 h-12 pl-4 md:flex-1" placeholder="Full Name" type="text"/>
-        <input class="mt-4 h-12 pl-4 md:flex-1 md:ml-4" placeholder="Email Address" type="text"/>
+        <input class="mt-4 h-12 pl-4 md:flex-1" v-model='fullName' placeholder="Full Name" type="text"/>
+        <input class="mt-4 h-12 pl-4 md:flex-1 md:ml-4" v-model='email' placeholder="Email Address" type="text"/>
         </div>
 
-        <input class="mt-4 h-12 pl-4" inputmode="numeric" placeholder="Phone Number" type="number"/>
+        <input class="mt-4 h-12 pl-4" v-model="mobile" inputmode="numeric" placeholder="Phone Number" type="number"/>
     
-        <input class="mt-4 h-12 pl-4" placeholder="Subject" type="text"/>
-        <textarea class="mt-4 h-52 px-4 pt-4" placeholder="Message"/>
-        <button @click="alert_me" class="text-white text-xl font-semibold bg-yellow-500 w-full mt-4 h-16"><span><i class='bx bxs-message-dots'></i></span> Message Me</button>
+        <input class="mt-4 h-12 pl-4" v-model="subject" placeholder="Subject" type="text"/>
+        <textarea class="mt-4 h-52 px-4 pt-4" v-model="message" placeholder="Message"/>
+        <button @click="submit" class="text-white text-xl font-semibold bg-yellow-500 w-full mt-4 h-16"><span><i class='bx bxs-message-dots'></i></span> Message Me</button>
       </div>
 
   </div>
@@ -31,12 +31,56 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
+
+const SEND_MESSAGE = gql`
+mutation MyMutation($email: String = "", $full_name: String = "", $message: String = "", $mobile: String = "", $subject: String = "") {
+  insert_Messages_one(object: {email: $email, full_name: $full_name, message: $message, mobile: $mobile, subject: $subject}) {
+    full_name
+    subject
+  }
+}
+`
+
 export default {
   name: 'Contact',
+  data(){
+    return {
+      fullName: '',
+      email: '',
+      mobile: '',
+      subject: '',
+      message: '',
+    }
+  },
 
   methods: {
-    alert_me(){
-      alert('Please use the Social Links')
+    async submit(){
+      try{
+        const res = await this.$apollo.mutate({
+          mutation: SEND_MESSAGE,
+          variables: {
+            "email": this.email,
+            "full_name": this.fullName,
+            "message": this.message,
+            "mobile": this.mobile,
+            "subject": this.subject
+          },
+        });
+
+        if (res){
+          alert(`Hi ${res.data.insert_Messages_one.full_name} your message on  ${res.data.insert_Messages_one.subject} has been successfully sent.`)
+        }
+      }
+      catch(err){
+        alert(`Error ${err}`);
+
+      }
+      this.fullName = '';
+      this.email = '';
+      this.mobile = '';
+      this.subject = '';
+      this.message = '';
     }
   }
 }

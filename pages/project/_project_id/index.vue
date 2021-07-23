@@ -71,20 +71,18 @@ export default {
 
 data(){
 return {
-  Projects: [],
+
   error: null,
 }
 },
-  async asyncData({ app, params, hello}) {
+  async asyncData({ app, params }) {
     const client = app.apolloProvider.defaultClient;
-console.log(hello)
 
     const res = await client.query({
      query: PROJECT_QUERY,
       prefetch: true,
       variables:{
             "_eq": params.project_id,
-          
           }
       ,
       error(error) {
