@@ -54,6 +54,9 @@ export default {
           headers:{
               'x-hasura-admin-secret': process.env.KEY
           }
+      },
+      cookieAttributes: {
+        secure: true
       }
        
       },

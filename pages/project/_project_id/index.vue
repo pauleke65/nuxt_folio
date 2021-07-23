@@ -59,7 +59,7 @@ Whether you’re planning a website design project, vacation, or company off-sit
 import gql from 'graphql-tag'
 
 const PROJECT_QUERY = gql`
-query MyQuery($_eq: Int) {
+query MyQuery($_eq: Int!) {
   Projects(where: {project_id: {_eq: $_eq}}) {
     project_name
     description
@@ -67,29 +67,38 @@ query MyQuery($_eq: Int) {
 }
 `;
 export default {
+    
 
 data(){
 return {
   Projects: [],
   error: null,
-  id: this.$route.params.project_id,
 }
 },
+  async asyncData({ app, params, hello}) {
+    const client = app.apolloProvider.defaultClient;
+console.log(hello)
 
-  apollo: {
-    Projects: {
-      query: PROJECT_QUERY,
+    const res = await client.query({
+     query: PROJECT_QUERY,
       prefetch: true,
-      variables(){
-          return {
-            "_eq": this.id
+      variables:{
+            "_eq": params.project_id,
+          
           }
-      },
+      ,
       error(error) {
        this.error = JSON.stringify(error.message);
      }
+    })
+
+    const { Projects } = res.data;
+  
+    return {
+      Projects
     }
-  }
+  },
+ 
   
 }
 </script>
