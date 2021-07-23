@@ -11,7 +11,13 @@
          <div class="text3">Designer</div>
          <div class="text4">Christian</div>
          </div>
+         
         </div>
+           <!-- <div
+        class="rounded-full py-3 px-12 mx-auto m-2 font-bold bg-white text-black text-center "
+      >
+        Download Resume
+      </div> -->
     </div>
 </section>
 

@@ -37,13 +37,13 @@ Trello is a visual tool for organizing your work and life. Join more than 35 mil
 
 Whether you’re planning a website design project, vacation, or company off-site, Trello is infinitely customizable and flexible for your every need.</p>
 
-  <button class="bg-white mt-4 border-2 hover:bg-black border-black py-1 w-28">
-<a href="https://www.google.com" class=" hover:text-white mt-2 font-bold">Test It Out</a>
+  <button class="bg-white mt-4 border-2 hover:text-white hover:bg-black border-black py-1 w-28">
+<a href="https://www.google.com" class="  mt-2 font-bold">Test It Out</a>
   </button>
   
   
             </div>
-        </div>
+        </div> 
 
         <hr>
         <h3 class="my-4 font-semibold text-xl">Screenshots</h3>

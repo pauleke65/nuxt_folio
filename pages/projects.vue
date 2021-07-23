@@ -10,8 +10,9 @@
             <img class="w-36 h-36 mr-6" src="../assets/images/nativescript-vue.svg" alt="">
         </div>
         <div class="flex-1">
-            <h2 class="font-bold text-lg md:text-3xl">Budget Pro</h2>
-            <p class="mt-2 font-semibold">Budget Pro was build as a final year project as ANUC Ghana to be an all-in-one Personal Finance Management Platform</p>
+            <h2 class="font-bold text-lg md:text-3xl">{{ Projects[0].project_name}}</h2>
+            <div v-if="error">{{ error }}</div>
+            <p class="mt-2 font-semibold">{{ Projects[0].project_subtitle}}</p>
             <div class="flex">
                 <p class="my-1 mr-2">Built with ❤ using:</p>
                 <img
@@ -32,3 +33,43 @@
    
   </div>
 </template>
+
+<script>
+
+import gql from 'graphql-tag'
+
+const ALL_CHARACTERS_QUERY = gql`
+  query MyQuery {
+  Projects {
+    project_id
+    project_image
+    project_name
+    project_subtitle
+    project_url
+    description
+  }
+}
+`;
+export default {
+
+data(){
+return {
+  Projects: [],
+  error: null
+}
+},
+
+  apollo: {
+    Projects: {
+      query: ALL_CHARACTERS_QUERY,
+      prefetch: true,
+      error(error) {
+
+       this.error = JSON.stringify(error.message);
+
+     }
+    }
+  }
+  
+}
+</script>

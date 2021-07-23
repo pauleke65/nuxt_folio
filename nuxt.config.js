@@ -1,4 +1,6 @@
 export default {
+
+  
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: true,
 
@@ -41,7 +43,26 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/apollo'
   ],
+
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: process.env.URL,
+        httpLinkOptions: {
+          headers:{
+              'x-hasura-admin-secret': process.env.KEY
+          }
+      }
+       
+      },
+     
+    },
+    
+  },
+
+  
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
