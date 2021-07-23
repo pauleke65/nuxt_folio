@@ -8,24 +8,25 @@
             >
 
             <div class="flex flex-col md:ml-8 ">
-            <h2 class="font-bold text-2xl">Trello: Organize Anything</h2>
+            <h2 class="font-bold text-2xl">{{ Projects[0].project_name}}</h2>
 
              <div class="flex flex-col md:flex-row">
+                  <div v-if="error">{{ error }}</div>
                 <p class="my-1 mr-2">Built with ❤ using:</p>
                <div class="flex ">
                 <img
                 class="my-1 mr-2 w-6"
-                src="../assets/images/tailwindcss.svg"
+                src="~/assets/images/tailwindcss.svg"
                 alt=""
               />
               <img
                 class="my-1 mr-2 w-6"
-                src="../assets/images/graphql.svg"
+                src="~/assets/images/graphql.svg"
                 alt=""
               />
               <img
                 class="my-1 mr-2 w-6"
-                src="../assets/logo.png"
+                src="~/assets/logo.png"
                 alt=""
               />
                </div>
@@ -53,3 +54,42 @@ Whether you’re planning a website design project, vacation, or company off-sit
 
     </div>
 </template>
+
+<script>
+import gql from 'graphql-tag'
+
+const PROJECT_QUERY = gql`
+query MyQuery($_eq: Int) {
+  Projects(where: {project_id: {_eq: $_eq}}) {
+    project_name
+    description
+  }
+}
+`;
+export default {
+
+data(){
+return {
+  Projects: [],
+  error: null,
+  id: this.$route.params.project_id,
+}
+},
+
+  apollo: {
+    Projects: {
+      query: PROJECT_QUERY,
+      prefetch: true,
+      variables(){
+          return {
+            "_eq": this.id
+          }
+      },
+      error(error) {
+       this.error = JSON.stringify(error.message);
+     }
+    }
+  }
+  
+}
+</script>

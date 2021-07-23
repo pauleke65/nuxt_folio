@@ -24,7 +24,7 @@
 
             </div>
 
-            <NuxtLink class=" text-blue-500" to="/project">Find Out More Here ></NuxtLink>
+            <NuxtLink class=" text-blue-500" :to="{ path: '/project/' + Projects[0].project_id }">Find Out More Here ></NuxtLink>
         </div>
     </div>
 
@@ -38,15 +38,14 @@
 
 import gql from 'graphql-tag'
 
-const ALL_CHARACTERS_QUERY = gql`
+const ALL_PROJECTS_QUERY = gql`
   query MyQuery {
   Projects {
     project_id
     project_image
     project_name
     project_subtitle
-    project_url
-    description
+   
   }
 }
 `;
@@ -61,7 +60,7 @@ return {
 
   apollo: {
     Projects: {
-      query: ALL_CHARACTERS_QUERY,
+      query: ALL_PROJECTS_QUERY,
       prefetch: true,
       error(error) {
 
