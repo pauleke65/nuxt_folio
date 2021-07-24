@@ -15,7 +15,7 @@
     <div class="flex flex-col items-center justify-center">
         <div>
         <ul class="mt-16">
-            <li class="text-3xl text-black mb-8"><a class="active"  @click="toggleNav" href="#home" >Home</a></li>
+            <li class="text-3xl text-black mb-8"><a class=""  @click="toggleNav" href="#home" >Home</a></li>
             <li class="text-3xl text-black mb-8"><a @click="toggleNav" href="#about" >About</a></li>
             <li class="text-3xl text-black mb-8"><a @click="toggleNav" href="#services" >Services</a></li>
             <li class="text-3xl text-black mb-8"><a @click="toggleNav" href="#portfolio" >Portfolio</a></li>
