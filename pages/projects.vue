@@ -37,9 +37,7 @@
 </template>
 
 <script>
-
 import gql from 'graphql-tag'
-
 const ALL_PROJECTS_QUERY = gql`
   query MyQuery {
   Projects {
@@ -52,22 +50,18 @@ const ALL_PROJECTS_QUERY = gql`
 }
 `;
 export default {
-
 data(){
 return {
   Projects: [],
   error: null
 }
 },
-
   apollo: {
     Projects: {
       query: ALL_PROJECTS_QUERY,
       prefetch: true,
       error(error) {
-
        this.error = JSON.stringify(error.message);
-
      }
     }
   }
