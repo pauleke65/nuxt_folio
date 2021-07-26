@@ -29,18 +29,13 @@
         </div>
 
         <p class="mt-2 text-justify">
-          Organize anything with anyone—for free! Trello is a visual tool for
-          organizing your work and life. Join more than 35 million registered
-          users to organize all your projects at work, at home, or anywhere in
-          between. Whether you’re planning a website design project, vacation,
-          or company off-site, Trello is infinitely customizable and flexible
-          for your every need.
+         {{ Projects[0].description }}
         </p>
 
         <button
           class="bg-white mt-4 border-2 hover:text-white hover:bg-black border-black py-1 w-28"
         >
-          <a href="https://www.google.com" class="  mt-2 font-bold"
+          <a href="https://www.google.com" class="mt-2 font-bold"
             >Check It Out</a
           >
         </button>

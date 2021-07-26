@@ -15,11 +15,28 @@
       </div>
 
       <div class="text-white mx-4">
-        <p class="text-center md:mx-8 text-xl">
+        <p class="text-center md:mx-8 mb-6 text-xl">
          I am a Software Developer living in Port Harcourt, Nigeria. 
          Highly interested in building cool apps that can solve everyday issues.
          I love working with NuxtJS, Flutter, Flask, Hasura and Postgres to build FullStack Apps. 
         </p>
+
+        <div class="flex w-95pr justify-center sm:justify-evenly flex-col sm:flex-row">
+
+          <button
+        class="rounded-full py-3 sm:mb-12 px-8 font-bold mt-8 bg-yellow-500 text-white text-center text-lg"
+      >
+        Download Resume ↓
+      </button>
+          
+          <NuxtLink to="/certificates"
+        class="rounded-full py-3 px-12 mb-12 font-bold mt-8 bg-yellow-500 text-white text-center text-lg"
+      >
+       See Certificates
+      </NuxtLink>
+
+
+        </div>
 
         <div class="mt-12 flex flex-col">
           <p class="ml-4 my-1 text-2xl font-bold text-center mb-6 text-white">My Favorite Tools</p>
