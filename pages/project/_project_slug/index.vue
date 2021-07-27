@@ -40,27 +40,16 @@
     <h3 class="my-4 font-semibold text-xl">Screenshots</h3>
     <div class="flex">
       <VueSlickCarousel class="w-95pr " v-bind="settings">
+      <div v-for="projectImage in Project.ProjectImages" :key="projectImage.project_image_id">
         <div>
           <img
             class=" mx-auto h-auto md:h-96 mb-4"
-            src="https://is5-ssl.mzstatic.com/image/thumb/Purple113/v4/5b/9a/a8/5b9aa818-b65d-3e00-ede6-8e57b54708b5/pr_source.png/230x0w.webp"
+            :src="projectImage.image_url"
             alt=""
           />
         </div>
-        <div>
-          <img
-            class=" mx-auto h-auto  md:h-96 mb-4"
-            src="https://is5-ssl.mzstatic.com/image/thumb/Purple113/v4/5b/9a/a8/5b9aa818-b65d-3e00-ede6-8e57b54708b5/pr_source.png/230x0w.webp"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            class=" mx-auto h-auto  md:h-96 mb-4"
-            src="https://is5-ssl.mzstatic.com/image/thumb/Purple113/v4/5b/9a/a8/5b9aa818-b65d-3e00-ede6-8e57b54708b5/pr_source.png/230x0w.webp"
-            alt=""
-          />
-        </div>
+      </div>
+      
       </VueSlickCarousel>
     </div>
   </div>
@@ -88,6 +77,7 @@
         }
         ProjectImages {
           image_url
+          project_image_id
         }
       }
     }
