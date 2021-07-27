@@ -78,9 +78,5 @@ export default {
     config: {}
   },
 
-  generate: {
-    exclude: [
-      /^\/project/ 
-    ]
-  }
+  
 }
