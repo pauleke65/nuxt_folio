@@ -13,8 +13,8 @@
         <div class="flex flex-col md:flex-row">
           <div v-if="error">{{ error }}</div>
           <p class="my-1 mr-2">Built with ❤ using:</p>
-          <div class="flex " v-for="projectTools in Project.ProjectTools" :key="projectTools.id">
-            <img
+          <div class="flex flex-row " >
+            <img v-for="projectTools in Project.ProjectTools" :key="projectTools.id"
               class="my-1 mr-2 w-6"
               :src="projectTools.Tool.image_url"
               alt=""

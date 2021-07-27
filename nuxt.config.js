@@ -76,5 +76,11 @@ export default {
     configPath: 'tailwind.config.js',
     exposeConfig: true,
     config: {}
+  },
+
+  generate: {
+    exclude: [
+      /^\/project/ 
+    ]
   }
 }

@@ -25,6 +25,7 @@
 
           <button
         class="rounded-full py-3 sm:mb-12 px-8 font-bold mt-8 bg-yellow-500 text-white text-center text-lg"
+        @click="downloadResume"
       >
         Download Resume ↓
       </button>
@@ -171,6 +172,11 @@
 <script>
 export default {
   name: "About",
+  methods: {
+    downloadResume(){
+      window.location.href = "https://firebasestorage.googleapis.com/v0/b/paul-portfolio-6aec1.appspot.com/o/upload%2FPaul%20Imoke%20Resume.PDF?alt=media&token=80e70a70-71f7-4ea3-93bf-144f5999abb6"
+    }
+  }
 };
 </script>
 
