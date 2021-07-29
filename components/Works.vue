@@ -11,13 +11,13 @@
       
 
       <router-link class="w-95pr" to="/projects">
-      <div class="w-full mx-auto mt-8 px-4">
+    
           <div class="bg-cover relative flex">
             
               <img src="~/assets/images/projects.png" alt="" srcset="">
           
           </div>
-      </div>
+     
       </router-link>
    
   </div>

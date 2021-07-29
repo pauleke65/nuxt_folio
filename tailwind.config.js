@@ -17,6 +17,7 @@ module.exports = {
          '45pr': '45%',
          '95pr': '95%',
          '-2': '-0.5rem',
+         '80vh': '80vh',
          'max': 'max-content'
        },
        gridTemplateColumns: {

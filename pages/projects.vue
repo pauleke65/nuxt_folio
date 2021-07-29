@@ -1,10 +1,28 @@
 <template>
   <div class="flex flex-col ">
     <h1 class="text-6xl font-extrabold ml-6 mt-6">All Projects</h1>
+<div v-if="$apollo.queries.Projects.loading" class="h-80vh flex m-10">
 
-    <div class="h-screen pt-6 px-6 md:px-64">
+<div class=" flex animate-pulse justify-center mt-10 h-72 w-95pr">
+  <div class="bg-black w-40">
+
+  </div>
+
+  <div class="flex flex-col place-content-around">
+    <div class=" ml-10 w-52 h-3 bg-gray-600 rounded-l-md rounded-r-md "></div>
+    <div class=" ml-10 w-80 h-3 bg-gray-600 rounded-l-md rounded-r-md "></div>
+    <div class=" ml-10 w-96 h-3 bg-gray-600 rounded-l-md rounded-r-md "></div>
+    <div class=" ml-10 w-52 h-3 bg-gray-600 rounded-l-md rounded-r-md "></div>
+    <div class=" ml-10 w-24 h-3 bg-gray-600 rounded-l-md rounded-r-md "></div>
+
+  </div>
+  
+</div>
+  
+</div>
+    <div class=" pt-6 px-6 md:px-64">
       <div class="flex my-4 " v-for="project in Projects" :key="project.id">
-        <div class="flex-initial">
+        <div class=" w-32 flex-initial">
           <img
             class=" h-52 mr-6"
             :src="project.project_image"
