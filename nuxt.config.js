@@ -78,7 +78,7 @@ export default {
     config: {}
   },
 
-  generate: {
-    crawler: false
-  }
+  // generate: {
+  //   crawler: false
+  // }
 }
