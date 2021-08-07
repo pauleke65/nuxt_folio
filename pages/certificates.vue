@@ -8,7 +8,7 @@
 
     <div v-for="certificate in Certificates"
     :key="certificate.cert_id"
-    class="bg-black h-64 "> 
+    class="bg-gray-400 h-64 "> 
         <img :src="certificate.cert_image_url" 
         class="w-full h-full"
         alt="">

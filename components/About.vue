@@ -174,7 +174,7 @@ export default {
   name: "About",
   methods: {
     downloadResume(){
-      window.location.href = "https://firebasestorage.googleapis.com/v0/b/paul-portfolio-6aec1.appspot.com/o/upload%2FPaul%20Imoke%20Resume.PDF?alt=media&token=80e70a70-71f7-4ea3-93bf-144f5999abb6"
+      window.location.href = "https://firebasestorage.googleapis.com/v0/b/paul-portfolio-6aec1.appspot.com/o/upload%2FPaul%20Imoke%20Resume.pdf?alt=media&token=66b52693-22d0-4481-9330-0f566492a64f"
     }
   }
 };
