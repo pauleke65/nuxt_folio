@@ -12,6 +12,7 @@ module.exports = {
          '50pr': '50%',
          '45pr': '45%',
          '100': '26em',
+         '30em':'30em',
          '100pr-2rem': 'calc(100% - 2rem)',
          '-100pr': '-100%',
          '45vw':'50vw',
@@ -29,5 +30,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }

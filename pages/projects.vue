@@ -50,8 +50,8 @@
           <NuxtLink
             class=" text-blue-500"
             :to="{ path: '/project/' + project.project_slug }"
-            >Find Out More Here ></NuxtLink
-          >
+            >Find Out More Here >
+          </NuxtLink>
         </div>
       </div>
     </div>
