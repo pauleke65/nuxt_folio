@@ -4,6 +4,23 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
+# tier 1 header
+##### tier 5 header
+**bold**  or  __bold__
+*italic*  or  _italic_
+
+[link to markdown guide](https://www.markdownguide.org/basic-syntax/)
+
+> This is a quote. Quotes are indented and a different colour.
+
+show small bits of code with backticks: `print("hello world")`
+
+- [x] This is a complete item
+- [ ] This is an incomplete item
+
+you can also include html code if you want to be more specific.
+For example, this would make a picture with a width of 200:
+
 Dillinger is a cloud-enabled, mobile-ready, offline-storage compatible,
 AngularJS-powered HTML5 Markdown editor.
 

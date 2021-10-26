@@ -20,6 +20,7 @@ module.exports = {
          '95pr': '95%',
          '-2': '-0.5rem',
          '80vh': '80vh',
+         '115vw': '115vw',
          'max': 'max-content'
        },
        gridTemplateColumns: {

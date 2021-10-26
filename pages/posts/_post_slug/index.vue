@@ -11,7 +11,7 @@
 
       <div class="flex justify-center">
       
-      <nuxt-content class="prose mt-16" :document="page"/>
+      <nuxt-content class="prose mt-16 w-full" :document="page"/>
 
       
       
