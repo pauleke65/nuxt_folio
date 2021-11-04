@@ -44,25 +44,26 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/apollo',
-    '@nuxt/content'
   ],
 
-  content: {
-    // Options
-  },
+  
 
   apollo: {
     clientConfigs: {
+      // default: {
+      //   httpEndpoint: process.env.URL,
+      //   httpLinkOptions: {
+      //     headers:{
+      //         'x-hasura-admin-secret': process.env.KEY
+      //     }
+      // },
+      // cookieAttributes: {
+      //   secure: true
+      // }
+       
+      // },
       default: {
-        httpEndpoint: process.env.URL,
-        httpLinkOptions: {
-          headers:{
-              'x-hasura-admin-secret': process.env.KEY
-          }
-      },
-      cookieAttributes: {
-        secure: true
-      }
+        httpEndpoint: process.env.BLOG_URL,
        
       },
      

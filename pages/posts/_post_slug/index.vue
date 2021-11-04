@@ -11,8 +11,8 @@
 
       <div class="flex justify-center">
       
-      <nuxt-content class="prose mt-16 w-full" :document="page"/>
 
+<vue-markdown class="prose mt-16 w-full"> {{post}}  </vue-markdown>
       
       
       </div>
@@ -48,25 +48,60 @@
 </template>
 
 <script>
-export default {
 
+  import gql from "graphql-tag";
+  import VueMarkdown from 'vue-markdown'
 
-  async asyncData({ $content, params, error }) {
-    const slug =  "index";
-    const page = await $content(slug)
-      .fetch()
-      .catch(err => {
-        error({ statusCode: 404, message: "Page not found" });
+  const POST_QUERY = gql`
+    query MyQuery {
+  post(where: { slug: "other-slug" }) {
+    slug
+    id
+    author {
+      name
+      picture {
+        fileName
+        url
+      }
+      title
+    }
+    content {
+      markdown
+    }
+  }
+}
+
+  `;
+  export default {
+     components: {
+        VueMarkdown
+    },
+    data() {
+      return {
+        error: null,
+        
+      };
+    },
+    async asyncData({ app, params }) {
+      const client = app.apolloProvider.defaultClient;
+
+      const res = await client.query({
+        query: POST_QUERY,
+        prefetch: true,
+        // variables: {
+        //   _eq: "other-slug",
+        // },
+        error(error) {
+          this.error = JSON.stringify(error.message);
+        },
       });
 
-    return {
-      page
-    };
-  }
+      const post = res.data.post.content.markdown;
+      console.log(post);
 
-}
+      return {
+        post
+      };
+    },
+  };
 </script>
-
-<style>
-
-</style>
