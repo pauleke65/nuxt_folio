@@ -16,32 +16,37 @@
 
       <div class="text-white mx-4">
         <p class="text-center md:mx-8 mb-6 text-xl">
-         I am a Software Developer living in Port Harcourt, Nigeria. 
-         Highly interested in building cool apps that can solve everyday issues.
-         I love working with NuxtJS, Flutter, Flask, Hasura and Postgres to build FullStack Apps. 
+          I am a Software Developer living in Port Harcourt, Nigeria. Highly
+          interested in building cool apps that can solve everyday issues. I
+          love working with NuxtJS, Flutter, Flask, Hasura and Postgres to build
+          FullStack Apps.
         </p>
 
-        <div class="flex w-95pr justify-center sm:justify-evenly flex-col sm:flex-row">
-
+        <div
+          class="flex w-95pr justify-center sm:justify-evenly flex-col sm:flex-row"
+        >
           <button
-        class="rounded-full py-3 sm:mb-12 px-8 font-bold mt-8 bg-yellow-500 text-white text-center text-lg"
-        @click="downloadResume"
-      >
-        Download Resume ↓
-      </button>
-          
-          <NuxtLink to="/certificates"
-        class="rounded-full py-3 px-12 mb-12 font-bold mt-8 bg-yellow-500 text-white text-center text-lg"
-      >
-       See Certificates
-      </NuxtLink>
+            class="rounded-full py-3 sm:mb-12 px-8 font-bold mt-8 bg-yellow-500 text-white text-center text-lg"
+            @click="downloadResume"
+          >
+            Download Resume ↓
+          </button>
 
-
+          <NuxtLink
+            to="/certificates"
+            class="rounded-full py-3 px-12 mb-12 font-bold mt-8 bg-yellow-500 text-white text-center text-lg"
+          >
+            See Certificates
+          </NuxtLink>
         </div>
 
         <div class="mt-12 flex flex-col">
-          <p class="ml-4 my-1 text-2xl font-bold text-center mb-6 text-white">My Favorite Tools</p>
-          <div class="grid mx-auto grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
+          <p class="ml-4 my-1 text-2xl font-bold text-center mb-6 text-white">
+            My Favorite Tools
+          </p>
+          <div
+            class="grid mx-auto grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3"
+          >
             <div class="bg-white w-40 h-40 justify-center flex flex-col">
               <img class="mt-2 w-28 mx-auto" src="../assets/logo.png" alt="" />
               <p class="text-black text-xl text-center">Vue JS</p>
@@ -173,8 +178,9 @@
 export default {
   name: "About",
   methods: {
-    downloadResume(){
-      window.location.href = "https://firebasestorage.googleapis.com/v0/b/paul-portfolio-6aec1.appspot.com/o/upload%2FPaul%20Imoke%20Resume.pdf?alt=media&token=66b52693-22d0-4481-9330-0f566492a64f"
+    downloadResume() {
+      window.location.href =
+        "https://firebasestorage.googleapis.com/v0/b/paul-portfolio-6aec1.appspot.com/o/upload%2FPaul%20Imoke%20Resume.pdf?alt=media&token=66b52693-22d0-4481-9330-0f566492a64f";
     }
   }
 };
