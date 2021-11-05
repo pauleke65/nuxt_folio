@@ -9,7 +9,8 @@
 <div>
   <NuxtLink
     
-  :to="{ path: '/posts/' + 'how-apple-google-and-amazons-visions-shaped-their-design-strategy' }">
+  :to="{ path: '/posts/' + '' }">
+  <!-- :to="{ path: '/posts/' + 'how-apple-google-and-amazons-visions-shaped-their-design-strategy' }"> -->
           
          
 <h1 class="text-3xl font-extrabold mt-2 md:mt-0 mb-4">How Apple, Google, and Amazon’s visions shaped their design strategy</h1>

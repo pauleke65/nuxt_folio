@@ -50,21 +50,16 @@
 <script>
   import gql from "graphql-tag";
   const ALL_POSTS_QUERY = gql`
-query MyQuery {
+query MyQuery{
   posts {
-    slug
-    id
+    coverImage {
+      url
+    }
+    title
+    excerpt
+    publishedAt
     author {
       name
-      picture {
-        fileName
-        url
-      }
-      title
-    }
-    content {
-      markdown
-      text
     }
   }
 }
@@ -84,7 +79,7 @@ query MyQuery {
         prefetch: true,
         error(error) {
           this.error = JSON.stringify(error.message);
-          console.log(this.error)
+          console.error(this.error)
         },
       },
     },

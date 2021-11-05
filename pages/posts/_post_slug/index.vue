@@ -1,107 +1,94 @@
 <template>
   <div class="flex flex-col h-screen">
-   <BlogNav />
+    <BlogNav />
     <main class=" mt-16 flex-1 overflow-y-auto p-5">
       <div>
-        <img src="https://uploads-ssl.webflow.com/5f3fdb4ac2968afe2a89c98b/612cade81c631845dae91f2d_pixelmatters-cms-comparison-monolithic-no-code.png" alt="" class=" h-30em w-full" style="object-fit: cover">
-      <h1 class="text-center text-3xl font-extrabold mt-4">How Apple, Google, and Amazon’s visions shaped their design strategy</h1>
-      <p class="text-center mt-2 ">Technology | October 25, 2021 by Paul Imoke</p>
+        <img
+          :src="post.coverImage.url"
+          alt=""
+          class=" h-30em w-full"
+          style="object-fit: cover"
+        />
+        <h1 class="text-center text-3xl font-extrabold mt-4">
+          {{ post.title }}
+        </h1>
+        <p class="text-center mt-2 ">
+          {{ formatPostLine(post.category.name, post.date, post.author.name) }}
+        </p>
 
-    
+        <div class="flex justify-center">
+          <vue-markdown class="prose mt-16 w-full">
+            {{ post.content.markdown }}
+          </vue-markdown>
+        </div>
 
-      <div class="flex justify-center">
-      
-
-<vue-markdown class="prose mt-16 w-full"> {{post}}  </vue-markdown>
-      
-      
-      </div>
- 
-
-
-       <div id="disqus_thread" class="prose mx-auto mt-20"></div>
-<script>
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-    /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://paulimoke-netlify-app.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-     
+        <div class="prose mx-auto mt-20 comments">
+          <Disqus />
+        </div>
       </div>
     </main>
-
-    
   </div>
 </template>
 
 <script>
+import gql from "graphql-tag";
+import VueMarkdown from "vue-markdown";
+var moment = require("moment");
 
-  import gql from "graphql-tag";
-  import VueMarkdown from 'vue-markdown'
-
-  const POST_QUERY = gql`
-    query MyQuery {
-  post(where: { slug: "other-slug" }) {
-    slug
-    id
-    author {
-      name
-      picture {
-        fileName
+const POST_QUERY = gql`
+  query MyQuery($slug: String) {
+    post(where: { slug: $slug }) {
+      coverImage {
         url
       }
       title
-    }
-    content {
-      markdown
+      category {
+        name
+      }
+      date
+      author {
+        name
+      }
+      content {
+        markdown
+      }
     }
   }
-}
+`;
+export default {
+  components: {
+    VueMarkdown
+  },
+  methods: {
+    formatPostLine(category, date, author) {
+      return `${category} | ${moment(date).format("ll")} by ${author}`;
+    }
+  },
 
-  `;
-  export default {
-     components: {
-        VueMarkdown
-    },
-    data() {
-      return {
-        error: null,
-        
-      };
-    },
-    async asyncData({ app, params }) {
-      const client = app.apolloProvider.defaultClient;
+  data() {
+    return {
+      error: null
+    };
+  },
+  async asyncData({ app, params }) {
+    const client = app.apolloProvider.defaultClient;
 
-      const res = await client.query({
-        query: POST_QUERY,
-        prefetch: true,
-        // variables: {
-        //   _eq: "other-slug",
-        // },
-        error(error) {
-          this.error = JSON.stringify(error.message);
-        },
-      });
+    const res = await client.query({
+      query: POST_QUERY,
+      prefetch: true,
+      variables: {
+        slug: params.post_slug
+      },
+      error(error) {
+        this.error = JSON.stringify(error.message);
+      }
+    });
 
-      const post = res.data.post.content.markdown;
-      console.log(post);
+    const post = res.data.post;
 
-      return {
-        post
-      };
-    },
-  };
+    return {
+      post
+    };
+  }
+};
 </script>
