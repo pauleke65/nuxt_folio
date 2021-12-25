@@ -58,10 +58,10 @@ import gql from "graphql-tag";
 const ALL_POSTS_QUERY = gql`
   query MyQuery {
     posts {
+      slug
       coverImage {
         url
       }
-      slug
       title
       excerpt
       publishedAt
