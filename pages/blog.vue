@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class=" ml-10 lg:ml-32 my-6">
-        <BlogMain />
+        <BlogMain :posts="posts" />
         <div v-if="$apollo.queries.posts.loading" class="h-80vh flex m-10">
           <div class=" flex animate-pulse justify-center mt-10 h-72 w-95pr">
             <div class="bg-black w-40"></div>
@@ -61,10 +61,14 @@ const ALL_POSTS_QUERY = gql`
       coverImage {
         url
       }
+      slug
       title
       excerpt
       publishedAt
       author {
+        name
+      }
+      category {
         name
       }
     }

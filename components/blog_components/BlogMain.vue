@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mb-8 ">
-      <BlogTileHead />
+      <BlogTileHead :post="posts[posts.length - 1]" />
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mr-8 lg:mr-20">
       <BlogTile />
@@ -82,6 +82,11 @@
 <script>
 export default {
   name: "BlogMain",
+  props: {
+    posts: {
+      type: Array
+    }
+  },
   data() {
     return {
       selectedIndex: 3
