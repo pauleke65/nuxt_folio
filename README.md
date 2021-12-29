@@ -4,12 +4,12 @@
 ## Todo List
 List of things to planned do on the project
 ### Migrate from Hasura and Firebase to GraphCMS
-[] Social Links
 [] About and Profile Image
 [] Certs and resume
 [] Tools
 [] Services
 [] Projects
+[] Social Links
 
 ### Additional 
 [] Blog Page dynamic data

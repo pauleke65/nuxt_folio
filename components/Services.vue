@@ -1,5 +1,6 @@
 <template>
-  <section class="bd-grid pb-8 items-center" id="services">
+  <div class="c"></div>
+  <!-- <section class="bd-grid pb-8 items-center" id="services">
     <div class="flex pt-8 flex-col items-center justify-center">
       <div
         class="rounded-full py-3 px-12 mx-auto w-64 h-auto font-bold mt-8 text-2xl bg-white text-black text-center"
@@ -77,7 +78,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 </template>
 
 <script>

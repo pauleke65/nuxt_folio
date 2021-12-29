@@ -1,7 +1,9 @@
 <template>
   <section class=" h-screen bd-grid items-center" id="home">
     <div class="flex text-white flex-col items-center justify-center h-max">
-      <p class=" text-red-400 mb-4">"Site still under active development"</p>
+      <p v-if="developmentMode" class=" text-red-400 mb-4">
+        "Site still under active development"
+      </p>
       <h3 class="text-lg text-center">👋Hi There, I'm</h3>
       <h1 class="text-6xl text-center font-light">
         Paul <span class="font-bold">Imoke</span>
@@ -16,14 +18,18 @@
           <div class="text4">Christian</div>
         </div>
       </div>
-    
     </div>
   </section>
 </template>
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+  props: {
+    developmentMode: {
+      type: Boolean
+    }
+  }
 };
 </script>
 

@@ -4,7 +4,7 @@
       <div>
         <img
           class="rounded-full mx-auto h-44 w-44"
-          src="../assets/images/profile.jpg"
+          :src="siteData.profileImage.url"
           alt=""
         />
       </div>
@@ -16,10 +16,7 @@
 
       <div class="text-white mx-4">
         <p class="text-center md:mx-8 mb-6 text-xl">
-          I am a Software Developer living in Port Harcourt, Nigeria. Highly
-          interested in building cool apps that can solve everyday issues. I
-          love working with NuxtJS, Flutter, Flask, Hasura and Postgres to build
-          FullStack Apps.
+          {{ siteData.aboutMe }}
         </p>
 
         <div
@@ -27,7 +24,7 @@
         >
           <button
             class="rounded-full py-3 sm:mb-12 px-8 font-bold mt-8 bg-yellow-500 text-white text-center text-lg"
-            @click="downloadResume"
+            @click="downloadResume(siteData.resumeLink.url)"
           >
             Download Resume ↓
           </button>
@@ -47,125 +44,17 @@
           <div
             class="grid mx-auto grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3"
           >
-            <div class="bg-white w-40 h-40 justify-center flex flex-col">
-              <img class="mt-2 w-28 mx-auto" src="../assets/logo.png" alt="" />
-              <p class="text-black text-xl text-center">Vue JS</p>
-            </div>
-
-            <div class="bg-white w-40 h-40 justify-center flex flex-col">
+            <div
+              v-for="tool in tools"
+              :key="tool.id"
+              class="bg-white w-40 h-40 justify-center flex flex-col"
+            >
               <img
-                class="mt-2 w-28 mx-auto"
-                src="../assets/images/tailwindcss.svg"
+                class="mt-2 w-20 mb-4 mx-auto"
+                :src="tool.image.url"
                 alt=""
               />
-              <p class="text-black text-xl text-center">Tailwind CSS</p>
-            </div>
-
-            <div class="bg-white w-40 h-40 justify-center flex flex-col">
-              <img
-                class="mt-2 w-28 mx-auto"
-                src="../assets/images/graphql.svg"
-                alt=""
-              />
-              <p class="text-black text-xl text-center">Graph QL</p>
-            </div>
-
-            <div class="bg-white w-40 h-40 justify-center flex flex-col">
-              <img
-                class="mt-2 w-28 mx-auto"
-                src="../assets/images/flask.png"
-                alt=""
-              />
-              <p class="text-black text-xl text-center">Flask</p>
-            </div>
-
-            <div class="bg-white w-40 h-40 justify-center flex flex-col">
-              <img
-                class="mt-2 w-28 mx-auto"
-                src="../assets/images/json.svg"
-                alt=""
-              />
-              <p class="text-black text-xl text-center">REST APIs</p>
-            </div>
-
-            <div class="bg-white w-40 h-40 justify-center flex flex-col">
-              <img
-                class="mt-2 w-28 mx-auto"
-                src="../assets/images/firebase.svg"
-                alt=""
-              />
-              <p class="text-black text-xl text-center">Firebase</p>
-            </div>
-
-            <div class="bg-white w-40 h-40 justify-center flex flex-col">
-              <img
-                class="mt-2 w-28 mx-auto"
-                src="../assets/images/python.svg"
-                alt=""
-              />
-              <p class="text-black text-xl text-center">Python</p>
-            </div>
-
-            <div class="bg-white w-40 h-40 justify-center flex flex-col">
-              <img
-                class="mt-2 w-28 mx-auto"
-                src="../assets/images/nativescript-vue.svg"
-                alt=""
-              />
-              <p class="text-black text-xl text-center">NativeScript-Vue</p>
-            </div>
-
-            <div class="bg-white w-40 h-40 justify-center flex flex-col">
-              <img
-                class="mt-2 w-28 mx-auto"
-                src="../assets/images/github.svg"
-                alt=""
-              />
-              <p class="text-black text-xl text-center">Github</p>
-            </div>
-
-            <div class="bg-white w-40 h-40 justify-center flex flex-col">
-              <img
-                class="mt-2 w-28 mx-auto"
-                src="../assets/images/nuxt.svg"
-                alt=""
-              />
-              <p class="text-black text-xl text-center">Nuxt JS</p>
-            </div>
-
-            <div class="bg-white w-40 h-40 justify-center flex flex-col">
-              <img
-                class="mt-2 w-28 mx-auto"
-                src="../assets/images/mysql.png"
-                alt=""
-              />
-              <p class="text-black text-xl text-center">My SQL</p>
-            </div>
-
-            <div class="bg-white w-40 h-40 justify-center flex flex-col">
-              <img
-                class="mt-2 w-28 mx-auto"
-                src="../assets/images/postgresql.png"
-                alt=""
-              />
-              <p class="text-black text-xl text-center">Postgre SQL</p>
-            </div>
-
-            <div class="bg-white w-40 h-40 justify-center flex flex-col">
-              <img
-                class="mt-2 w-20 mx-auto"
-                src="../assets/images/flutter.png"
-                alt=""
-              />
-              <p class="text-black text-xl text-center">Flutter</p>
-            </div>
-            <div class="bg-white w-40 h-40 justify-center flex flex-col">
-              <img
-                class="mt-2 w-24 mx-auto"
-                src="../assets/images/hasura.png"
-                alt=""
-              />
-              <p class="text-black text-xl text-center">Hasura</p>
+              <p class="text-black text-xl text-center">{{ tool.name }}</p>
             </div>
           </div>
         </div>
@@ -177,10 +66,17 @@
 <script>
 export default {
   name: "About",
+  props: {
+    siteData: {
+      type: Object
+    },
+    tools: {
+      type: Array
+    }
+  },
   methods: {
-    downloadResume() {
-      window.location.href =
-        "https://firebasestorage.googleapis.com/v0/b/paul-portfolio-6aec1.appspot.com/o/upload%2FPaul%20Imoke%20Resume.pdf?alt=media&token=66b52693-22d0-4481-9330-0f566492a64f";
+    downloadResume(link) {
+      window.location.href = link;
     }
   }
 };
