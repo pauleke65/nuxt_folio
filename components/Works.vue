@@ -1,6 +1,6 @@
 <template>
-  <section class=" bd-grid  items-center" id="portfolio">
-    <div class="flex pt-8 flex-col items-center justify-center">
+  <section class=" w-full items-center pb-16 flex" id="portfolio">
+    <div class="flex pt-8 flex-col items-center justify-center mx-auto max-w-5xl  ">
       <div
         class="rounded-full py-3 px-12 mx-auto w-64 h-auto font-bold my-8 text-2xl bg-white text-black text-center"
       >

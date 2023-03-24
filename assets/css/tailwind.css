@@ -4,14 +4,12 @@
 
 @tailwind utilities;
 
+@layer components {
+  .nav_menu {
+    @apply fixed top-0 -left-100pr w-full h-screen p-12 flex items-center bg-white justify-center duration-300 lg:left-0 lg:w-25pr;
+  }
 
-@layer components{
-    
-    .nav_menu{
-        @apply fixed top-0 -left-100pr w-full h-screen p-12 flex items-center bg-white justify-center duration-300 lg:left-0 lg:w-25pr ;
-    }
-
-    .bd-grid{
-        @apply max-w-screen-lg grid grid-cols-100pr w-100pr-2rem mx-4 gap-x-8;
-    }
+  .bd-grid {
+    @apply max-w-screen-lg grid grid-cols-100pr w-full  gap-x-8;
+  }
 }

@@ -1,17 +1,17 @@
 <template>
   <html>
-    <div id="appmain" class="lg:m-0 lg:pl-324px ">
+    <div id="appmain" class="lg:m-0 ">
       <link
         href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
         rel="stylesheet"
       />
       <Nav />
-      <main class="bg-black w-full xl:ml-4">
-        <Home :developmentMode="siteData.developmentMode" />
+      <main class="bg-black w-full lg:w-3/4 lg:ml-auto">
+        <Home :siteData="siteData" />
         <About :siteData="siteData" :tools="tools" />
         <Services />
         <Works />
-        <Contact />
+        <!-- <Contact /> -->
       </main>
     </div>
   </html>
@@ -30,6 +30,10 @@ const SITE_DATA_QUERY = gql`
         url
       }
       developmentMode
+      text1
+      text2
+      text3
+      text4
     }
   }
 `;

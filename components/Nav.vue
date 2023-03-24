@@ -30,13 +30,14 @@
               <li class="text-3xl text-black mb-8">
                 <router-link to="/blog">My Blog</router-link>
               </li>
-              <li class="text-3xl text-black mb-8">
+              <!-- <li class="text-3xl text-black mb-8">
                 <a @click="toggleNav" href="#contact">Contact</a>
-              </li>
+              </li> -->
             </ul>
           </div>
 
-          <div class="flex mt-16 justify-center">
+          <p class="mt-36 text-xl" id="reach-out">Feel free to reach out to me 👇🏾</p>
+          <div class="flex mt-6 justify-center">
             <div class="mx-2">
               <a href="https://facebook.com/paul.eke.399"
                 ><img src="../assets/images/Facebook.svg" alt=""
@@ -100,6 +101,10 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Playball&display=swap");
 a {
+  font-family: "Playball", cursive;
+}
+
+#reach-out{
   font-family: "Playball", cursive;
 }
 

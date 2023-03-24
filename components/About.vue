@@ -1,6 +1,6 @@
 <template>
-  <section class="pt-4 px-0 mt-0 pb-8" id="about">
-    <div class="flex flex-col h-full justify-center">
+  <section class="pt-4 px-0 mt-0 pb-8 flex" id="about">
+    <div class="flex flex-col h-full max-w-4xl mx-auto justify-center">
       <div>
         <img
           class="rounded-full mx-auto h-44 w-44"
@@ -15,7 +15,7 @@
       </div>
 
       <div class="text-white mx-4">
-        <p class="text-center md:mx-8 mb-6 text-xl">
+        <p class="text-center  mb-6 text-xl ">
           {{ siteData.aboutMe }}
         </p>
 

@@ -1,7 +1,7 @@
 <template>
-  <section class=" h-screen bd-grid items-center" id="home">
-    <div class="flex text-white flex-col items-center justify-center h-max">
-      <p v-if="developmentMode" class=" text-red-400 mb-4">
+  <section class=" h-screen w-full items-center flex" id="home">
+    <div class="flex text-white flex-col items-center justify-center h-max mx-auto">
+      <p v-if="siteData.developmentMode" class=" text-red-400 mb-4">
         "Site still under active development"
       </p>
       <h3 class="text-lg text-center">👋Hi There, I'm</h3>
@@ -12,10 +12,10 @@
         class="text-yellow-500 mt-2 text-lg h-8 flex justify-center overflow-hidden"
       >
         <div class="pl-2 text-center slider overflow-hidden">
-          <div class="text1">A Software Developer</div>
-          <div class="text2">Content Creator</div>
-          <div class="text3">Designer</div>
-          <div class="text4">Christian</div>
+          <div class="text1">{{siteData.text1}}</div>
+          <div class="text2">{{siteData.text2}}</div>
+          <div class="text3">{{siteData.text3}}</div>
+          <div class="text4">{{siteData.text4}}</div>
         </div>
       </div>
     </div>
@@ -26,8 +26,8 @@
 export default {
   name: "Home",
   props: {
-    developmentMode: {
-      type: Boolean
+    siteData: {
+      type: Object
     }
   }
 };
