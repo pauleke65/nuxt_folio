@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="mb-8 ">
-      <BlogTileHead :post="posts[posts.length - 1]" />
+      <BlogTileHead :post="posts[0]" />
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mr-8 lg:mr-20">
-      <BlogTile />
-      <BlogTile />
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <BlogTile :post="posts[1]" />
+      <BlogTile  :post="posts[2]" />
     </div>
 
-    <div
-      class="flex flex-row justify-between items-center my-4 sticky top-20 bg-gray-100 py-3 px-3 md:px-8 shadow-xl lg:ml-20 mr-6 lg:mr-52"
+    <!-- <div
+      class="flex flex-row justify-between items-center my-4 sticky top-2 bg-gray-100 py-3 px-3 md:px-8 shadow-xl lg:ml-20 mr-6 lg:mr-52"
     >
       <p
         :class="[
@@ -66,15 +66,10 @@
       >
         Poetry
       </p>
-    </div>
+    </div> -->
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 mr-8 lg:mr-20">
-      <BlogTile />
-      <BlogTile />
-      <BlogTile />
-      <BlogTile />
-      <BlogTile />
-      <BlogTile />
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 ">
+      <BlogTile v-for="post in filteredPosts" :key="post.id" :post="post" />
     </div>
   </div>
 </template>
@@ -91,6 +86,11 @@ export default {
     return {
       selectedIndex: 3
     };
+  },
+   computed: {
+    filteredPosts() {
+      return this.posts.slice(3);
+    }
   },
   methods: {
     setIndex(index) {

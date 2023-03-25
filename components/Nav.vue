@@ -22,13 +22,16 @@
                 <a @click="toggleNav" href="#about">About</a>
               </li>
               <li class="text-3xl text-black mb-8">
-                <a @click="toggleNav" href="#services">Services</a>
+                <a @click="toggleNav" href="#interests">Interests</a>
               </li>
               <li class="text-3xl text-black mb-8">
                 <a @click="toggleNav" href="#portfolio">Portfolio</a>
               </li>
-              <li class="text-3xl text-black mb-8">
+              <!-- <li class="text-3xl text-black mb-8">
                 <router-link to="/blog">My Blog</router-link>
+              </li> -->
+              <li class="text-3xl  text-black mb-8">
+                <router-link to="/blog"><span class="text-purple-700">Purple</span>Ember🔥</router-link>
               </li>
               <!-- <li class="text-3xl text-black mb-8">
                 <a @click="toggleNav" href="#contact">Contact</a>
@@ -39,32 +42,32 @@
           <p class="mt-36 text-xl" id="reach-out">Feel free to reach out to me 👇🏾</p>
           <div class="flex mt-6 justify-center">
             <div class="mx-2">
-              <a href="https://facebook.com/paul.eke.399"
+              <a target="_blank" href="https://facebook.com/paul.eke.399"
                 ><img src="../assets/images/Facebook.svg" alt=""
               /></a>
             </div>
             <div class="mx-2">
-              <a href="https://instagram.com/pauleke65/"
+              <a target="_blank" href="https://instagram.com/pauleke65/"
                 ><img src="../assets/images/Instagram.svg" alt=""
               /></a>
             </div>
             <div class="mx-2">
-              <a href="https://twitter.com/PaulEke20"
+              <a target="_blank" href="https://twitter.com/PaulEke20"
                 ><img src="../assets/images/Twitter.svg" alt=""
               /></a>
             </div>
             <div class="mx-2">
-              <a href="https://linkedin.com/in/paul-imoke-010a941bb/"
+              <a target="_blank" href="https://linkedin.com/in/paul-imoke-010a941bb/"
                 ><img src="../assets/images/Linkedin.svg" alt=""
               /></a>
             </div>
             <div class="mx-2">
-              <a href="https://github.com/pauleke65"
+              <a target="_blank" href="https://github.com/pauleke65"
                 ><img src="../assets/images/github.svg" alt=""
               /></a>
             </div>
             <div class="mx-2">
-              <a href="mailto:pauleke65@gmail.com"
+              <a target="_blank" href="mailto:pauleke65@gmail.com"
                 ><img src="../assets/images/At Symbol.svg" alt=""
               /></a>
             </div>

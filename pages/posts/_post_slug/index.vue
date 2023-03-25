@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col h-screen">
-    <BlogNav />
-    <main class=" mt-16 flex-1 overflow-y-auto p-5">
+  <div class="">
+    <!-- <BlogNav /> -->
+    <main class="  flex-1 overflow-y-auto p-5">
       <div>
         <img
           :src="post.coverImage.url"
@@ -13,7 +13,8 @@
           {{ post.title }}
         </h1>
         <p class="text-center mt-2 ">
-          {{ formatPostLine(post.category.name, post.date, post.author.name) }}
+           {{ post.category.name }} | {{ convertDate(post.publishedAt) }} by
+          {{ post.author.name }}
         </p>
 
         <div class="flex justify-center">
@@ -42,6 +43,7 @@ const POST_QUERY = gql`
         url
       }
       title
+      publishedAt
       category {
         name
       }
@@ -60,11 +62,10 @@ export default {
     VueMarkdown
   },
   methods: {
-    formatPostLine(category, date, author) {
-      return `${category} | ${moment(date).format("ll")} by ${author}`;
+    convertDate(date) {
+      return moment(date).format("ll");
     }
   },
-
   data() {
     return {
       error: null

@@ -1,4 +1,5 @@
 <template>
+  <NuxtLink :to="{ path: '/posts/' + post.slug }">
   <div class="flex flex-col md:flex-row">
     <div class=" bg-gray-700 h-72 md:h-100 md:w-7/12 rounded-md">
       <img
@@ -11,13 +12,13 @@
 
     <div class="flex justify-between flex-col md:w-5/12  md:pl-8">
       <div>
-        <NuxtLink :to="{ path: '/posts/' + post.slug }">
+      
           <!-- :to="{ path: '/posts/' + 'how-apple-google-and-amazons-visions-shaped-their-design-strategy' }"> -->
 
           <h1 class="text-3xl font-extrabold mt-2 md:mt-0 mb-4">
             {{ post.title }}
           </h1>
-        </NuxtLink>
+       
         <p class="text-gray-800">
           {{ post.excerpt }}
         </p>
@@ -28,6 +29,7 @@
       </div>
     </div>
   </div>
+  </NuxtLink>
 </template>
 
 <script>

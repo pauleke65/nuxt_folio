@@ -6,7 +6,8 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "build-deploy-netlify-production": "yarn build && yarn generate && cp netlify.toml dist/ && netlify deploy --dir=dist/ --prod"
   },
   "dependencies": {
     "@nuxt/content": "^1.15.0",

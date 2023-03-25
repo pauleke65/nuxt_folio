@@ -83,7 +83,7 @@
 
 <script>
 export default {
-  name: "Services"
+  name: "Interests"
 };
 </script>
 

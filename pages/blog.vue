@@ -1,27 +1,14 @@
 <template>
-  <div>
+  <div class="mx-auto max-w-7xl px-2">
     <link
       href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
       rel="stylesheet"
     />
     <BlogNav />
 
-    <div class="w-screen -ml-4 pr-2">
-      <div class="w-full h-1/5 bg-green mt-20 flex justify-end md:pr-5">
-        <div
-          class="py-2  pl-3 pr-2 lg:w-3/12 border-gray-700 border-2 rounded-full flex "
-        >
-          <i class=" mr-2 self-center text-2xl bx bx-search-alt-2" />
-          <input
-            class="self-center focus:outline-none w-full"
-            name=""
-            id=""
-            placeholder="Search for posts here..."
-          />
-          <i class=" ml-2 self-center text-2xl bx bx-x" />
-        </div>
-      </div>
-      <div class=" ml-10 lg:ml-32 my-6">
+ 
+   
+      <div class="   my-6 mt-40">
         <BlogMain :posts="posts"  v-if="!$apollo.queries.posts.loading"/>
         <div v-if="$apollo.queries.posts.loading" class="h-80vh flex m-10">
           <div class=" flex animate-pulse justify-center mt-10 h-72 w-95pr">
@@ -47,9 +34,9 @@
           </div>
         </div>
 
-        <h1>{{ JSON.stringify(posts) }}</h1>
+
       </div>
-    </div>
+   
   </div>
 </template>
 
@@ -57,7 +44,8 @@
 import gql from "graphql-tag";
 const ALL_POSTS_QUERY = gql`
   query MyQuery {
-    posts {
+    posts (orderBy: id_DESC) {
+      id
       slug
       coverImage {
         url

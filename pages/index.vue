@@ -9,7 +9,7 @@
       <main class="bg-black w-full lg:w-3/4 lg:ml-auto">
         <Home :siteData="siteData" />
         <About :siteData="siteData" :tools="tools" />
-        <Services />
+        <Interests />
         <Works />
         <!-- <Contact /> -->
       </main>
@@ -19,6 +19,7 @@
 
 <script>
 import gql from "graphql-tag";
+import Interests from '~/components/Interests.vue';
 const SITE_DATA_QUERY = gql`
   query MyQuery {
     siteData(where: { siteDataSlug: "sitedata" }) {
@@ -50,6 +51,7 @@ const ALL_TOOLS_QUERY = gql`
   }
 `;
 export default {
+  components: { Interests },
   data() {
     return {
       siteData: {},

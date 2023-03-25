@@ -1,33 +1,33 @@
 <template>
   <div class="pt-8 sm:px-28 md:px-48 px-6 flex flex-col h-screen">
     <div class="flex flex-col md:flex-row mb-8">
-      <img class=" h-auto  md:h-96 mb-4" :src="Project.project_image" alt="" />
+      <img class=" h-auto  md:h-96 mb-4" :src="project.image.url" alt="" />
 
       <div class="flex flex-col md:ml-8 ">
-        <h2 class="font-bold text-2xl">{{ Project.project_name }}</h2>
+        <h2 class="font-bold text-2xl">{{ project.name }}</h2>
 
         <div class="flex flex-col md:flex-row">
           <div v-if="error">{{ error }}</div>
           <p class="my-1 mr-2">Built with ❤ using:</p>
           <div class="flex flex-row ">
             <img
-              v-for="projectTools in Project.ProjectTools"
-              :key="projectTools.id"
+              v-for="tool in project.tools"
+              :key="tool.id"
               class="my-1 mr-2 w-6"
-              :src="projectTools.Tool.image_url"
+              :src="tool.image.url"
               alt=""
             />
           </div>
         </div>
 
         <p class="mt-2 text-justify">
-          {{ Project.description }}
+          {{ project.description }}
         </p>
 
         <button
           class="bg-white mt-4 border-2 hover:text-white hover:bg-black border-black py-1 w-28"
         >
-          <a :href="Project.project_url" class="mt-2 font-bold">Check It Out</a>
+          <a :href="project.url" target="_blank" class="mt-2 font-bold">Check It Out</a>
         </button>
       </div>
     </div>
@@ -36,24 +36,24 @@
     <h3 class="my-4 font-semibold text-xl">Screenshots</h3>
     <div class="flex">
       <div class="flex overflow-x-auto flex-nowrap">
-        <div class="flex-none p-2"  v-for="projectVideo in Project.ProjectVideos"
-          :key="projectVideo.project_video_id">
+        <div class="flex-none p-2"  v-for="projectVideo in project.project_videos"
+          :key="projectVideo.id">
           <iframe class=" mx-auto h-82 md:h-100 w-45vw mb-4"
            
-            :src="projectVideo.video_url"
+            :src="projectVideo.url"
             allowfullscreen
           >
           </iframe>
         </div>
 
         <div
-          v-for="projectImage in Project.ProjectImages"
-          :key="projectImage.project_image_id"
+          v-for="projectImage in project.project_image"
+          :key="projectImage.id"
           class="p-2 flex-none"
         >
           <img
             class=" mx-auto h-80 md:h-100 mb-4"
-            :src="projectImage.image_url"
+            :src="projectImage.url"
             alt=""
           />
         </div>
@@ -67,28 +67,29 @@
   import gql from "graphql-tag";
 
   const PROJECT_QUERY = gql`
-    query MyQuery($_eq: String = "") {
-      Projects(where: { project_slug: { _eq: $_eq } }) {
-        project_name
-        project_image
-        description
-        project_slug
-        project_url
-        ProjectTools {
-          Tool {
-            image_url
-          }
-        }
-        ProjectImages {
-          image_url
-          project_image_id
-        }
-        ProjectVideos {
-          video_url
-          project_video_id
-        }
+query MyQuery($slug: String = "") {
+  project(where: {slug: $slug}) {
+    name
+    image {
+      id
+      url
+    }
+    description
+    slug
+    url
+    tools {
+      name
+      image {
+        url
       }
     }
+    project_image {
+      url
+    }
+    project_videos
+  }
+}
+
   `;
   export default {
     data() {
@@ -100,21 +101,25 @@
     async asyncData({ app, params }) {
       const client = app.apolloProvider.defaultClient;
 
+    
+
       const res = await client.query({
         query: PROJECT_QUERY,
         prefetch: true,
         variables: {
-          _eq: params.project_slug,
+          slug: params.project_slug,
         },
         error(error) {
           this.error = JSON.stringify(error.message);
+          console.log(error);
         },
       });
-
-      const Project = res.data.Projects[0];
+      
+  
+      const project = res.data.project;
 
       return {
-        Project,
+        project,
       };
     },
   };

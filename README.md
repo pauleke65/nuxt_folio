@@ -4,9 +4,9 @@
 ## Todo List
 List of things to planned do on the project
 ### Migrate from Hasura and Firebase to GraphCMS
-[] About and Profile Image
-[] Certs and resume
-[] Tools
+[x] About and Profile Image
+[x] Certs and resume
+[x] Tools
 [] Services
 [] Projects
 [] Social Links
