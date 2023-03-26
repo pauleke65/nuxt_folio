@@ -12,7 +12,7 @@
           <i @click="toggleNav" class="bx bx-x"></i>
         </div>
 
-        <div class="flex flex-col items-center justify-center">
+        <div class="flex flex-col items-center justify-center text-center lg:text-left">
           <div>
             <ul class="mt-16">
               <li class="text-3xl text-black mb-8">

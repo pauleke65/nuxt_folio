@@ -8,7 +8,7 @@
 
  
    
-      <div class="   my-6 mt-40">
+      <div class="   my-6 lg:mt-32 mt-20 mx-2 lg:mx-0">
         <BlogMain :posts="posts"  v-if="!$apollo.queries.posts.loading"/>
         <div v-if="$apollo.queries.posts.loading" class="h-80vh flex m-10">
           <div class=" flex animate-pulse justify-center mt-10 h-72 w-95pr">

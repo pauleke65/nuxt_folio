@@ -1,7 +1,7 @@
 <template>
 
 
-  <nav class="bg-white py-2 fixed top-0 border border-white w-full max-w-7xl ">
+  <nav class="bg-white py-4 fixed top-0   w-full px-4 lg:px-0 max-w-7xl ">
   <div class=" flex flex-wrap items-center justify-between">
   <a href="/blog" class="flex items-center">
       <!-- <img src="~/assets/images/pe-logo.png" class="h-20" alt="Purple Ember Logo" /> -->

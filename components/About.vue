@@ -4,9 +4,10 @@
       <div>
         <img
           class="rounded-full mx-auto h-44 w-44"
-          :src="siteData.profileImage.url"
+          :src="siteData.profileImage?.url"
           alt=""
         />
+
       </div>
       <div
         class="rounded-full py-3 px-12 mb-12 mx-auto font-bold mt-8 bg-white text-black text-center"

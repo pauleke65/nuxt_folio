@@ -2,7 +2,7 @@
   <section class=" h-screen w-full items-center flex" id="home">
     <div class="flex text-white flex-col items-center justify-center h-max mx-auto">
       <p v-if="siteData.developmentMode" class=" text-red-400 mb-4">
-        "Site still under active development"
+        "Site currently under active development"
       </p>
       <h3 class="text-lg text-center">👋Hi There, I'm</h3>
       <h1 class="text-6xl text-center font-light">

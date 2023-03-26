@@ -15,7 +15,7 @@
       
           <!-- :to="{ path: '/posts/' + 'how-apple-google-and-amazons-visions-shaped-their-design-strategy' }"> -->
 
-          <h1 class="text-3xl font-extrabold mt-2 md:mt-0 mb-4">
+          <h1 class=" text-2xl  lg:text-3xl font-extrabold mt-2 md:mt-0 mb-4">
             {{ post.title }}
           </h1>
        
