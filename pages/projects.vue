@@ -26,8 +26,8 @@
     </div>
     <div class=" pt-6 px-6 md:px-64">
       <div class="flex my-4 " v-for="project in projects" :key="project.id">
-        <div class=" w-32 flex-initial">
-          <img class=" h-52 mr-6" :src="project.image.url" alt="" />
+        <div class=" w-32 mr-6 flex-initial">
+          <img class=" h-52 object-scale-down" :src="project.image.url" alt="" />
         </div>
         <div class="flex-1">
           <h2 class="font-bold text-lg md:text-3xl">

@@ -1,7 +1,7 @@
 <template>
   <div class="pt-8 sm:px-28 md:px-48 px-6 flex flex-col h-screen">
     <div class="flex flex-col md:flex-row mb-8">
-      <img class=" h-auto  md:h-96 mb-4" :src="project.image.url" alt="" />
+      <img class=" h-auto  md:h-96 md:w-96 mb-4 object-scale-down" :src="project.image.url" alt="" />
 
       <div class="flex flex-col md:ml-8 ">
         <h2 class="font-bold text-2xl">{{ project.name }}</h2>
@@ -37,10 +37,10 @@
     <div class="flex">
       <div class="flex overflow-x-auto flex-nowrap">
         <div class="flex-none p-2"  v-for="projectVideo in project.project_videos"
-          :key="projectVideo.id">
+          :key="projectVideo">
           <iframe class=" mx-auto h-82 md:h-100 w-45vw mb-4"
            
-            :src="projectVideo.url"
+            :src="projectVideo"
             allowfullscreen
           >
           </iframe>
