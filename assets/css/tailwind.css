@@ -4,12 +4,20 @@
 
 @tailwind utilities;
 
+/* Fix: was stray text in pages/index.vue outside any tag */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset anchor scrolling so fixed navbar doesn't cover section headings */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
 @layer components {
-  .nav_menu {
-    @apply fixed top-0 -left-100pr w-full h-screen p-12 flex items-center bg-white justify-center duration-300 lg:left-0 lg:w-25pr;
-  }
+  /* .nav_menu removed — sidebar nav replaced with top navbar */
 
   .bd-grid {
-    @apply max-w-screen-lg grid grid-cols-100pr w-full  gap-x-8;
+    @apply max-w-screen-lg grid grid-cols-100pr w-full gap-x-8;
   }
 }
