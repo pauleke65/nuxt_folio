@@ -24,7 +24,6 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxtjs/apollo',
-    '@nuxt/image',
   ],
 
   postcss: {
@@ -40,11 +39,6 @@ export default defineNuxtConfig({
         httpEndpoint: process.env.BLOG_URL,
       },
     },
-  },
-
-  image: {
-    // Allow images from Hygraph CDN
-    domains: ['media.graphassets.com', 'us-east-1.graphassets.com'],
   },
 
   runtimeConfig: {

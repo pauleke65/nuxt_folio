@@ -23,7 +23,7 @@ const { certificates, loading, error } = useCertificates()
         class="bg-gray-400 h-64"
       >
         <a :href="certificate.certUrl" target="_blank" rel="noopener noreferrer">
-          <NuxtImg
+          <img
             :src="certificate.image.url"
             :alt="certificate.title || certificate.name || 'Certificate'"
             class="w-full h-full object-cover"

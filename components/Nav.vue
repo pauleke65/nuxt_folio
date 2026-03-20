@@ -42,7 +42,7 @@ function sectionLink(hash) {
         </li>
         <li>
           <NuxtLink to="/blog" class="text-white/60 hover:text-white text-sm tracking-wide transition-colors duration-200 purple-ember-link">
-            PurpleEmber.
+            Blog
           </NuxtLink>
         </li>
       </ul>
@@ -83,7 +83,7 @@ function sectionLink(hash) {
           </li>
           <li>
             <NuxtLink @click="toggleNav" to="/blog" class="text-2xl purple-ember-link">
-              PurpleEmber.
+              Blog
             </NuxtLink>
           </li>
         </ul>

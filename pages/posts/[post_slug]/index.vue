@@ -115,7 +115,7 @@ const authorInitial = computed(() => post.value?.author?.name?.[0]?.toUpperCase(
 
           <!-- Right: cover image -->
           <div class="lg:w-80 xl:w-96 shrink-0">
-            <NuxtImg
+            <img
               v-if="post.coverImage?.url"
               :src="post.coverImage.url"
               :alt="post.title"

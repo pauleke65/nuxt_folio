@@ -116,7 +116,7 @@ onMounted(() => {
 
       <!-- Hero image -->
       <div class="relative w-full h-[50vh] min-h-64 overflow-hidden">
-        <NuxtImg
+        <img
           v-if="project.image?.url"
           :src="project.image.url"
           :alt="project.name"
@@ -156,7 +156,7 @@ onMounted(() => {
                   :key="tool.name"
                   class="flex items-center gap-1.5 bg-white/5 px-2.5 py-1 rounded-full"
                 >
-                  <NuxtImg
+                  <img
                     :src="tool.image.url"
                     :alt="tool.name"
                     class="w-4 h-4 object-contain"

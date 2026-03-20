@@ -17,7 +17,7 @@ function formatDate(date) {
   <NuxtLink :to="{ path: '/posts/' + post.slug }">
     <div class="flex-col">
       <div class="bg-gray-700 h-64 lg:h-80 w-full rounded-md overflow-hidden">
-        <NuxtImg
+        <img
           :src="post.coverImage.url"
           :alt="post.title"
           class="h-full w-full object-cover"

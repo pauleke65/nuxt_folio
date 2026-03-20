@@ -85,7 +85,7 @@ const hoveredId = ref(null)
         >
           <div class="pl-16 pr-4 pb-6">
             <div class="w-full h-56 rounded-2xl overflow-hidden bg-white/5">
-              <NuxtImg
+              <img
                 v-if="project.image?.url"
                 :src="project.image.url"
                 :alt="project.name"

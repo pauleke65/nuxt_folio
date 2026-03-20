@@ -25,7 +25,7 @@ const year = new Date().getFullYear()
 
     <!-- ── PROFILE PHOTO (absolute right half) ── -->
     <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-1/2 z-0">
-      <NuxtImg
+      <img
         v-if="siteData.profileImage?.url"
         :src="siteData.profileImage.url"
         alt="Paul Imoke"

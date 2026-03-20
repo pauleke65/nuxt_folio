@@ -134,7 +134,7 @@ function dismissPopup() {
         class="group flex flex-col lg:flex-row gap-0 rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden hover:border-white/25 hover:bg-white/[0.06] transition-all duration-300 mb-6 block"
       >
         <div class="lg:w-1/2 h-56 lg:h-auto overflow-hidden relative">
-          <NuxtImg
+          <img
             v-if="filteredPosts[0].coverImage?.url"
             :src="filteredPosts[0].coverImage.url"
             :alt="filteredPosts[0].title"
@@ -167,7 +167,7 @@ function dismissPopup() {
           class="group bg-white/[0.03] border border-white/10 rounded-2xl overflow-hidden hover:border-white/25 hover:bg-white/[0.06] transition-all duration-300 flex flex-col"
         >
           <div class="h-44 overflow-hidden relative">
-            <NuxtImg
+            <img
               v-if="post.coverImage?.url"
               :src="post.coverImage.url"
               :alt="post.title"

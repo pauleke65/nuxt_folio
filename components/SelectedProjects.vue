@@ -41,7 +41,7 @@ const { projects, loading } = useProjects()
         >
           <!-- Cover image -->
           <div class="relative overflow-hidden" :class="i === 0 ? 'h-80' : 'h-56'">
-            <NuxtImg
+            <img
               v-if="project.image?.url"
               :src="project.image.url"
               :alt="project.name"

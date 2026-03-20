@@ -23,7 +23,7 @@ function downloadResume(link) {
     <div class="flex flex-col h-full max-w-4xl mx-auto justify-center">
 
       <div>
-        <NuxtImg
+        <img
           class="rounded-full mx-auto h-44 w-44"
           :src="siteData.profileImage?.url"
           alt="Paul Imoke profile photo"
@@ -67,7 +67,7 @@ function downloadResume(link) {
               :key="tool.id"
               class="bg-white w-40 h-40 justify-center flex flex-col"
             >
-              <NuxtImg
+              <img
                 class="mt-2 w-20 mb-4 mx-auto"
                 :src="tool.image.url"
                 :alt="tool.name"

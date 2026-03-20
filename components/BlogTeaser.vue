@@ -45,7 +45,7 @@ function formatDate(dateStr) {
         >
           <!-- Cover image -->
           <div class="relative h-44 overflow-hidden">
-            <NuxtImg
+            <img
               v-if="post.coverImage?.url"
               :src="post.coverImage.url"
               :alt="post.title"
