@@ -25,7 +25,7 @@ function downloadResume(link) {
       <div>
         <img
           class="rounded-full mx-auto h-44 w-44"
-          :src="siteData.profileImage?.url"
+          src="/hero-photo.png"
           alt="Paul Imoke profile photo"
           width="176"
           height="176"
