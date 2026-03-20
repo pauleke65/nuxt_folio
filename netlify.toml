@@ -3,6 +3,9 @@
   # Nuxt 3 outputs to .output/public (was dist/ in Nuxt 2)
   publish = ".output/public"
 
+[build.environment]
+  NODE_VERSION = "20"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
