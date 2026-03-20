@@ -1,1 +1,0 @@
-import{a6 as a,a7 as s,a8 as r,W as u,a9 as o}from"./Di9ftBiL.js";function i(e){const t=e||s();return t?.ssrContext?.head||t?.runWithContext(()=>{if(r())return u(o)})}function x(e,t={}){const n=i(t.nuxt);if(n)return a(e,{head:n,...t})}export{x as u};
