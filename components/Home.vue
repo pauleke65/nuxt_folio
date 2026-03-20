@@ -28,7 +28,8 @@ const year = new Date().getFullYear()
       <img
         src="/hero-photo.png"
         alt="Paul Imoke"
-        class="w-full h-full object-cover object-top"
+        class="w-full h-full object-cover"
+        style="object-position: 35% 15%"
         width="720"
         height="900"
         loading="eager"
