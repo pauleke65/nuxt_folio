@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "Nuxt Dev",
-      "runtimeExecutable": "yarn",
-      "runtimeArgs": ["dev"],
+      "runtimeExecutable": "/Users/paulimoke/.nvm/versions/node/v20.18.0/bin/node",
+      "runtimeArgs": ["/Users/paulimoke/Documents/code/nuxt_folio/node_modules/.bin/nuxt", "dev"],
       "port": 3000
     },
     {

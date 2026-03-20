@@ -41,7 +41,7 @@ function sectionLink(hash) {
           </a>
         </li>
         <li>
-          <NuxtLink to="/blog" class="text-white/60 hover:text-white text-sm tracking-wide transition-colors duration-200 purple-ember-link">
+          <NuxtLink to="/blog" class="text-white/60 hover:text-white text-sm tracking-wide transition-colors duration-200">
             Blog
           </NuxtLink>
         </li>
@@ -82,7 +82,7 @@ function sectionLink(hash) {
             <a @click="toggleNav" :href="sectionLink('#portfolio')" class="text-white text-2xl">Portfolio</a>
           </li>
           <li>
-            <NuxtLink @click="toggleNav" to="/blog" class="text-2xl purple-ember-link">
+            <NuxtLink @click="toggleNav" to="/blog" class="text-white text-2xl">
               Blog
             </NuxtLink>
           </li>
@@ -111,10 +111,6 @@ function sectionLink(hash) {
   </header>
 </template>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
-</style>
-
 <style scoped>
 .slide-down-enter-active,
 .slide-down-leave-active {
@@ -124,14 +120,5 @@ function sectionLink(hash) {
 .slide-down-leave-to {
   opacity: 0;
   transform: translateY(-8px);
-}
-
-.purple-ember-link {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-style: italic;
-  color: rgba(168, 85, 247, 0.8);
-}
-.purple-ember-link:hover {
-  color: rgb(168, 85, 247);
 }
 </style>
