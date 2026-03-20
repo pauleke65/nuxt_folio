@@ -23,19 +23,14 @@ const year = new Date().getFullYear()
       </span>
     </div>
 
-    <!-- ── PROFILE PHOTO (absolute right half) ── -->
-    <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-1/2 z-0">
-      <img
-        v-if="siteData.profileImage?.url"
-        :src="siteData.profileImage.url"
-        alt="Paul Imoke"
-        class="w-full h-full object-cover object-top"
-        width="720"
-        height="900"
-        loading="eager"
-      />
-      <div v-else class="w-full h-full bg-white/5 animate-pulse"></div>
-    </div>
+    <!-- ── PROFILE PHOTO (absolute, bottom-anchored portrait) ── -->
+    <img
+      class="hidden lg:block absolute top-0 z-0 pointer-events-none"
+      src="/hero-photo.png"
+      alt="Paul Imoke"
+      style="right: 0%; height: 150%; width: auto; clip-path: inset(0 0 30% 0);"
+      loading="eager"
+    />
 
     <!-- ── MAIN CONTENT — aligned to navbar container ── -->
     <div class="relative z-10 max-w-7xl mx-auto px-6 min-h-screen flex items-center">
