@@ -1,7 +1,7 @@
 [build]
   command = "yarn generate"
-  # Nuxt 3 outputs to .output/public (was dist/ in Nuxt 2)
-  publish = ".output/public"
+  # ssr: false uses static preset → outputs to dist/ (not .output/public)
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"
