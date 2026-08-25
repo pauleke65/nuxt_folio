@@ -1,0 +1,40 @@
+/*
+ * Theme for the "systems research" site (Research / Models / Predictions /
+ * Experiments / Essays / Projects / About). Scoped under .research-page so
+ * it never leaks into the legacy dark-mode pages (/work, /blog, etc.).
+ */
+
+.research-page {
+  --paper: #f4f1e8;
+  --ink: #1c1a16;
+  --accent: #8c3b1f;
+  --good: #3f5c3a;
+  --rule: rgba(28, 26, 22, 0.14);
+  --dim: rgba(28, 26, 22, 0.55);
+  --body-font: 'Newsreader', Georgia, serif;
+  --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body-font);
+  min-height: 100vh;
+}
+
+.research-page a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.research-page a:hover {
+  text-decoration: underline;
+}
+
+.research-page select {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--rule);
+  padding: 5px 8px;
+  border-radius: 0;
+}

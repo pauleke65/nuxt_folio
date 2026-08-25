@@ -1,0 +1,77 @@
+// Real engineering record — nine years across seven companies. Kept in sync
+// with components/Experience.vue's fuller bullet-point version.
+export const PROJECTS = [
+  {
+    name: 'BLIA — Buy Land in Africa', period: '2024 →',
+    title: 'Property marketplace, end to end',
+    role: 'Lead Engineer · USA, remote',
+    description: 'Architected and built the whole platform: a React Native mobile app, the web frontend, and custom backend infrastructure. The listing pipeline pulls property data straight out of Facebook and Instagram, so agents never re-enter it. A WhatsApp automation engine on Bull MQ, backed by an AI-managed Matrix server, answers buyer enquiries and routes them to the right agent unattended. AI handles generated listing descriptions, smart search and image watermarking. I ran sprint planning and explained engineering trade-offs directly to the CEO and non-technical stakeholders.',
+    linkLabel: 'Visit BLIA ↗', linkHref: '#',
+  },
+  {
+    name: 'Agrolinking Solutions', period: '2025–26',
+    title: 'Agricultural traceability on Stellar',
+    role: 'Lead Developer · Kaduna, remote',
+    description: 'Took an MVP that had been assembled in Lovable and rebuilt it as a production Next.js application. Behind it, an Express service integrates with NAFDAC so a product’s regulatory record travels with it, and Stellar plus IPFS via Pinata hold the supply-chain history as immutable entries no single party can quietly revise. The demo built on this work secured $20,000 in funding from the Stellar Development Foundation.',
+    linkLabel: 'Visit Agrolinking ↗', linkHref: '#',
+  },
+  {
+    name: 'Sustineri Attorneys', period: '2023–25',
+    title: 'Trial Manager',
+    role: 'Lead Mobile Engineer · Accra, remote',
+    description: 'A full court and trial management system built from nothing: case management, team coordination, and automated court-date reminders for a profession where a missed date has real consequences. I owned the whole lifecycle — requirements gathering with the lawyers, architecture, schema design, API development, deployment, and the cross-platform mobile experience they use in court.',
+    linkLabel: 'Case study ↗', linkHref: '#',
+  },
+  {
+    name: 'Tecmie LLC', period: '2023–25',
+    title: 'Attest Protocol, ApplyBetter, Wootiv',
+    role: 'Lead Engineer · USA, remote',
+    description: 'Engineering lead across a multi-product studio. I wrote the TypeScript SDK and the full technical documentation for attest-protocol.org; built the backend and schema for ApplyBetter.co, which builds a candidate profile and applies to roles autonomously; and engineered Wootiv, AI mailbox agents that run hiring and sales conversations end to end. Also rebuilt the company’s own site.',
+    linkLabel: 'attest-protocol.org ↗', linkHref: 'https://attest-protocol.org',
+  },
+  {
+    name: 'MEST Africa — RegWand', period: '2022–23',
+    title: 'Four products in one accelerator year',
+    role: 'Technology Lead · Accra',
+    description: 'RegWand guided entrepreneurs through market-entry regulation with AI-assisted legal consulting. LevelUp booked workplace therapy the way a ride is hailed. GradGap assessed graduate skills against real job requirements and recommended the training to close the gap. SageBrief Legal cut lawyers’ research time by roughly 90%. I also advised the wider cohort on technical decisions.',
+    linkLabel: 'MEST Africa ↗', linkHref: '#',
+  },
+  {
+    name: 'AMTAP Technologies', period: '2022–25',
+    title: 'Fitness platform for coaches',
+    role: 'Lead Engineer · Dubai, remote',
+    description: 'Principal mobile engineer and system architect for an Instagram-style platform where trainers sell their programmes. I designed the application schema and backend architecture from scratch, then solved the hard part: coaches upload individual workout videos, and the pipeline processes and bundles them into purchasable training programs with monetisation attached.',
+    linkLabel: 'Case study ↗', linkHref: '#',
+  },
+  {
+    name: 'WSTC Financial Services', period: '2022–23',
+    title: 'WSTC Mobile — investment banking app',
+    role: 'Software Mobile Engineer · Nigeria',
+    description: 'Built and extended the mobile banking application for an investment bank, published on Play Store. The work was mostly translation: taking complex financial products — instruments with terms most customers have never had explained to them — and turning them into interfaces a first-time investor can use without calling support. Security and performance were non-negotiable throughout.',
+    linkLabel: 'Play Store ↗', linkHref: '#',
+  },
+  {
+    name: 'Menji', period: 'Play Store',
+    title: 'Menji — ride-hailing',
+    role: 'Mobile Engineer',
+    description: 'A published ride-hailing application: rider and driver flows, live trip state, and the matching logic in between. Working on it is where I first watched a two-sided market misbehave in production — supply and demand that respond to each other on different timescales, which is exactly the shape of problem I now model deliberately.',
+    linkLabel: 'Play Store ↗', linkHref: '#',
+  },
+  {
+    name: 'Securities & Exchange Commission, Nigeria', period: '2021',
+    title: 'Server monitoring automation',
+    role: 'Engineering · Abuja',
+    description: 'The team checked server health by hand, on a schedule, in a building where nobody was measuring how long that took. I wrote the monitoring and alerting script that replaced the routine and cut manual checking by more than 95%. Small piece of work, and the first time I saw clearly that the bottleneck in an institution is usually a habit rather than a resource.',
+    linkLabel: 'Write-up ↗', linkHref: '#',
+    span2: true,
+  },
+]
+
+// Real recognition — kept in sync with components/Achievements.vue.
+export const ACHIEVEMENTS = [
+  { year: '2023', text: 'HNG i8 top finalist — highest code contribution across the cohort' },
+  { year: '2023', text: 'Technology Lead, MEST Africa — shipped four production products' },
+  { year: '2026', text: '$20,000 Stellar Development Foundation grant — Agrolinking demo' },
+  { year: '2021–26', text: 'Led distributed engineering teams across Nigeria, Ghana, Dubai and the USA' },
+  { year: '2021', text: 'Server monitoring automation at SEC Nigeria — 95% less manual checking' },
+]
