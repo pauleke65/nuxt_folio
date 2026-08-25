@@ -28,18 +28,18 @@ const barStyles = computed(() => exp.value.bars.map((h, i) => ({
 </script>
 
 <template>
-  <main style="max-width:1180px;margin:0 auto;padding:0 28px">
-    <section style="padding:72px 0 30px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:end;border-bottom:1px solid var(--ink)">
+  <main class="rs-main" style="max-width:1180px;margin:0 auto;padding:0 28px">
+    <section class="rs-grid-stack rs-hero-pad" style="padding:72px 0 30px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:end;border-bottom:1px solid var(--ink)">
       <div>
         <div style="font:400 12px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:18px">Experiments · {{ EXPERIMENTS.length }} runs</div>
-        <h1 style="margin:0 0 18px;font:600 60px/1.04 var(--body-font);letter-spacing:-.035em">A model I cannot run<br>is an opinion with boxes</h1>
+        <h1 class="rs-hero-h1" style="margin:0 0 18px;font:600 60px/1.04 var(--body-font);letter-spacing:-.035em">A model I cannot run<br>is an opinion with boxes</h1>
         <p style="margin:0;font:400 19px/1.6 var(--body-font);color:rgba(28,26,22,.78);max-width:32em">Simulations, historical backtests and the occasional field test. Assumptions stated first, then what the run changed about my thinking — including when it changed nothing.</p>
       </div>
       <div style="font:400 12px/1.9 var(--mono);color:var(--dim);text-align:right">5 simulations<br>2 historical backtests<br>3 predictions produced</div>
     </section>
 
-    <section style="display:grid;grid-template-columns:296px minmax(0,1fr);gap:0;padding-bottom:90px">
-      <div style="border-right:1px solid var(--rule);padding:26px 26px 26px 0">
+    <section class="rs-grid-stack" style="display:grid;grid-template-columns:296px minmax(0,1fr);gap:0;padding-bottom:90px">
+      <div class="rs-exp-rail" style="border-right:1px solid var(--rule);padding:26px 26px 26px 0">
         <div style="font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:14px">All experiments</div>
         <div style="display:flex;flex-direction:column;gap:2px">
           <a
@@ -60,15 +60,15 @@ const barStyles = computed(() => exp.value.bars.map((h, i) => ({
         <div style="font:400 11px/1.7 var(--mono);color:var(--dim);margin-top:20px;padding-top:16px;border-top:1px solid var(--rule)">Two more runs are unpublished until their predictions resolve.</div>
       </div>
 
-      <div style="padding:26px 0 0 34px">
+      <div class="rs-exp-content" style="padding:26px 0 0 34px">
         <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:14px">
           <span style="font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)">{{ exp.id }} · {{ exp.kind }}</span>
           <span style="font:400 12px var(--mono);color:var(--dim)">{{ exp.date }} · {{ exp.runs }}</span>
         </div>
-        <h2 style="margin:0 0 14px;font:600 38px/1.12 var(--body-font);letter-spacing:-.03em">{{ exp.title }}</h2>
+        <h2 class="rs-detail-h1" style="margin:0 0 14px;font:600 38px/1.12 var(--body-font);letter-spacing:-.03em">{{ exp.title }}</h2>
         <p style="margin:0 0 28px;font:400 18px/1.65 var(--body-font);color:rgba(28,26,22,.82);max-width:36em">{{ exp.lede }}</p>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-bottom:30px">
+        <div class="rs-grid-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-bottom:30px">
           <div>
             <div style="font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:12px">Assumptions</div>
             <div style="border-top:1px solid var(--rule)">
@@ -94,7 +94,7 @@ const barStyles = computed(() => exp.value.bars.map((h, i) => ({
         <div style="font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:10px">Mechanism, in code</div>
         <pre style="margin:0 0 28px;background:#1c1a16;color:#e8e3d6;padding:20px 22px;font:400 12.5px/1.75 var(--mono);overflow:auto">{{ exp.code }}</pre>
 
-        <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:34px;border-top:1px solid var(--ink);padding-top:24px">
+        <div class="rs-grid-stack" style="display:grid;grid-template-columns:1.4fr 1fr;gap:34px;border-top:1px solid var(--ink);padding-top:24px">
           <div>
             <div style="font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:10px">What the run changed</div>
             <p style="margin:0;font:400 17px/1.65 var(--body-font);color:rgba(28,26,22,.82)">{{ exp.finding }}</p>

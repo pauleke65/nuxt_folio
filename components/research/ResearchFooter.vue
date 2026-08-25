@@ -4,8 +4,8 @@ const { siteData } = useSiteData()
 
 <template>
   <footer style="border-top:1px solid var(--ink);background:rgba(28,26,22,.03)">
-    <div style="max-width:1180px;margin:0 auto;padding:44px 28px 34px">
-      <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:44px;padding-bottom:30px;border-bottom:1px solid var(--rule)">
+    <div class="rs-main" style="max-width:1180px;margin:0 auto;padding:44px 28px 34px">
+      <div class="rs-grid-stack" style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:44px;padding-bottom:30px;border-bottom:1px solid var(--rule)">
         <div>
           <div style="font:500 14px var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Paul I.</div>
           <p style="margin:0 0 14px;font:400 17px/1.6 var(--body-font);max-width:26em">I study systems — how they are built, how they hold, and how they fail. The record of being wrong is part of the record.</p>

@@ -24,10 +24,10 @@ const latestWork = [
 </script>
 
 <template>
-  <main style="max-width:1180px;margin:0 auto;padding:0 28px">
-    <section style="padding:96px 0 56px;max-width:760px">
+  <main class="rs-main" style="max-width:1180px;margin:0 auto;padding:0 28px">
+    <section class="rs-hero-pad" style="padding:96px 0 56px;max-width:760px">
       <div style="font:400 12px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:22px">Systems research · month 04 of 06</div>
-      <h1 style="margin:0 0 28px;font:300 46px/1.22 var(--body-font);letter-spacing:-.02em">I study systems — how they are built, how they hold, and how they fail.</h1>
+      <h1 class="rs-home-h1" style="margin:0 0 28px;font:300 46px/1.22 var(--body-font);letter-spacing:-.02em">I study systems — how they are built, how they hold, and how they fail.</h1>
       <p style="margin:0 0 20px;font:400 20px/1.68 var(--body-font);color:rgba(28,26,22,.82)">Not one industry and not one century. A rail network in 1890, a mobile payments float in 2026 and a medieval grain reserve are the same object seen three times: actors, stocks, flows, information, incentives, delay.</p>
       <p style="margin:0 0 20px;font:400 20px/1.68 var(--body-font);color:rgba(28,26,22,.82)">Nine years as a lead engineer put me inside a handful of these — marketplaces, supply chains, banking, court scheduling. I learned where they break. I am now doing the harder half: modelling them, predicting them, and recording the score.</p>
       <p style="margin:0;font:400 20px/1.68 var(--body-font);color:rgba(28,26,22,.82)">Every page here is a model I built, a number I committed to before the outcome, or an account of why the number was wrong. Nothing is edited after the fact.</p>
@@ -38,7 +38,7 @@ const latestWork = [
         <span style="font:500 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim)">The scoreboard, honestly</span>
         <span style="font:400 12px var(--mono);color:var(--dim)">Week 17 of 26</span>
       </div>
-      <div style="display:grid;grid-template-columns:1.35fr 1fr;gap:52px;align-items:start">
+      <div class="rs-grid-stack" style="display:grid;grid-template-columns:1.35fr 1fr;gap:52px;align-items:start">
         <div>
           <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:10px">
             <span style="font:500 60px/1 var(--mono);letter-spacing:-.04em;color:var(--accent)">13</span>
@@ -73,6 +73,7 @@ const latestWork = [
           v-for="item in latestWork"
           :key="item.id"
           :to="item.to"
+          class="rs-grid-stack"
           style="display:grid;grid-template-columns:104px 1fr 130px 78px;gap:22px;align-items:baseline;padding:17px 0;border-bottom:1px solid var(--rule);color:var(--ink)"
         >
           <span style="font:400 13px var(--mono);color:var(--dim)">{{ item.date }}</span>
@@ -84,7 +85,7 @@ const latestWork = [
     </section>
     <section style="padding:34px 0 90px">
       <div style="font:500 13px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:18px">Where to start</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)">
+      <div class="rs-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)">
         <NuxtLink to="/models" style="background:var(--paper);padding:24px;color:var(--ink)"><div style="font:400 22px/1.3 var(--body-font);margin-bottom:8px">Models</div><div style="font:400 15px/1.55 var(--body-font);color:var(--dim)">Twelve systems mapped the same nine ways. The core of the work.</div></NuxtLink>
         <NuxtLink to="/predictions" style="background:var(--paper);padding:24px;color:var(--ink)"><div style="font:400 22px/1.3 var(--body-font);margin-bottom:8px">Predictions</div><div style="font:400 15px/1.55 var(--body-font);color:var(--dim)">The scoreboard. Thirteen open, twenty-one settled, eight wrong.</div></NuxtLink>
         <NuxtLink to="/projects" style="background:var(--paper);padding:24px;color:var(--ink)"><div style="font:400 22px/1.3 var(--body-font);margin-bottom:8px">Projects</div><div style="font:400 15px/1.55 var(--body-font);color:var(--dim)">Nine years of engineering — the field access behind the models.</div></NuxtLink>

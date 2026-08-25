@@ -12,11 +12,11 @@ const { siteData } = useSiteData()
 </script>
 
 <template>
-  <main style="max-width:1180px;margin:0 auto;padding:0 28px">
-    <section style="padding:72px 0 30px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:end;border-bottom:1px solid var(--ink)">
+  <main class="rs-main" style="max-width:1180px;margin:0 auto;padding:0 28px">
+    <section class="rs-grid-stack rs-hero-pad" style="padding:72px 0 30px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:end;border-bottom:1px solid var(--ink)">
       <div>
         <div style="font:400 12px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:18px">Projects · engineering, 2017–2026</div>
-        <h1 style="margin:0 0 18px;font:600 60px/1.04 var(--body-font);letter-spacing:-.035em">Nine years of building<br>the systems I now study</h1>
+        <h1 class="rs-hero-h1" style="margin:0 0 18px;font:600 60px/1.04 var(--body-font);letter-spacing:-.035em">Nine years of building<br>the systems I now study</h1>
         <p style="margin:0;font:400 19px/1.6 var(--body-font);color:rgba(28,26,22,.78);max-width:32em">Production work as a lead engineer across seven companies and four countries — marketplaces, supply chains, banking, legal infrastructure. This is the field access behind the models.</p>
       </div>
       <div style="border:1px solid var(--rule);padding:18px 20px;background:rgba(28,26,22,.03)">
@@ -34,7 +34,7 @@ const { siteData } = useSiteData()
         <h2 style="margin:0;font:500 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim)">Achievements &amp; certifications</h2>
         <span style="font:400 12px var(--mono);color:var(--dim)">Send me the certificate list and I will fill the second column</span>
       </div>
-      <div style="display:grid;grid-template-columns:1.25fr 1fr;gap:34px;padding-bottom:44px;border-bottom:1px solid var(--ink)">
+      <div class="rs-grid-stack" style="display:grid;grid-template-columns:1.25fr 1fr;gap:34px;padding-bottom:44px;border-bottom:1px solid var(--ink)">
         <div style="border-top:1px solid var(--rule)">
           <div v-for="a in ACHIEVEMENTS" :key="a.text" style="display:grid;grid-template-columns:112px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule)"><span style="font:400 12px var(--mono);color:var(--dim)">{{ a.year }}</span><span><span style="font:400 17px/1.45 var(--body-font)">{{ a.text }}</span></span></div>
         </div>
@@ -52,7 +52,7 @@ const { siteData } = useSiteData()
 
     <section style="padding:40px 0 90px">
       <h2 style="margin:0 0 22px;font:500 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim)">Selected work — {{ PROJECTS.length }} projects</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+      <div class="rs-grid-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
         <div
           v-for="p in PROJECTS"
           :key="p.name"

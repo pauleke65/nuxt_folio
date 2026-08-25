@@ -38,3 +38,133 @@
   padding: 5px 8px;
   border-radius: 0;
 }
+
+/* ── Responsive ──────────────────────────────────────────────────────────
+ * Every page/component was built with the prototype's exact desktop inline
+ * styles (fixed px grid columns, fixed px headings) for pixel fidelity.
+ * Inline styles win the cascade over plain classes, so the rules below use
+ * `!important` deliberately and only inside these mobile media queries —
+ * that's what lets a handful of shared classes override dozens of
+ * page-specific inline `style="..."` strings without rewriting them all.
+ */
+
+.research-page img,
+.research-page pre {
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .research-page .rs-grid-3 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 820px) {
+  .research-page .rs-main {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  /* Any two-part split (hero + rail, content + aside, label-col + value-col,
+     footer columns…) collapses to one column, in source order. Gap is left
+     alone — several of these grids use a 1px "ruled" gap with a background
+     colour to draw hairlines between cells, and that trick still works fine
+     stacked to one column. */
+  .research-page .rs-grid-stack {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* A grid item's automatic min-width is its content's min-content size —
+     for a stacked column that can be wider than the viewport (e.g. a code
+     block's longest unbroken line), which pushes the whole page into
+     horizontal scroll even though the offending element itself scrolls
+     internally. Zeroing it here lets that internal scroll do its job. */
+  .research-page .rs-grid-stack > * {
+    min-width: 0 !important;
+  }
+
+  .research-page .rs-grid-stack-gap {
+    gap: 24px !important;
+  }
+
+  .research-page .rs-grid-stack > aside,
+  .research-page .rs-grid-stack > :last-child[style*='padding-top'] {
+    padding-top: 0 !important;
+  }
+
+  .research-page nav {
+    /* Desktop sets flex:none so nav keeps its natural width; that has to
+       give on mobile or the header row overflows the viewport instead of
+       scrolling internally. */
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .research-page nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .research-page nav a {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    font-size: 12px !important;
+  }
+
+  .research-page .rs-wordmark-sub {
+    display: none;
+  }
+
+  .research-page .rs-hero-h1 {
+    font-size: 34px !important;
+    line-height: 1.18 !important;
+  }
+
+  .research-page .rs-home-h1 {
+    font-size: 30px !important;
+    line-height: 1.25 !important;
+  }
+
+  .research-page .rs-detail-h1 {
+    font-size: 28px !important;
+    line-height: 1.2 !important;
+  }
+
+  .research-page .rs-wrap {
+    flex-wrap: wrap !important;
+    row-gap: 10px !important;
+  }
+
+  .research-page .rs-hero-pad {
+    padding-top: 48px !important;
+  }
+
+  .research-page .rs-exp-content {
+    padding-left: 0 !important;
+    padding-top: 22px !important;
+  }
+
+  .research-page .rs-exp-rail {
+    border-right: none !important;
+    border-bottom: 1px solid var(--rule);
+    padding: 0 0 22px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .research-page .rs-main {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .research-page .rs-grid-3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .research-page pre {
+    font-size: 11px !important;
+    padding: 14px 16px !important;
+  }
+}

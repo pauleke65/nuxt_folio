@@ -13,11 +13,11 @@ const wrongCount = SETTLED_PREDICTIONS.length - rightCount
 </script>
 
 <template>
-  <main style="max-width:1180px;margin:0 auto;padding:0 28px">
-    <section style="padding:72px 0 30px;display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:end;border-bottom:1px solid var(--ink)">
+  <main class="rs-main" style="max-width:1180px;margin:0 auto;padding:0 28px">
+    <section class="rs-grid-stack rs-hero-pad" style="padding:72px 0 30px;display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:end;border-bottom:1px solid var(--ink)">
       <div>
         <div style="font:400 12px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:18px">Predictions · 34 recorded</div>
-        <h1 style="margin:0 0 18px;font:600 60px/1.04 var(--body-font);letter-spacing:-.035em">The ledger</h1>
+        <h1 class="rs-hero-h1" style="margin:0 0 18px;font:600 60px/1.04 var(--body-font);letter-spacing:-.035em">The ledger</h1>
         <p style="margin:0;font:400 19px/1.6 var(--body-font);color:rgba(28,26,22,.78);max-width:33em">Each prediction carries a mechanism, a probability and a deadline, logged before the outcome is known. Thirteen are open. Twenty-one are settled, eight of them against me.</p>
       </div>
       <div>
@@ -40,11 +40,11 @@ const wrongCount = SETTLED_PREDICTIONS.length - rightCount
       </div>
       <div style="display:flex;flex-direction:column;gap:18px">
         <div v-for="(p, i) in OPEN_PREDICTIONS" :key="p.id" :style="i === 0 ? 'border:1px solid var(--ink);background:#fff' : 'border:1px solid var(--rule);background:#fff'">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:11px 22px;border-bottom:1px solid var(--rule);background:rgba(28,26,22,.03)">
+          <div class="rs-wrap" style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:11px 22px;border-bottom:1px solid var(--rule);background:rgba(28,26,22,.03)">
             <div style="display:flex;align-items:center;gap:14px;font:400 12px var(--mono);color:var(--dim)"><span style="font-weight:500;color:var(--ink)">{{ p.id }}</span><span>{{ p.domain }}</span><span>logged {{ p.logged }}</span></div>
             <div style="display:flex;align-items:center;gap:14px;font:400 12px var(--mono)"><span style="color:var(--dim)">{{ p.daysLeft }} days left</span><span style="padding:3px 9px;border:1px solid var(--accent);color:var(--accent);letter-spacing:.08em">{{ p.deadline }}</span></div>
           </div>
-          <div style="display:grid;grid-template-columns:132px minmax(0,1fr);gap:0">
+          <div class="rs-grid-stack rs-grid-stack-gap" style="display:grid;grid-template-columns:132px minmax(0,1fr);gap:0">
             <div style="border-right:1px solid var(--rule);padding:22px 20px;display:flex;flex-direction:column;justify-content:space-between">
               <div>
                 <div style="font:500 42px/1 var(--mono);letter-spacing:-.04em;color:var(--accent)">{{ p.confidence }}<span style="font-size:20px">%</span></div>
@@ -95,7 +95,7 @@ const wrongCount = SETTLED_PREDICTIONS.length - rightCount
             padding: '20px 24px',
           }"
         >
-          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:10px">
+          <div class="rs-wrap" style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:10px">
             <div style="display:flex;align-items:baseline;gap:14px;font:400 12px var(--mono);color:var(--dim)"><span style="font-weight:500;color:var(--ink)">{{ p.id }}</span><span>{{ p.domain }}</span><span>{{ p.settledNote }}</span></div>
             <div style="display:flex;align-items:baseline;gap:12px;font:400 12px var(--mono)"><span style="color:var(--dim)">stated {{ p.stated }}%</span><span :style="{ fontWeight: 500, color: p.verdict === 'RIGHT' ? 'var(--good)' : 'var(--accent)', letterSpacing: '.08em' }">{{ p.verdict }}</span></div>
           </div>

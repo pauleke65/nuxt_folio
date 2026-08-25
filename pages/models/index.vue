@@ -23,11 +23,11 @@ const emptyNote = computed(() => {
 </script>
 
 <template>
-  <main style="max-width:1180px;margin:0 auto;padding:0 28px">
-    <section style="padding:72px 0 30px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:end;border-bottom:1px solid var(--ink)">
+  <main class="rs-main" style="max-width:1180px;margin:0 auto;padding:0 28px">
+    <section class="rs-grid-stack rs-hero-pad" style="padding:72px 0 30px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:end;border-bottom:1px solid var(--ink)">
       <div>
         <div style="font:400 12px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:18px">Models</div>
-        <h1 style="margin:0 0 18px;font:600 60px/1.04 var(--body-font);letter-spacing:-.035em">Every system,<br>mapped the same nine ways</h1>
+        <h1 class="rs-hero-h1" style="margin:0 0 18px;font:600 60px/1.04 var(--body-font);letter-spacing:-.035em">Every system,<br>mapped the same nine ways</h1>
         <p style="margin:0;font:400 19px/1.6 var(--body-font);color:rgba(28,26,22,.78);max-width:32em">Actors, resources, information, incentives, feedback, constraints, bottlenecks, failure modes, leverage points. The same nine for a 19th-century canal and a 2026 payments float — which is the point of doing it this way.</p>
       </div>
       <div style="font:400 12px/1.9 var(--mono);color:var(--dim);text-align:right">12 built · 26 planned<br>3 historical backtests<br>next: informal credit</div>
@@ -46,7 +46,7 @@ const emptyNote = computed(() => {
         </label>
         <span style="color:var(--dim);padding-left:6px">{{ filtered.length }} shown</span>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border-bottom:1px solid var(--rule)">
+      <div class="rs-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border-bottom:1px solid var(--rule)">
         <NuxtLink
           v-for="m in filtered"
           :key="m.id"

@@ -15,7 +15,7 @@ useHead(() => ({
 </script>
 
 <template>
-  <main style="max-width:1180px;margin:0 auto;padding:0 28px">
+  <main class="rs-main" style="max-width:1180px;margin:0 auto;padding:0 28px">
     <div v-if="!model" style="padding:90px 0;font:400 16px var(--body-font)">
       Model not found. <NuxtLink to="/models">Back to Models</NuxtLink>
     </div>
@@ -24,10 +24,10 @@ useHead(() => ({
       <div style="padding:24px 0 0;font:400 13px var(--mono);color:var(--dim)"><NuxtLink to="/models" style="color:var(--dim)">Models</NuxtLink> / {{ model.id }}</div>
 
       <!-- Full write-up, when one exists (currently M-07 only). -->
-      <div v-if="detail" style="display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:56px;padding:34px 0 90px">
+      <div v-if="detail" class="rs-grid-stack" style="display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:56px;padding:34px 0 90px">
         <div>
           <div style="font:400 12px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:16px">{{ detail.kicker }}</div>
-          <h1 style="margin:0 0 18px;font:600 46px/1.08 var(--body-font);letter-spacing:-.03em">{{ detail.title }}</h1>
+          <h1 class="rs-detail-h1" style="margin:0 0 18px;font:600 46px/1.08 var(--body-font);letter-spacing:-.03em">{{ detail.title }}</h1>
           <p style="margin:0 0 30px;font:400 19px/1.65 var(--body-font);color:rgba(28,26,22,.8);max-width:34em">{{ detail.lede }}</p>
           <div style="height:1px;background:var(--ink);margin-bottom:26px"></div>
 
@@ -87,7 +87,7 @@ useHead(() => ({
       <!-- No full write-up yet — show the summary card so the link is never dead. -->
       <div v-else style="padding:34px 0 120px;max-width:640px">
         <div style="font:400 12px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:16px">Model · {{ model.domain }} · {{ model.year }}</div>
-        <h1 style="margin:0 0 18px;font:600 40px/1.1 var(--body-font);letter-spacing:-.03em">{{ model.title }}</h1>
+        <h1 class="rs-detail-h1" style="margin:0 0 18px;font:600 40px/1.1 var(--body-font);letter-spacing:-.03em">{{ model.title }}</h1>
         <p style="margin:0 0 20px;font:400 18px/1.6 var(--body-font);color:rgba(28,26,22,.8)">{{ model.blurb }}</p>
         <p style="margin:0;font:400 13px var(--mono);color:var(--dim)">Full write-up not published yet — {{ model.meta.toLowerCase() }}.</p>
       </div>
