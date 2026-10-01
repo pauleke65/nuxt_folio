@@ -1,5 +1,5 @@
 // Demo/starter content for the Models section — carried over from the
-// Claude Design prototype. Swap in real models/predictions as they're built.
+// Claude Design prototype. Swap in real models as they're built.
 export const MODELS = [
   { id: 'M-07', domain: 'Transit', year: '2026', era: 'now', title: 'Urban transit under a fuel shock', blurb: 'Six actor classes, three fare regimes, one binding constraint: road area per capita.', meta: '4 PREDICTIONS · 2 EXPERIMENTS' },
   { id: 'M-06', domain: 'Housing', year: '2026', era: 'now', title: 'Housing supply as stock and flow', blurb: 'A stock problem misread as a demand problem for thirty years running.', meta: '3 PREDICTIONS · 1 EXPERIMENT' },
@@ -17,19 +17,22 @@ export const MODELS = [
 
 export const DOMAINS = ['Transit', 'Housing', 'Property', 'Capital', 'Energy', 'Education', 'Health', 'Networks']
 
-// Full write-ups only exist for M-07 so far. Every other model page falls
-// back to its summary card until a real detail page is written.
+// Full write-ups only exist for M-07 so far. Every other model page shows its
+// head and "Full write-up not published yet."
+// Leverage tiers map to bars: LOW 1, MEDIUM 2, HIGH 3, EXTREME 4.
 export const MODEL_DETAILS = {
   'M-07': {
     kicker: 'Model · Transit · v3',
     title: 'Urban transit under a fuel shock',
     lede: 'Twenty million trips a day across four modes sharing one scarce resource. Fares are the visible variable; road area per capita is the binding one. Built on a metropolitan case, then tested against two cities with different fare regimes.',
-    structureChain: ['Fuel price', 'Cost per trip', 'Mode choice', 'Transit load'],
-    structureLoop: [
-      { label: 'Dwell time ↑', dashed: true },
-      { label: 'Crowding', dashed: true },
+    facts: [
+      { k: 'Pattern', v: 'Balancing loop' },
+      { k: 'Binding constraint', v: 'Road area per capita' },
+      { k: 'Throughput cap', v: 'Dwell time at stops' },
+      { k: 'Revised', v: 'v3 · 18 Aug' },
     ],
-    structureLoopNote: 'Balancing loop B1 — crowding suppresses the shift that caused it',
+    // Fig. 1 is drawn by components/site/DiagramM07.vue.
+    caption: 'Balancing loop B1 — crowding suppresses the shift that caused it',
     actors: [
       { who: 'Informal operators', what: 'Maximise daily cash; reprice within hours of a cost shock.' },
       { who: 'Transit authority', what: 'Fare-box recovery against a politically capped fare.' },
@@ -43,10 +46,11 @@ export const MODEL_DETAILS = {
       { tier: 'EXTREME', text: 'Stop treating transport as movement of vehicles and treat it as access to opportunity — which makes land use, not roads, the intervention.' },
     ],
     falsifier: 'If a 15% fuel rise leaves ridership flat for two consecutive months, cost is not driving mode choice and the model’s central arrow is wrong.',
+    // Prediction entries stay private until the ledger opens in January 2027.
     produced: [
-      { label: '4 predictions', to: '/predictions' },
-      { label: '2 experiments', to: '/experiments' },
-      { label: '1 essay', to: '/essays' },
+      { n: '4', label: 'predictions', note: 'Logged privately. The ledger opens January 2027.' },
+      { n: '2', label: 'experiments', note: 'S-05 · Corridor throughput under three fare regimes, and one unpublished run.' },
+      { n: '1', label: 'essay' },
     ],
     revisions: ['v3 · 18 Aug · added B1', 'v2 · 02 Jul · fare regimes', 'v1 · 14 May'],
   },

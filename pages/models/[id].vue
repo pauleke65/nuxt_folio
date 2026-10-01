@@ -1,96 +1,130 @@
 <script setup>
 import { MODELS, MODEL_DETAILS } from '~/data/research/models'
+import PageHead from '~/components/site/PageHead.vue'
+import FactList from '~/components/site/FactList.vue'
+import SidebarBlock from '~/components/site/SidebarBlock.vue'
+import PrevNext from '~/components/site/PrevNext.vue'
+import DiagramM07 from '~/components/site/DiagramM07.vue'
 
 definePageMeta({ layout: 'research' })
 
 const route = useRoute()
-const modelId = computed(() => route.params.id)
-const model = computed(() => MODELS.find((m) => m.id === modelId.value))
-const detail = computed(() => MODEL_DETAILS[modelId.value])
+const model = computed(() => MODELS.find((m) => m.id === route.params.id))
+const detail = computed(() => MODEL_DETAILS[route.params.id])
 
 useHead(() => ({
-  title: model.value ? `${model.value.title} — Paul Imoke` : 'Model — Paul Imoke',
+  title: model.value ? `Model ${model.value.id} — Paul Imoke` : 'Model — Paul Imoke',
   meta: [{ name: 'description', content: model.value?.blurb ?? '' }],
 }))
+
+const TIERS = { LOW: 1, MEDIUM: 2, HIGH: 3, EXTREME: 4 }
+const tierLabel = (t) => t.charAt(0) + t.slice(1).toLowerCase()
+
+// "v3 · 18 Aug · added B1" → version and the rest.
+const splitRevision = (r) => {
+  const i = r.indexOf(' · ')
+  return i === -1 ? [r, ''] : [r.slice(0, i), r.slice(i + 3)]
+}
+
+const stubFacts = computed(() => model.value ? [
+  { k: 'Domain', v: model.value.domain },
+  { k: 'Period', v: model.value.year },
+  { k: 'Status', v: model.value.meta === 'IN PROGRESS' ? 'In progress' : 'Write-up pending' },
+] : [])
+
+// Previous / next in id order. The ends link back to the full list.
+const byId = [...MODELS].sort((a, b) => a.id.localeCompare(b.id))
+const ALL = { to: '/models', title: 'Twelve systems, mapped the same nine ways' }
+const pn = computed(() => {
+  const i = byId.findIndex((m) => m.id === route.params.id)
+  const prev = byId[i - 1]
+  const next = byId[i + 1]
+  return {
+    prev: prev ? { label: `← Previous · ${prev.id}`, title: prev.title, to: `/models/${prev.id}` } : { label: '← All models', ...ALL },
+    next: next ? { label: `Next · ${next.id} →`, title: next.title, to: `/models/${next.id}` } : { label: 'All models →', ...ALL },
+  }
+})
 </script>
 
 <template>
-  <main class="rs-main" style="max-width:1180px;margin:0 auto;padding:0 28px">
-    <div v-if="!model" style="padding:90px 0;font:400 16px var(--body-font)">
-      Model not found. <NuxtLink to="/models">Back to Models</NuxtLink>
-    </div>
+  <main v-if="!model" class="w">
+    <div class="crumb lbl"><NuxtLink to="/models">Models</NuxtLink><span>/</span><span>Not found</span></div>
+    <PageHead kicker="Models" title="That model doesn't exist" stand="It may have been renumbered. The full list is on the models page." />
+  </main>
+
+  <main v-else>
+    <div class="w"><div class="crumb lbl"><NuxtLink to="/models">Models</NuxtLink><span>/</span><span>{{ model.id }}</span></div></div>
+
+    <template v-if="detail">
+      <PageHead :kicker="detail.kicker" :title="detail.title" :stand="detail.lede">
+        <FactList :items="detail.facts" />
+      </PageHead>
+
+      <section v-if="model.id === 'M-07'" id="structure" class="w">
+        <figure class="fig">
+          <div class="fig-h"><span class="lbl">01 — Structure</span><span class="lbl">Fig. 1</span></div>
+          <div class="fig-b"><DiagramM07 /></div>
+          <figcaption>{{ detail.caption }}</figcaption>
+        </figure>
+      </section>
+
+      <section class="body w">
+        <div class="main">
+          <section id="actors" class="part">
+            <div class="part-h"><span class="lbl">02</span><h2>Actors &amp; incentives</h2></div>
+            <dl class="actors">
+              <div v-for="a in detail.actors" :key="a.who"><dt>{{ a.who }}</dt><dd>{{ a.what }}</dd></div>
+            </dl>
+          </section>
+          <section id="leverage" class="part">
+            <div class="part-h"><span class="lbl">03</span><h2>Leverage points</h2></div>
+            <ol class="ladder">
+              <li v-for="l in detail.leverage" :key="l.tier">
+                <span class="lv lbl">{{ tierLabel(l.tier) }}</span>
+                <span class="bars" aria-hidden="true"><i v-for="n in 4" :key="n" :class="{ on: n <= TIERS[l.tier] }"></i></span>
+                <p>{{ l.text }}</p>
+              </li>
+            </ol>
+          </section>
+          <section id="falsifier" class="part">
+            <div class="part-h"><span class="lbl">04</span><h2>What would prove me wrong</h2></div>
+            <blockquote class="fals"><span class="lbl">Falsifier</span><p>{{ detail.falsifier }}</p></blockquote>
+          </section>
+        </div>
+        <aside class="side">
+          <div class="side-in">
+            <SidebarBlock label="On this page">
+              <ol class="toc">
+                <li><a href="#structure"><span>01</span>Structure</a></li>
+                <li><a href="#actors"><span>02</span>Actors</a></li>
+                <li><a href="#leverage"><span>03</span>Leverage</a></li>
+                <li><a href="#falsifier"><span>04</span>Falsifier</a></li>
+              </ol>
+            </SidebarBlock>
+            <SidebarBlock label="Produced">
+              <ul class="prod">
+                <li v-for="p in detail.produced" :key="p.label"><b>{{ p.n }}</b>{{ p.label }}<em v-if="p.note">{{ p.note }}</em></li>
+              </ul>
+            </SidebarBlock>
+            <SidebarBlock label="Revisions">
+              <ol class="rev">
+                <li v-for="r in detail.revisions" :key="r"><b>{{ splitRevision(r)[0] }}</b>{{ splitRevision(r)[1] }}</li>
+              </ol>
+            </SidebarBlock>
+          </div>
+        </aside>
+      </section>
+    </template>
 
     <template v-else>
-      <div style="padding:24px 0 0;font:400 13px var(--mono);color:var(--dim)"><NuxtLink to="/models" style="color:var(--dim)">Models</NuxtLink> / {{ model.id }}</div>
-
-      <!-- Full write-up, when one exists (currently M-07 only). -->
-      <div v-if="detail" class="rs-grid-stack" style="display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:56px;padding:34px 0 90px">
-        <div>
-          <div style="font:400 12px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:16px">{{ detail.kicker }}</div>
-          <h1 class="rs-detail-h1" style="margin:0 0 18px;font:600 46px/1.08 var(--body-font);letter-spacing:-.03em">{{ detail.title }}</h1>
-          <p style="margin:0 0 30px;font:400 19px/1.65 var(--body-font);color:rgba(28,26,22,.8);max-width:34em">{{ detail.lede }}</p>
-          <div style="height:1px;background:var(--ink);margin-bottom:26px"></div>
-
-          <div style="font:500 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:16px">01 — Structure</div>
-          <div style="background:#fff;border:1px solid var(--rule);padding:30px 26px;margin-bottom:12px">
-            <div style="display:flex;align-items:center;gap:12px;justify-content:center;font:400 13px var(--mono);flex-wrap:wrap">
-              <template v-for="(step, i) in detail.structureChain" :key="step">
-                <span :style="i === detail.structureChain.length - 1 ? 'border:1px solid var(--accent);color:var(--accent);padding:9px 14px' : 'border:1px solid var(--ink);padding:9px 14px'">{{ step }}</span>
-                <span v-if="i < detail.structureChain.length - 1" style="color:var(--dim)">→</span>
-              </template>
-            </div>
-            <div style="display:flex;justify-content:center;gap:12px;margin-top:20px;font:400 13px var(--mono);align-items:center">
-              <span style="color:var(--dim)">↑</span>
-              <template v-for="(step, i) in detail.structureLoop" :key="step.label">
-                <span style="border:1px dashed var(--rule);padding:8px 13px;color:var(--dim)">{{ step.label }}</span>
-                <span v-if="i < detail.structureLoop.length - 1" style="color:var(--dim)">←</span>
-              </template>
-              <span style="color:var(--dim)">←</span>
-            </div>
-            <div style="text-align:center;font:400 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:20px">{{ detail.structureLoopNote }}</div>
-          </div>
-          <p style="margin:0 0 32px;font:400 13px var(--mono);color:var(--dim)">Diagram placeholder — replace with the real causal-loop export.</p>
-
-          <div style="font:500 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:14px">02 — Actors &amp; incentives</div>
-          <div style="display:grid;grid-template-columns:158px 1fr;font:400 16px/1.5 var(--body-font);border-top:1px solid var(--rule);margin-bottom:32px">
-            <template v-for="a in detail.actors" :key="a.who">
-              <div style="padding:12px 0;border-bottom:1px solid var(--rule);font:400 13px var(--mono);color:var(--dim)">{{ a.who }}</div>
-              <div style="padding:12px 0;border-bottom:1px solid var(--rule)">{{ a.what }}</div>
-            </template>
-          </div>
-
-          <div style="font:500 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:14px">03 — Leverage points</div>
-          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px">
-            <div v-for="l in detail.leverage" :key="l.tier" style="display:flex;gap:14px">
-              <span :style="{ font: '500 12px var(--mono)', color: (l.tier === 'HIGH' || l.tier === 'EXTREME') ? 'var(--accent)' : 'var(--dim)', width: '80px', paddingTop: '4px' }">{{ l.tier }}</span>
-              <span style="font:400 16px/1.5 var(--body-font);flex:1">{{ l.text }}</span>
-            </div>
-          </div>
-
-          <div style="font:500 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:14px">04 — What would prove me wrong</div>
-          <p style="margin:0;font:400 17px/1.65 var(--body-font);max-width:34em;color:rgba(28,26,22,.8)">{{ detail.falsifier }}</p>
-        </div>
-        <aside style="padding-top:60px">
-          <div style="font:400 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:12px">On this page</div>
-          <div style="display:flex;flex-direction:column;gap:9px;font:400 13px var(--mono);margin-bottom:28px"><span style="color:var(--accent)">01 Structure</span><span style="color:var(--dim)">02 Actors</span><span style="color:var(--dim)">03 Leverage</span><span style="color:var(--dim)">04 Falsifiers</span></div>
-          <div style="height:1px;background:var(--rule);margin-bottom:22px"></div>
-          <div style="font:400 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:12px">Produced</div>
-          <div style="display:flex;flex-direction:column;gap:11px;font:400 14px/1.4 var(--body-font);margin-bottom:28px">
-            <NuxtLink v-for="p in detail.produced" :key="p.label" :to="p.to">{{ p.label }}</NuxtLink>
-          </div>
-          <div style="height:1px;background:var(--rule);margin-bottom:22px"></div>
-          <div style="font:400 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:12px">Revisions</div>
-          <div style="display:flex;flex-direction:column;gap:8px;font:400 12px var(--mono);color:var(--dim)"><span v-for="r in detail.revisions" :key="r">{{ r }}</span></div>
-        </aside>
-      </div>
-
-      <!-- No full write-up yet — show the summary card so the link is never dead. -->
-      <div v-else style="padding:34px 0 120px;max-width:640px">
-        <div style="font:400 12px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:16px">Model · {{ model.domain }} · {{ model.year }}</div>
-        <h1 class="rs-detail-h1" style="margin:0 0 18px;font:600 40px/1.1 var(--body-font);letter-spacing:-.03em">{{ model.title }}</h1>
-        <p style="margin:0 0 20px;font:400 18px/1.6 var(--body-font);color:rgba(28,26,22,.8)">{{ model.blurb }}</p>
-        <p style="margin:0;font:400 13px var(--mono);color:var(--dim)">Full write-up not published yet — {{ model.meta.toLowerCase() }}.</p>
-      </div>
+      <PageHead :kicker="`Model · ${model.domain}`" :title="model.title" :stand="model.blurb">
+        <FactList :items="stubFacts" />
+      </PageHead>
+      <section class="w" style="padding-bottom:clamp(48px,5vw,72px)">
+        <p class="note" style="margin:0;padding-top:20px;border-top:1px solid var(--ink)">Full write-up not published yet.</p>
+      </section>
     </template>
+
+    <div class="w"><PrevNext v-bind="pn" label="More models" /></div>
   </main>
 </template>
