@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model M-07 — Paul Imoke</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="../site.css">
+</head>
+<body style="margin:0">
+<div class="r">
+<header class="hd w">
+<a class="mark" href="#"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>Paul Imoke</a>
+<nav class="nav" aria-label="Main"><a class="on" href="#">Models</a><a href="#">Experiments</a><a href="#">Essays</a><a href="#">Fieldwork</a><a href="#">About</a><a href="#">Ledger<em>Jan</em></a></nav>
+<button class="menu" type="button" aria-label="Open menu"><i></i>Menu</button>
+</header>
+<div class="w"><div class="crumb lbl"><a href="#">Models</a><span>/</span><span>M-07</span></div></div>
+<section class="ph w">
+<div>
+<div class="lbl kick"><i></i>Model · Transit · v3</div>
+<h1>Urban transit under a fuel shock</h1>
+<p class="stand">Twenty million trips a day across four modes sharing one scarce resource. Fares are the visible variable; road area per capita is the binding one. Built on a metropolitan case, then tested against two cities with different fare regimes.</p>
+</div>
+<dl class="facts">
+<div><dt class="lbl">Pattern</dt><dd>Balancing loop</dd></div>
+<div><dt class="lbl">Binding constraint</dt><dd>Road area per capita</dd></div>
+<div><dt class="lbl">Throughput cap</dt><dd>Dwell time at stops</dd></div>
+<div><dt class="lbl">Revised</dt><dd>v3 · 18 Aug</dd></div>
+</dl>
+</section>
+<section class="w">
+<figure class="fig">
+<div class="fig-h"><span class="lbl">01 — Structure</span><span class="lbl">Fig. 1</span></div>
+<div class="fig-b">
+<svg class="svg dk" viewBox="16 20 700 340" role="img" aria-label="Causal loop: fuel price raises cost per trip, which drives a mode shift to transit. Transit load raises crowding, crowding raises dwell time, and dwell time pushes the mode shift back down: balancing loop B1.">
+<defs>
+<marker id="hI" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" style="fill:var(--ink)"/></marker>
+<marker id="hA" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" style="fill:var(--accent)"/></marker>
+</defs>
+<path d="M128 55 H199" style="fill:none;stroke:var(--ink);stroke-width:1.75;marker-end:url(#hI)"/>
+<path d="M324 55 H411" style="fill:none;stroke:var(--ink);stroke-width:1.75;marker-end:url(#hI)"/>
+<path d="M510 63 C580 63 640 110 640 170" style="fill:none;stroke:var(--ink);stroke-width:1.75;marker-end:url(#hI)"/>
+<path d="M640 208 C640 270 580 316 506 316" style="fill:none;stroke:var(--ink);stroke-width:1.75;marker-end:url(#hI)"/>
+<path d="M418 316 C350 316 280 270 280 212" style="fill:none;stroke:var(--ink);stroke-width:1.75;marker-end:url(#hI)"/>
+<path d="M280 176 C280 120 360 84 432 72" style="fill:none;stroke:var(--ink);stroke-width:1.75;marker-end:url(#hI)"/>
+<text x="80" y="61" class="tn">Fuel price</text>
+<text x="262" y="61" class="tn">Cost per trip</text>
+<text x="462" y="61" class="tn">Mode shift</text>
+<text x="640" y="196" class="tn">Transit load</text>
+<text x="462" y="326" class="tn">Crowding</text>
+<text x="280" y="196" class="tn">Dwell time</text>
+<text x="166" y="44" class="tp">+</text>
+<text x="370" y="44" class="tp">+</text>
+<text x="657" y="138" class="tp">+</text>
+<text x="528" y="342" class="tp">+</text>
+<text x="262" y="244" class="tp">+</text>
+<text x="440" y="98" class="tm">−</text>
+<circle cx="462" cy="190" r="23" style="fill:none;stroke:var(--accent);stroke-width:1.5"/>
+<path d="M433.4 173.5 A33 33 0 1 1 433.4 206.5" style="fill:none;stroke:var(--accent);stroke-width:1.25;marker-end:url(#hA)"/>
+<text x="462" y="196" class="tb">B1</text>
+<text x="224" y="201" class="ta">the throughput cap</text>
+</svg>
+<svg class="svg m" viewBox="0 0 360 470" role="img" aria-label="Causal loop: fuel price raises cost per trip, which drives a mode shift to transit. Transit load raises crowding, crowding raises dwell time, and dwell time pushes the mode shift back down: balancing loop B1.">
+<defs>
+<marker id="hIm" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" style="fill:var(--ink)"/></marker>
+<marker id="hAm" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" style="fill:var(--accent)"/></marker>
+</defs>
+<path d="M180 44 V76" style="fill:none;stroke:var(--ink);stroke-width:1.75;marker-end:url(#hIm)"/>
+<path d="M180 108 V144" style="fill:none;stroke:var(--ink);stroke-width:1.75;marker-end:url(#hIm)"/>
+<path d="M226 160 C266 160 292 196 292 254" style="fill:none;stroke:var(--ink);stroke-width:1.75;marker-end:url(#hIm)"/>
+<path d="M292 290 C292 346 258 386 222 386" style="fill:none;stroke:var(--ink);stroke-width:1.75;marker-end:url(#hIm)"/>
+<path d="M138 386 C102 386 68 346 68 294" style="fill:none;stroke:var(--ink);stroke-width:1.75;marker-end:url(#hIm)"/>
+<path d="M68 258 C68 206 100 168 132 162" style="fill:none;stroke:var(--ink);stroke-width:1.75;marker-end:url(#hIm)"/>
+<text x="180" y="34" class="tn">Fuel price</text>
+<text x="180" y="100" class="tn">Cost per trip</text>
+<text x="180" y="166" class="tn">Mode shift</text>
+<text x="292" y="278" class="tn">Transit load</text>
+<text x="180" y="392" class="tn">Crowding</text>
+<text x="68" y="278" class="tn">Dwell time</text>
+<text x="196" y="66" class="tp">+</text>
+<text x="196" y="132" class="tp">+</text>
+<text x="308" y="226" class="tp">+</text>
+<text x="240" y="410" class="tp">+</text>
+<text x="50" y="330" class="tp">+</text>
+<text x="118" y="192" class="tm">−</text>
+<circle cx="180" cy="278" r="21" style="fill:none;stroke:var(--accent);stroke-width:1.5"/>
+<path d="M154 263 A30 30 0 1 1 154 293" style="fill:none;stroke:var(--accent);stroke-width:1.25;marker-end:url(#hAm)"/>
+<text x="180" y="283" class="tb">B1</text>
+</svg>
+</div>
+<figcaption>Balancing loop B1: crowding suppresses the shift that caused it.</figcaption>
+</figure>
+</section>
+<section class="body w">
+<div class="main">
+<section class="part" id="actors">
+<div class="part-h"><span class="lbl">02</span><h2>Actors &amp; incentives</h2></div>
+<dl class="actors">
+<div><dt>Informal operators</dt><dd>Maximise daily cash; reprice within hours of a cost shock.</dd></div>
+<div><dt>Transit authority</dt><dd>Fare-box recovery against a politically capped fare.</dd></div>
+<div><dt>Commuters</dt><dd>Minimise cost plus time, weighted by reliability of arrival.</dd></div>
+<div><dt>State</dt><dd>Visible capacity announcements over throughput per unit spent.</dd></div>
+</dl>
+</section>
+<section class="part" id="leverage">
+<div class="part-h"><span class="lbl">03</span><h2>Leverage points</h2></div>
+<ol class="ladder">
+<li><span class="lv lbl">Low</span><span class="bars" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span><p>Add vehicles to an existing corridor.</p></li>
+<li><span class="lv lbl">Medium</span><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span><p>Change how passengers board and pay. Dwell time is the throughput cap.</p></li>
+<li><span class="lv lbl">High</span><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><p>Price road space at peak, so mode choice carries the true cost.</p></li>
+<li><span class="lv lbl">Extreme</span><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><p>Stop treating transport as the movement of vehicles and treat it as access to opportunity, which makes land use, not roads, the intervention.</p></li>
+</ol>
+</section>
+<section class="part" id="falsifier">
+<div class="part-h"><span class="lbl">04</span><h2>What would prove me wrong</h2></div>
+<blockquote class="fals"><span class="lbl">Falsifier</span><p>If a 15% fuel rise leaves ridership flat for two consecutive months, cost is not driving mode choice and the model’s central arrow is wrong.</p></blockquote>
+</section>
+</div>
+<aside class="side">
+<div class="side-in">
+<div class="sb"><div class="lbl">On this page</div><ol class="toc"><li><a href="#"><span>01</span>Structure</a></li><li><a href="#actors"><span>02</span>Actors</a></li><li><a href="#leverage"><span>03</span>Leverage</a></li><li><a href="#falsifier"><span>04</span>Falsifier</a></li></ol></div>
+<div class="sb"><div class="lbl">Produced</div><ul class="prod">
+<li><b>4</b>predictions<em>Logged privately. The ledger opens January 2027.</em></li>
+<li><b>2</b>experiments<em>S-05 · Corridor throughput under three fare regimes, and one unpublished run.</em></li>
+<li><b>1</b>essay</li>
+</ul></div>
+<div class="sb"><div class="lbl">Revisions</div><ol class="rev"><li><b>v3</b>18 Aug · added B1</li><li><b>v2</b>02 Jul · fare regimes</li><li><b>v1</b>14 May</li></ol></div>
+</div>
+</aside>
+</section>
+<div class="w"><nav class="pn" aria-label="More models">
+<a href="#"><span class="lbl">← Previous · M-06</span><b>Housing supply as stock and flow</b></a>
+<a href="#"><span class="lbl">Next · M-08 →</span><b>Food distribution networks</b></a>
+</nav></div>
+<footer class="ft">
+<div class="w ft-in">
+<div><p>Open to research collaboration, data access and commissioned systems analysis.</p><a class="mail" href="#"><span>pauleke65@gmail.com</span></a></div>
+<div class="ft-links">
+<a href="#"><small class="lbl">X</small><span>@iampeke65</span></a>
+<a href="#"><small class="lbl">GitHub</small><span>pauleke65</span></a>
+<a href="#"><small class="lbl">LinkedIn</small><span>Profile</span></a>
+</div>
+</div>
+<div class="w"><div class="base lbl"><span>Observe → model → predict → test → explain → repeat</span><span>Nothing here is edited after the fact</span></div></div>
+</footer>
+</div>
+</body>
+</html>
