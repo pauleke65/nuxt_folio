@@ -23,7 +23,7 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ['~/assets/css/tailwind.css', '~/assets/css/site.css', '~/assets/css/research-theme.css'],
+  css: ['~/assets/css/tailwind.css', '~/assets/css/site.css'],
 
   modules: [
     '@nuxtjs/apollo',
