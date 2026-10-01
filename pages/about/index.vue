@@ -2,8 +2,8 @@
 definePageMeta({ layout: 'research' })
 
 useHead({
-  title: 'About — Paul I.',
-  meta: [{ name: 'description', content: 'Paul I. — nine years building systems as a lead engineer. Now studying them: models, predictions, and the record of being wrong.' }],
+  title: 'About — Paul Imoke',
+  meta: [{ name: 'description', content: 'Paul Imoke — nine years building systems as a lead engineer. Now studying them: models, predictions, and the record of being wrong.' }],
 })
 
 const { siteData } = useSiteData()
@@ -40,7 +40,7 @@ const systemsOfInterest = [
     <section class="rs-grid-stack rs-hero-pad" style="padding:72px 0 44px;display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:56px;align-items:start;border-bottom:1px solid var(--ink)">
       <div style="max-width:34em">
         <div style="font:400 12px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:18px">About</div>
-        <h1 class="rs-detail-h1" style="margin:0 0 22px;font:600 44px/1.1 var(--body-font);letter-spacing:-.03em">Paul I. — I spent nine years building systems. Now I study them.</h1>
+        <h1 class="rs-detail-h1" style="margin:0 0 22px;font:600 44px/1.1 var(--body-font);letter-spacing:-.03em">Paul Imoke — I spent nine years building systems. Now I study them.</h1>
         <p style="margin:0 0 18px;font:400 18px/1.7 var(--body-font);color:rgba(28,26,22,.82)">Lead engineer across seven companies in four countries: a property marketplace, agricultural traceability on Stellar, a court and trial management system, a mobile bank, four products at an accelerator. Building inside those systems is where the questions came from — and none of the tools I had were the ones that answer them.</p>
         <p style="margin:0 0 18px;font:400 18px/1.7 var(--body-font);color:rgba(28,26,22,.82)">So I am changing what I do. Four months into a six-month intensive: ninety to a hundred and twenty minutes daily, six days a week — thirty minutes studying, forty-five modelling, fifteen in the prediction ledger, the rest writing. I still ship software. It is no longer the point.</p>
         <p style="margin:0;font:400 18px/1.7 var(--body-font);color:rgba(28,26,22,.82)">I am not picking one field yet. Two more months of evidence, then one system gets the next decade.</p>

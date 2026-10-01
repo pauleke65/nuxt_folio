@@ -4,7 +4,7 @@ import { PROJECTS, ACHIEVEMENTS } from '~/data/research/projects'
 definePageMeta({ layout: 'research' })
 
 useHead({
-  title: 'Projects — Paul I.',
+  title: 'Projects — Paul Imoke',
   meta: [{ name: 'description', content: 'Nine years of building the systems I now study — production work as a lead engineer across seven companies and four countries.' }],
 })
 

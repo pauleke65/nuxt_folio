@@ -4,7 +4,7 @@ import { ESSAYS } from '~/data/research/essays'
 definePageMeta({ layout: 'research' })
 
 useHead({
-  title: 'Essays — Paul I.',
+  title: 'Essays — Paul Imoke',
   meta: [{ name: 'description', content: 'Short pieces, one idea each. Several are post-mortems on predictions I lost, which are the ones worth reading.' }],
 })
 </script>

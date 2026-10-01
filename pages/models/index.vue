@@ -4,7 +4,7 @@ import { MODELS, DOMAINS } from '~/data/research/models'
 definePageMeta({ layout: 'research' })
 
 useHead({
-  title: 'Models — Paul I.',
+  title: 'Models — Paul Imoke',
   meta: [{ name: 'description', content: 'Every system, mapped the same nine ways — actors, resources, information, incentives, feedback, constraints, bottlenecks, failure modes, leverage points.' }],
 })
 

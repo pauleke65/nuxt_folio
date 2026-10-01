@@ -4,7 +4,7 @@ import { EXPERIMENTS } from '~/data/research/experiments'
 definePageMeta({ layout: 'research' })
 
 useHead({
-  title: 'Experiments — Paul I.',
+  title: 'Experiments — Paul Imoke',
   meta: [{ name: 'description', content: 'Simulations, historical backtests and the occasional field test. Assumptions stated first, then what the run changed about my thinking.' }],
 })
 

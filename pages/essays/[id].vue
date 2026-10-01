@@ -9,7 +9,7 @@ const essay = computed(() => ESSAYS.find((e) => e.id === essayId.value))
 const body = computed(() => ESSAY_BODIES[essayId.value])
 
 useHead(() => ({
-  title: essay.value ? `${essay.value.title} — Paul I.` : 'Essay — Paul I.',
+  title: essay.value ? `${essay.value.title} — Paul Imoke` : 'Essay — Paul Imoke',
   meta: [{ name: 'description', content: essay.value?.dek ?? '' }],
 }))
 </script>

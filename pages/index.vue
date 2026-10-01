@@ -2,10 +2,10 @@
 definePageMeta({ layout: 'research' })
 
 useHead({
-  title: 'Paul I. — Systems research',
+  title: 'Paul Imoke — Systems research',
   meta: [
     { name: 'description', content: 'I study systems — how they are built, how they hold, and how they fail. Models, predictions and experiments, recorded before the outcome is known.' },
-    { property: 'og:title', content: 'Paul I. — Systems research' },
+    { property: 'og:title', content: 'Paul Imoke — Systems research' },
     { property: 'og:type', content: 'website' },
   ],
 })

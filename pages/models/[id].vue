@@ -9,7 +9,7 @@ const model = computed(() => MODELS.find((m) => m.id === modelId.value))
 const detail = computed(() => MODEL_DETAILS[modelId.value])
 
 useHead(() => ({
-  title: model.value ? `${model.value.title} — Paul I.` : 'Model — Paul I.',
+  title: model.value ? `${model.value.title} — Paul Imoke` : 'Model — Paul Imoke',
   meta: [{ name: 'description', content: model.value?.blurb ?? '' }],
 }))
 </script>

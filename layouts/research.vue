@@ -1,7 +1,7 @@
 <template>
-  <div class="research-page">
-    <ResearchNav />
+  <div class="r">
+    <SiteHeader />
     <slot />
-    <ResearchFooter />
+    <SiteFooter />
   </div>
 </template>

@@ -4,7 +4,7 @@ import { OPEN_PREDICTIONS, SETTLED_PREDICTIONS, CALIBRATION_BUCKETS } from '~/da
 definePageMeta({ layout: 'research' })
 
 useHead({
-  title: 'Predictions — Paul I.',
+  title: 'Predictions — Paul Imoke',
   meta: [{ name: 'description', content: 'The ledger. Each prediction carries a mechanism, a probability and a deadline, logged before the outcome is known.' }],
 })
 
