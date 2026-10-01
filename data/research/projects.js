@@ -1,8 +1,10 @@
-// Real engineering record — nine years across seven companies. Kept in sync
+// Real engineering record across seven companies. Kept in sync
 // with components/Experience.vue's fuller bullet-point version.
+// `featured` orders the six on the home page; `short` is their one-line summary there.
 export const PROJECTS = [
   {
     name: 'BLIA — Buy Land in Africa', period: '2024 →',
+    featured: 1, short: 'Property marketplace, end to end. Lead engineer.',
     title: 'Property marketplace, end to end',
     role: 'Lead Engineer · USA, remote',
     description: 'Architected and built the whole platform: a React Native mobile app, the web frontend, and custom backend infrastructure. The listing pipeline pulls property data straight out of Facebook and Instagram, so agents never re-enter it. A WhatsApp automation engine on Bull MQ, backed by an AI-managed Matrix server, answers buyer enquiries and routes them to the right agent unattended. AI handles generated listing descriptions, smart search and image watermarking. I ran sprint planning and explained engineering trade-offs directly to the CEO and non-technical stakeholders.',
@@ -10,6 +12,7 @@ export const PROJECTS = [
   },
   {
     name: 'Agrolinking Solutions', period: '2025–26',
+    featured: 2, short: 'Agricultural traceability on Stellar. Lead developer.',
     title: 'Agricultural traceability on Stellar',
     role: 'Lead Developer · Kaduna, remote',
     description: 'Took an MVP that had been assembled in Lovable and rebuilt it as a production Next.js application. Behind it, an Express service integrates with NAFDAC so a product’s regulatory record travels with it, and Stellar plus IPFS via Pinata hold the supply-chain history as immutable entries no single party can quietly revise. The demo built on this work secured $20,000 in funding from the Stellar Development Foundation.',
@@ -17,6 +20,7 @@ export const PROJECTS = [
   },
   {
     name: 'Sustineri Attorneys', period: '2023–25',
+    featured: 3, short: 'Court and trial management, built from nothing. Lead mobile engineer.',
     title: 'Trial Manager',
     role: 'Lead Mobile Engineer · Accra, remote',
     description: 'A full court and trial management system built from nothing: case management, team coordination, and automated court-date reminders for a profession where a missed date has real consequences. I owned the whole lifecycle — requirements gathering with the lawyers, architecture, schema design, API development, deployment, and the cross-platform mobile experience they use in court.',
@@ -31,6 +35,7 @@ export const PROJECTS = [
   },
   {
     name: 'MEST Africa — RegWand', period: '2022–23',
+    featured: 5, short: 'Four products in one accelerator year. Technology lead.',
     title: 'Four products in one accelerator year',
     role: 'Technology Lead · Accra',
     description: 'RegWand guided entrepreneurs through market-entry regulation with AI-assisted legal consulting. LevelUp booked workplace therapy the way a ride is hailed. GradGap assessed graduate skills against real job requirements and recommended the training to close the gap. SageBrief Legal cut lawyers’ research time by roughly 90%. I also advised the wider cohort on technical decisions.',
@@ -38,6 +43,7 @@ export const PROJECTS = [
   },
   {
     name: 'AMTAP Technologies', period: '2022–25',
+    featured: 4, short: 'A fitness platform where coaches sell programmes. Lead engineer.',
     title: 'Fitness platform for coaches',
     role: 'Lead Engineer · Dubai, remote',
     description: 'Principal mobile engineer and system architect for an Instagram-style platform where trainers sell their programmes. I designed the application schema and backend architecture from scratch, then solved the hard part: coaches upload individual workout videos, and the pipeline processes and bundles them into purchasable training programs with monetisation attached.',
@@ -45,6 +51,7 @@ export const PROJECTS = [
   },
   {
     name: 'WSTC Financial Services', period: '2022–23',
+    featured: 6, short: 'An investment banking app for first-time investors. Mobile engineer.',
     title: 'WSTC Mobile — investment banking app',
     role: 'Software Mobile Engineer · Nigeria',
     description: 'Built and extended the mobile banking application for an investment bank, published on Play Store. The work was mostly translation: taking complex financial products — instruments with terms most customers have never had explained to them — and turning them into interfaces a first-time investor can use without calling support. Security and performance were non-negotiable throughout.',
