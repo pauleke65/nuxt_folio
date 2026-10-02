@@ -3,6 +3,7 @@ import FeatherIcon from './FeatherIcon.vue'
 
 const route = useRoute()
 const open = ref(false)
+const { theme, toggle } = useTheme()
 
 const links = [
   { label: 'Models', to: '/models' },
@@ -22,17 +23,26 @@ watch(() => route.fullPath, () => { open.value = false })
 <template>
   <header class="hd w">
     <NuxtLink class="mark" to="/"><FeatherIcon name="rotate-cw" />Paul Imoke</NuxtLink>
-    <nav class="nav" aria-label="Main">
-      <NuxtLink v-for="link in links" :key="link.to" :to="link.to" :class="{ on: isActive(link) }">{{ link.label }}<em v-if="link.tag">{{ link.tag }}</em></NuxtLink>
-    </nav>
-    <button
-      class="menu"
-      type="button"
-      :aria-label="open ? 'Close menu' : 'Open menu'"
-      :aria-expanded="open ? 'true' : 'false'"
-      aria-controls="site-menu"
-      @click="open = !open"
-    ><i></i>Menu</button>
+    <div class="hd-r">
+      <nav class="nav" aria-label="Main">
+        <NuxtLink v-for="link in links" :key="link.to" :to="link.to" :class="{ on: isActive(link) }">{{ link.label }}<em v-if="link.tag">{{ link.tag }}</em></NuxtLink>
+      </nav>
+      <button
+        class="tg"
+        type="button"
+        :aria-label="theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'"
+        :title="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+        @click="toggle"
+      ><FeatherIcon :name="theme === 'dark' ? 'sun' : 'moon'" /></button>
+      <button
+        class="menu"
+        type="button"
+        :aria-label="open ? 'Close menu' : 'Open menu'"
+        :aria-expanded="open ? 'true' : 'false'"
+        aria-controls="site-menu"
+        @click="open = !open"
+      ><i></i>Menu</button>
+    </div>
   </header>
   <nav v-show="open" id="site-menu" class="mn w" aria-label="Menu">
     <NuxtLink v-for="link in links" :key="link.to" :to="link.to" :class="{ on: isActive(link) }">{{ link.label }}<em v-if="link.tag">{{ link.tag }}</em></NuxtLink>
@@ -40,6 +50,16 @@ watch(() => route.fullPath, () => { open.value = false })
 </template>
 
 <style>
+/* Right side of the header: nav, theme toggle, phone menu button. */
+.r .hd-r{display:flex;align-items:center;gap:28px}
+.r .tg{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.r .tg:hover{border-color:var(--ink)}
+.r .tg svg{display:block;width:16px;height:16px}
+@media (max-width:760px){
+.r .hd-r{gap:10px}
+.r .tg{width:44px;height:44px}
+}
+
 /* Phone menu. The approved design shows only the closed button, so this is
    the agreed build: a full-width list under the header, UI font at 18px,
    hairline between rows. Desktop never shows it. */

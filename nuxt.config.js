@@ -12,6 +12,10 @@ export default defineNuxtConfig({
         { name: 'description', content: 'Paul Imoke studies systems — how they are built, how they hold, and how they fail. Models, predictions and experiments, recorded before the outcome is known.' },
         { name: 'format-detection', content: 'telephone=no' },
       ],
+      script: [
+        // Apply a saved theme before the app mounts, so dark mode never flashes white.
+        { innerHTML: "try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}" },
+      ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/paul-favicon.png' },
         // Boxicons icon font (moved here from inline template <link> tags)
@@ -23,7 +27,7 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ['~/assets/css/tailwind.css', '~/assets/css/site.css'],
+  css: ['~/assets/css/tailwind.css', '~/assets/css/site.css', '~/assets/css/site-dark.css'],
 
   modules: [
     '@nuxtjs/apollo',

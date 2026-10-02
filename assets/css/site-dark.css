@@ -1,0 +1,22 @@
+/*
+ * Dark theme for the research site. site.css stays exactly as approved; this
+ * file only redefines its tokens. The site follows the system setting unless
+ * the reader picks a theme with the header toggle, which sets
+ * <html data-theme="light|dark"> and remembers it.
+ *
+ * Dark tokens (contrast on paper):
+ *   --ink #F2F2F2 (17:1)   --body #CFCFCF (12:1)   --muted #9C9C9C (7:1)
+ *   --line #2B2B2B         --paper #0F0F0F         --hover #1A1A1A
+ *   --accent #7D91F7 (6.6:1) the same Ink blue, lifted for a dark ground
+ */
+.r{color-scheme:light}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .r{--ink:#F2F2F2;--body:#CFCFCF;--muted:#9C9C9C;--line:#2B2B2B;--paper:#0F0F0F;--hover:#1A1A1A;--accent:#7D91F7;color-scheme:dark}
+  :root:not([data-theme="light"]):has(.r){background:#0F0F0F}
+}
+:root[data-theme="dark"] .r{--ink:#F2F2F2;--body:#CFCFCF;--muted:#9C9C9C;--line:#2B2B2B;--paper:#0F0F0F;--hover:#1A1A1A;--accent:#7D91F7;color-scheme:dark}
+:root[data-theme="dark"]:has(.r){background:#0F0F0F}
+:root:has(.r){background:#FFFFFF}
+
+/* The one hard-coded colour in site.css: text on the filled chip. */
+.r .chip.on{color:var(--paper)}
