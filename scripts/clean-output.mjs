@@ -2,8 +2,7 @@
 // its working copy between builds and Nuxt doesn't delete stale files, so an
 // old _redirects ("/* /404.html 404", written by Nuxt's netlify-static
 // preset) kept shipping and turned every deep link into a 404.
-// Only these files go: deleting the whole .output or dist folder breaks the
-// Netlify build. Never fails the build.
+// Only these files go, and the build never fails here.
 import fs from 'node:fs'
 
 for (const file of ['_redirects', '_headers', 'nitro.json']) {

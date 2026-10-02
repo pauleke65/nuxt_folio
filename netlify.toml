@@ -1,7 +1,9 @@
 [build]
   command = "yarn generate"
-  # ssr: false uses static preset → outputs to dist/ (not .output/public)
-  publish = "dist"
+  # The build writes to .output/public (nitro preset "static", see nuxt.config.js).
+  # Publish that real folder, not the dist symlink: Netlify keeps an old dist/
+  # between builds, and a symlinked publish folder fails the deploy.
+  publish = ".output/public"
 
 [build.environment]
   NODE_VERSION = "20"
