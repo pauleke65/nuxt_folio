@@ -11,6 +11,7 @@ const context = process.env.CONTEXT
 if (!branch || context === 'production' || !fs.existsSync(file)) process.exit(0)
 
 const config = fs.readFileSync(file, 'utf8')
+if (new RegExp(`^\\s*branch:\\s*${branch.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*$`, 'm').test(config)) process.exit(0) // already done
 const next = config.replace(/^(\s*branch:\s*)main\s*$/m, `$1${branch}`)
 if (next === config) {
   console.error(`cms-branch: no "branch: main" line found in ${file}`)

@@ -2,6 +2,12 @@
 export default defineNuxtConfig({
   ssr: false,
 
+  // On Netlify, Nuxt would pick its netlify-static preset, which writes a
+  // _redirects file with "/* /404.html 404". That file overrides netlify.toml,
+  // so every deep link (/essays/E-09, /work…) was served with a 404 status.
+  // The plain static preset leaves routing to netlify.toml.
+  nitro: { preset: 'static' },
+
   app: {
     head: {
       title: 'Paul Imoke — Systems research',
