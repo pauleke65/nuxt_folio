@@ -12,17 +12,30 @@ Most content is still demo content. To replace it with the real thing, work thro
 
 Because every change is a commit, the repository's history is a public, timestamped record of what changed and when. That is what backs the footer line "Nothing here is edited after the fact".
 
-## Signing in to `/admin` (once)
+## Signing in to `/admin`
 
-1. On GitHub, go to **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**.
-2. Under **Repository access**, choose **Only select repositories** and pick `pauleke65/nuxt_folio`.
-3. Under **Permissions → Repository permissions**, set **Contents** to **Read and write**. Leave everything else as it is.
-4. Set an expiry you're comfortable with, generate the token and copy it.
-5. Open `https://<your site>/admin`, choose **Sign In Using Access Token** and paste it. The browser remembers it until you sign out.
+Use **Sign In with GitHub**. It needs a one-time setup (about five minutes), because GitHub sign-in has to go through a small service that holds a secret. Netlify provides that service for free.
 
-The token can only read and write this one repository. If you lose a device, revoke the token on GitHub.
+### One-time setup
 
-**Sign In with GitHub** also appears. It needs a GitHub OAuth app connected through Netlify, which isn't set up, so use the token.
+1. **Create a GitHub OAuth app.**
+   1. On GitHub, go to **Settings → Developer settings → OAuth Apps → New OAuth App** (https://github.com/settings/applications/new). Fill in:
+      - **Application name:** `Paul Imoke site editor` (anything works)
+      - **Homepage URL:** `https://paulimoke.com`
+      - **Authorization callback URL:** `https://api.netlify.com/auth/done` (exactly this)
+   2. Press **Register application**.
+   3. Copy the **Client ID**. Then press **Generate a new client secret** and copy the secret; GitHub shows it only once.
+2. **Give it to Netlify.**
+   1. Open https://app.netlify.com/projects/paulimoke/configuration/security#oauth (**Project configuration → Security → OAuth**).
+   2. Under **Authentication providers**, choose **Install provider → GitHub**.
+   3. Paste the Client ID and the secret, then save.
+3. **Sign in.** Open `/admin`, press **Sign In with GitHub**, and approve the app once. After that, the button signs you straight in, and the browser stays signed in until you sign out.
+
+It works the same on paulimoke.com, on deploy previews and on `localhost`: `public/admin/config.yml` names the Netlify site (`site_domain: paulimoke.netlify.app`).
+
+**Who can edit?** Anyone can press the button, but saving needs write access to `pauleke65/nuxt_folio`. A stranger who signs in can't change anything. To cut off a device, revoke the app's access under GitHub **Settings → Applications → Authorized OAuth Apps**.
+
+**Fallback:** **Sign In Using Access Token** still works. Make a fine-grained token at **Settings → Developer settings → Personal access tokens → Fine-grained tokens**. Limit it to `pauleke65/nuxt_folio`, with **Contents: Read and write**, and paste it in.
 
 ### Where `/admin` saves
 

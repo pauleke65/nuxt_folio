@@ -9,6 +9,10 @@ backend:
   # On a deploy preview, scripts/cms-branch.mjs rewrites this to the preview's
   # branch, so testing the editor never touches the live site.
   branch: main
+  # "Sign In with GitHub" goes through Netlify's GitHub OAuth provider
+  # (set up once in Netlify; see CONTENT.md). Naming the site's Netlify domain
+  # makes sign-in work the same on paulimoke.com, deploy previews and localhost.
+  site_domain: paulimoke.netlify.app
   commit_messages:
     create: "Add {{collection}} {{slug}}"
     update: "Edit {{collection}} {{slug}}"
