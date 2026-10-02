@@ -1,0 +1,298 @@
+# The editor at /admin (Sveltia CMS). Every save is a commit to GitHub and
+# Netlify rebuilds the site. How to sign in and what each field does: CONTENT.md.
+
+app_title: Paul Imoke · Edit
+
+backend:
+  name: github
+  repo: pauleke65/nuxt_folio
+  # On a deploy preview, scripts/cms-branch.mjs rewrites this to the preview's
+  # branch, so testing the editor never touches the live site.
+  branch: main
+  # "Sign In with GitHub" goes through Netlify's GitHub OAuth provider
+  # (set up once in Netlify; see CONTENT.md). Naming the site's Netlify domain
+  # makes sign-in work the same on paulimoke.com, deploy previews and localhost.
+  site_domain: paulimoke.netlify.app
+  commit_messages:
+    create: "Add {{collection}} {{slug}}"
+    update: "Edit {{collection}} {{slug}}"
+    delete: "Delete {{collection}} {{slug}}"
+    uploadMedia: "Upload {{path}}"
+    deleteMedia: "Delete {{path}}"
+
+media_folder: public/uploads
+public_folder: /uploads
+
+# Keep file names like E-10.md, matching the ids on the site.
+slug:
+  encoding: ascii
+  clean_accents: true
+  lowercase: false
+
+collections:
+  # ─── Essays ────────────────────────────────────────────────────────────────
+  - name: essays
+    label: Essays
+    label_singular: Essay
+    description: One Markdown file per essay. The newest date shows first on the site.
+    folder: content/essays
+    extension: md
+    format: frontmatter
+    create: true
+    identifier_field: id
+    slug: "{{fields.id}}"
+    summary: "{{fields.id}} · {{fields.title}}"
+    sortable_fields: [iso, id, title]
+    preview_path: /essays/{{fields.id}}
+    fields:
+      - { name: id, label: ID, widget: string, hint: "E-10, E-11… Don't change it once published: it is the page address.", pattern: ['^E-\d{2,}$', 'Use E- and at least two digits, like E-10'] }
+      - { name: title, label: Title, widget: string }
+      - { name: iso, label: Date, widget: datetime, type: date, format: YYYY-MM-DD }
+      - { name: readTime, label: Read time, widget: string, default: "5 min" }
+      - { name: kind, label: Kind, widget: select, options: [Post-mortem, General, Historical, Personal], default: General }
+      - { name: model, label: Related model, widget: relation, collection: models, value_field: id, search_fields: [id, title], display_fields: ["{{id}} · {{title}}"], required: false }
+      - { name: dek, label: Standfirst, widget: text, hint: One or two sentences under the title and on the essays list. }
+      - { name: body, label: Essay, widget: markdown, required: false, hint: "Leave empty to show “Full essay not published yet.”" }
+      - { name: pull, label: Pull quote, widget: text, required: false, hint: Set large after the body. Usually the last line. }
+      - name: figure
+        label: Comparison figure
+        widget: object
+        required: false
+        collapsed: true
+        hint: Optional bar chart drawn before the pull quote.
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: unit, label: Unit (right of the title), widget: string }
+          - { name: max, label: Scale maximum, widget: number, value_type: float }
+          - { name: axis, label: Show the scale, widget: boolean, default: false }
+          - name: bars
+            label: Bars
+            widget: list
+            summary: "{{fields.label}}: {{fields.display}}"
+            fields:
+              - { name: label, label: Label, widget: string }
+              - { name: value, label: Value, widget: number, value_type: float }
+              - { name: display, label: Shown as, widget: string, hint: "e.g. +20%" }
+              - { name: win, label: Highlight in blue, widget: boolean, default: false }
+          - { name: caption, label: Caption, widget: string, required: false }
+      - name: revises
+        label: Revises
+        widget: object
+        required: false
+        collapsed: true
+        hint: Names a prediction. Never link a ledger entry before January 2027.
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: text, label: Text, widget: text }
+      - { name: lineage, label: Where it came from, widget: string, required: false }
+      - { name: draft, label: Draft, widget: boolean, default: false, required: false, hint: "Drafts show on deploy previews only, never on the live site. The repo is public, so drafts are readable on GitHub." }
+
+  # ─── Models ────────────────────────────────────────────────────────────────
+  - name: models
+    label: Models
+    label_singular: Model
+    description: One file per model. Only models with a write-up get the full page.
+    folder: content/models
+    extension: yml
+    format: yaml
+    create: true
+    identifier_field: id
+    slug: "{{fields.id}}"
+    summary: "{{fields.id}} · {{fields.title}}"
+    sortable_fields: [order, id, title]
+    preview_path: /models/{{fields.id}}
+    fields:
+      - { name: id, label: ID, widget: string, hint: "M-13, M-14… Don't change it once published.", pattern: ['^M-\d{2,}$', 'Use M- and at least two digits, like M-13'] }
+      - { name: title, label: Title, widget: string }
+      - { name: order, label: Position on the models page, widget: number, value_type: int, hint: 1 is first. }
+      - { name: domain, label: Domain, widget: string, hint: "Transit, Housing, Property, Capital, Energy, Education, Health, Networks, or a new one." }
+      - { name: era, label: Era, widget: select, options: [{ label: Contemporary, value: now }, { label: Historical, value: past }], default: now }
+      - { name: year, label: Year on the tile, widget: string, hint: "e.g. 2026, 1846, 200 CE" }
+      - { name: blurb, label: One line, widget: text }
+      - { name: meta, label: Record line, widget: string, required: false, hint: "e.g. 3 PREDICTIONS · 1 EXPERIMENT. Write IN PROGRESS for a hollow status dot." }
+      - { name: updated, label: Last revised, widget: datetime, type: date, format: YYYY-MM-DD, required: false, hint: Puts the model in the home page Latest list. }
+      - { name: updateNote, label: Latest list wording, widget: string, required: false, hint: "e.g. Urban transit under a fuel shock, revised to v3" }
+      - name: detail
+        label: Full write-up
+        widget: object
+        required: false
+        collapsed: true
+        hint: Leave off to show “Full write-up not published yet.”
+        fields:
+          - { name: kicker, label: Kicker, widget: string, hint: "e.g. Model · Transit · v3" }
+          - { name: lede, label: Standfirst, widget: text }
+          - name: facts
+            label: Facts (top right)
+            widget: list
+            summary: "{{fields.k}}: {{fields.v}}"
+            fields: [{ name: k, label: Label, widget: string }, { name: v, label: Value, widget: string }]
+          - { name: caption, label: Diagram caption, widget: string, required: false, hint: The structure diagram is drawn in code and exists for M-07 only. }
+          - name: actors
+            label: Actors & incentives
+            widget: list
+            summary: "{{fields.who}}"
+            fields: [{ name: who, label: Actor, widget: string }, { name: what, label: Incentive, widget: text }]
+          - name: leverage
+            label: Leverage points
+            widget: list
+            summary: "{{fields.tier}}: {{fields.text}}"
+            fields:
+              - { name: tier, label: Tier, widget: select, options: [LOW, MEDIUM, HIGH, EXTREME] }
+              - { name: text, label: Text, widget: text }
+          - { name: falsifier, label: What would prove me wrong, widget: text }
+          - name: produced
+            label: Produced (sidebar)
+            widget: list
+            summary: "{{fields.n}} {{fields.label}}"
+            hint: Never link or name a ledger entry before January 2027.
+            fields:
+              - { name: n, label: Number, widget: string }
+              - { name: label, label: Label, widget: string }
+              - { name: note, label: Note, widget: string, required: false }
+          - { name: revisions, label: Revisions, widget: list, field: { name: revision, label: Revision, widget: string }, hint: "Newest first, e.g. v3 · 18 Aug · added B1" }
+      - { name: draft, label: Draft, widget: boolean, default: false, required: false, hint: Drafts show on deploy previews only. }
+
+  # ─── Experiments ───────────────────────────────────────────────────────────
+  - name: experiments
+    label: Experiments
+    label_singular: Experiment
+    description: One file per run. The newest date shows first.
+    folder: content/experiments
+    extension: yml
+    format: yaml
+    create: true
+    identifier_field: id
+    slug: "{{fields.id}}"
+    summary: "{{fields.id}} · {{fields.title}}"
+    sortable_fields: [iso, id, title]
+    preview_path: /experiments/{{fields.id}}
+    fields:
+      - { name: id, label: ID, widget: string, hint: "S-06, S-07… Don't change it once published.", pattern: ['^S-\d{2,}$', 'Use S- and at least two digits, like S-06'] }
+      - { name: title, label: Title, widget: string }
+      - { name: iso, label: Date, widget: datetime, type: date, format: YYYY-MM-DD }
+      - { name: kind, label: Method, widget: string, hint: "e.g. Agent-based, Monte Carlo, Historical backtest" }
+      - { name: runs, label: Runs, widget: string, hint: "e.g. 900 sims" }
+      - { name: relatedModel, label: Tests model, widget: relation, collection: models, value_field: id, search_fields: [id, title], display_fields: ["{{id}} · {{title}}"], required: false }
+      - { name: lede, label: Standfirst, widget: text }
+      - { name: summary, label: One-line finding (list page), widget: text, required: false }
+      - name: headline
+        label: Big number (list page)
+        widget: object
+        required: false
+        collapsed: true
+        fields: [{ name: value, label: Value, widget: string, hint: "e.g. +10%" }, { name: label, label: Label, widget: string }]
+      - name: rows
+        label: Assumptions
+        widget: list
+        summary: "{{fields.k}}: {{fields.v}}"
+        fields: [{ name: k, label: Label, widget: string }, { name: v, label: Value, widget: string }]
+      - name: stats
+        label: Results
+        widget: list
+        summary: "{{fields.k}}: {{fields.v}}"
+        hint: Shown as a fact list when there is no chart.
+        fields: [{ name: k, label: Label, widget: string }, { name: v, label: Value, widget: string }]
+      - name: chart
+        label: Result chart
+        widget: object
+        required: false
+        collapsed: true
+        hint: Bars drawn from zero. Optional.
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: unit, label: Unit, widget: string }
+          - { name: max, label: Scale maximum, widget: number, value_type: float }
+          - name: bars
+            label: Bars
+            widget: list
+            summary: "{{fields.label}}: {{fields.display}}"
+            fields:
+              - { name: label, label: Label, widget: string }
+              - { name: value, label: Value, widget: number, value_type: float }
+              - { name: display, label: Shown as, widget: string, hint: "e.g. 295k" }
+              - { name: win, label: Highlight in blue, widget: boolean, default: false }
+          - { name: caption, label: Caption, widget: string, required: false }
+      - { name: code, label: "Mechanism, in code", widget: text, hint: Plain text. "for" and "in" turn blue. }
+      - { name: finding, label: What the run changed, widget: text }
+      - { name: findingLabel, label: Finding label, widget: string, required: false, hint: "Defaults to “Finding”." }
+      - name: produced
+        label: Produced (sidebar)
+        widget: list
+        summary: "{{fields.n}} {{fields.label}}"
+        hint: Never link or name a ledger entry before January 2027.
+        fields:
+          - { name: n, label: Number, widget: string }
+          - { name: label, label: Label, widget: string }
+          - { name: note, label: Note, widget: string, required: false }
+      - name: facts
+        label: Facts override (top right)
+        widget: list
+        required: false
+        summary: "{{fields.k}}: {{fields.v}}"
+        hint: Optional. Without it, the page shows Method, Runs, Tests and Result.
+        fields: [{ name: k, label: Label, widget: string }, { name: v, label: Value, widget: string }]
+      - name: run
+        label: Run sidebar override
+        widget: list
+        required: false
+        summary: "{{fields.k}}: {{fields.v}}"
+        hint: Optional. Without it, the sidebar shows Date and Runs.
+        fields: [{ name: k, label: Label, widget: string }, { name: v, label: Value, widget: string }]
+      - { name: draft, label: Draft, widget: boolean, default: false, required: false, hint: Drafts show on deploy previews only. }
+
+  # ─── Single pages ──────────────────────────────────────────────────────────
+  - name: site
+    label: Home & Fieldwork
+    files:
+      - name: now
+        label: Currently (home page cards)
+        file: content/now.yml
+        preview_path: /#now
+        fields:
+          - name: cards
+            label: Cards
+            widget: list
+            summary: "{{fields.status}} · {{fields.title}}"
+            fields:
+              - { name: icon, label: Icon, widget: select, options: [rotate-cw, activity, book-open, target, bar-chart-2, arrow-right-circle] }
+              - { name: status, label: Status, widget: string, hint: "e.g. In progress, Reading, Waiting" }
+              - { name: dot, label: Status dot, widget: select, options: [{ label: Filled, value: filled }, { label: Hollow, value: hollow }], default: filled }
+              - { name: type, label: Type, widget: string, hint: "e.g. Model, Book, Study" }
+              - { name: title, label: Title, widget: string }
+              - { name: text, label: Text, widget: text }
+              - { name: foot, label: Footer label, widget: string }
+              - { name: to, label: Link, widget: string, hint: "A site path like /models/M-12" }
+      - name: home
+        label: Home page models
+        file: content/home.yml
+        preview_path: /
+        fields:
+          - { name: models, label: Models on the home page, widget: relation, collection: models, value_field: id, search_fields: [id, title], display_fields: ["{{id}} · {{title}}"], multiple: true, hint: Eight look best. Phones show the first four. }
+      - name: fieldwork
+        label: Fieldwork
+        file: content/fieldwork.yml
+        preview_path: /fieldwork
+        fields:
+          - name: projects
+            label: Projects
+            widget: list
+            summary: "{{fields.period}} · {{fields.name}}"
+            hint: Newest first. Order here is order on the page.
+            fields:
+              - { name: name, label: Company or project, widget: string }
+              - { name: period, label: Period, widget: string, hint: "e.g. 2024 →, 2022–23" }
+              - { name: title, label: Subtitle, widget: string }
+              - { name: role, label: Role · place, widget: string, hint: "Role, then · then place, e.g. Lead Engineer · USA, remote" }
+              - { name: description, label: Description, widget: text }
+              - { name: linkLabel, label: Link text, widget: string, required: false }
+              - { name: linkHref, label: Link URL, widget: string, required: false, hint: "Leave empty or # to hide the link." }
+              - { name: featured, label: Home page position, widget: number, value_type: int, required: false, hint: "1–6 to show it on the home page." }
+              - { name: short, label: Home page line, widget: string, required: false }
+          - name: achievements
+            label: Achievements
+            widget: list
+            summary: "{{fields.year}} · {{fields.text}}"
+            hint: Sorted newest first on the page.
+            fields:
+              - { name: year, label: Year, widget: string }
+              - { name: text, label: Text, widget: string }

@@ -97,7 +97,7 @@ onMounted(() => {
     <div v-if="error" class="flex items-center justify-center h-screen">
       <div class="text-center">
         <p class="text-red-400 text-sm mb-4">Failed to load project.</p>
-        <NuxtLink to="/projects" class="text-white/50 text-sm underline underline-offset-4 hover:text-white">
+        <NuxtLink to="/work" class="text-white/50 text-sm underline underline-offset-4 hover:text-white">
           ← Back to projects
         </NuxtLink>
       </div>
@@ -130,7 +130,7 @@ onMounted(() => {
         <!-- Back link -->
         <div class="absolute top-24 left-6 max-w-7xl">
           <NuxtLink
-            to="/projects"
+            to="/work"
             class="inline-flex items-center gap-2 text-white/60 text-sm hover:text-white transition-colors duration-200"
           >
             ← All Projects

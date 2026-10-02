@@ -1,10 +1,24 @@
 [build]
   command = "yarn generate"
-  # ssr: false uses static preset → outputs to dist/ (not .output/public)
-  publish = "dist"
+  # The build writes to .output/public (nitro preset "static", see nuxt.config.js).
+  # Publish that real folder, not the dist symlink: Netlify keeps an old dist/
+  # between builds, and a symlinked publish folder fails the deploy.
+  publish = ".output/public"
 
 [build.environment]
   NODE_VERSION = "20"
+
+# Hashed build files never change, so browsers can keep them.
+[[headers]]
+  for = "/_nuxt/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# The editor. Without this, "/admin" (no slash) would fall through to the site.
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
 
 [[redirects]]
   from = "/*"

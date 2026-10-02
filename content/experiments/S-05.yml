@@ -1,0 +1,79 @@
+id: S-05
+title: Corridor throughput under three fare regimes
+iso: 2026-08-14
+kind: Agent-based
+runs: 900 sims
+relatedModel: M-07
+lede: Twelve thousand agents choosing between four modes on one corridor, run under a flat fare, a distance fare and a peak-priced fare. I wanted to know which regime moves the most people, not which earns the most.
+summary: Peak pricing moves the most people, but by speeding up boarding rather than cutting demand.
+headline:
+  value: +10%
+  label: Throughput, peak fare against flat
+facts:
+  - k: Method
+    v: Agent-based simulation
+  - k: Runs
+    v: 900 sims, 300 per regime
+  - k: Tests
+    v: M-07 · Urban transit
+  - k: Result
+    v: Peak pricing, +10% throughput
+run:
+  - k: Date
+    v: 14 Aug
+  - k: Sims
+    v: "900"
+  - k: Agents
+    v: 12,000
+rows:
+  - k: Agents
+    v: 12,000
+  - k: Vehicles
+    v: "240"
+  - k: Dwell time
+    v: 18–45 s
+  - k: Peak window
+    v: 90 min
+  - k: Regimes
+    v: flat / distance / peak
+stats:
+  - k: Flat
+    v: 268k
+  - k: Distance
+    v: 241k
+  - k: Peak
+    v: 295k
+chart:
+  title: Peak-hour throughput
+  unit: Thousands of passengers
+  max: 320
+  bars:
+    - label: Flat fare
+      value: 268
+      display: 268k
+    - label: Distance fare
+      value: 241
+      display: 241k
+    - label: Peak pricing
+      value: 295
+      display: 295k
+      win: true
+  caption: Peak pricing moves 295,000 people an hour, against 268,000 on a flat fare.
+code: |-
+  for regime in ('flat', 'distance', 'peak'):
+      for sim in range(300):
+          agents = spawn(12_000, income=lognorm())
+          for t in range(0, 90):
+              for a in agents:
+                  a.choose(cost(regime, a), wait(t), crowd(t))
+              board(vehicles=240, dwell=dwell(crowd(t)))
+          record(regime, throughput())
+finding: "Peak pricing wins on throughput by 10% over a flat fare, but it wins for a reason I had not modelled: it thins the shoulder, which cuts dwell time, which is the real cap. The fare is acting on boarding speed, not on demand."
+findingLabel: What I had not modelled
+produced:
+  - n: "1"
+    label: prediction
+    note: Logged privately. The ledger opens January 2027.
+  - n: v3
+    label: of M-07
+    note: "Model revised: dwell time as the binding constraint."
