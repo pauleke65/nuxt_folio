@@ -4,6 +4,7 @@ import PageHead from '~/components/site/PageHead.vue'
 import FactList from '~/components/site/FactList.vue'
 import ModelTile from '~/components/site/ModelTile.vue'
 import FeatherIcon from '~/components/site/FeatherIcon.vue'
+import { numberWord } from '~/lib/content.mjs'
 
 definePageMeta({ layout: 'research' })
 
@@ -66,7 +67,7 @@ const shown = computed(() => MODELS.filter((m) =>
         <ModelTile v-for="m in shown" :key="m.id" :model="m" />
       </div>
       <p v-else class="note" style="margin-top:0">No models match those filters yet.</p>
-      <p class="note">Twelve built so far. Informal credit is next.</p>
+      <p class="note">{{ numberWord(MODELS.length) }} built so far. Informal credit is next.</p>
     </section>
   </main>
 </template>

@@ -15,8 +15,6 @@ const essay = computed(() => sorted[index.value])
 const body = computed(() => ESSAY_BODIES[route.params.id])
 const model = computed(() => MODELS.find((m) => m.id === essay.value?.model))
 
-const paragraphs = computed(() => body.value ? (body.value.pull ? body.value.paragraphs.slice(0, -1) : body.value.paragraphs) : [])
-const pull = computed(() => body.value?.pull ? body.value.paragraphs.at(-1) : null)
 
 useHead(() => ({
   title: essay.value ? `Essay ${essay.value.id} — Paul Imoke` : 'Essay — Paul Imoke',
@@ -51,9 +49,9 @@ const pn = computed(() => {
     <div class="w">
       <div v-if="body" class="art">
         <article class="copy">
-          <p v-for="(p, i) in paragraphs" :key="i">{{ p }}</p>
+          <div v-if="body.html" class="md" v-html="body.html"></div>
           <BarChart v-if="body.figure" class="cmp" :chart="body.figure" />
-          <p v-if="pull" class="pull">{{ pull }}</p>
+          <p v-if="body.pull" class="pull">{{ body.pull }}</p>
         </article>
         <aside class="side">
           <div class="side-in">

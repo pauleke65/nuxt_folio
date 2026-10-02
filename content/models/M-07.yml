@@ -1,0 +1,55 @@
+id: M-07
+title: Urban transit under a fuel shock
+order: 1
+domain: Transit
+era: now
+year: "2026"
+blurb: "Six actor classes, three fare regimes, one binding constraint: road area per capita."
+meta: 4 PREDICTIONS · 2 EXPERIMENTS
+updated: 2026-08-18
+updateNote: Urban transit under a fuel shock, revised to v3
+detail:
+  kicker: Model · Transit · v3
+  lede: Twenty million trips a day across four modes sharing one scarce resource. Fares are the visible variable; road area per capita is the binding one. Built on a metropolitan case, then tested against two cities with different fare regimes.
+  facts:
+    - k: Pattern
+      v: Balancing loop
+    - k: Binding constraint
+      v: Road area per capita
+    - k: Throughput cap
+      v: Dwell time at stops
+    - k: Revised
+      v: v3 · 18 Aug
+  caption: Balancing loop B1 — crowding suppresses the shift that caused it
+  actors:
+    - who: Informal operators
+      what: Maximise daily cash; reprice within hours of a cost shock.
+    - who: Transit authority
+      what: Fare-box recovery against a politically capped fare.
+    - who: Commuters
+      what: Minimise cost plus time, weighted by reliability of arrival.
+    - who: State
+      what: Visible capacity announcements over throughput per unit spent.
+  leverage:
+    - tier: LOW
+      text: Add vehicles to an existing corridor.
+    - tier: MEDIUM
+      text: Change how passengers board and pay — dwell time is the throughput cap.
+    - tier: HIGH
+      text: Price road space at peak, so mode choice carries the true cost.
+    - tier: EXTREME
+      text: Stop treating transport as movement of vehicles and treat it as access to opportunity — which makes land use, not roads, the intervention.
+  falsifier: If a 15% fuel rise leaves ridership flat for two consecutive months, cost is not driving mode choice and the model’s central arrow is wrong.
+  produced:
+    - n: "4"
+      label: predictions
+      note: Logged privately. The ledger opens January 2027.
+    - n: "2"
+      label: experiments
+      note: S-05 · Corridor throughput under three fare regimes, and one unpublished run.
+    - n: "1"
+      label: essay
+  revisions:
+    - v3 · 18 Aug · added B1
+    - v2 · 02 Jul · fare regimes
+    - v1 · 14 May

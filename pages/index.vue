@@ -1,7 +1,8 @@
 <script setup>
-import { MODELS } from '~/data/research/models'
+import { MODELS, HOME_MODELS } from '~/data/research/models'
 import { PROJECTS } from '~/data/research/projects'
-import { NOW } from '~/data/research/now'
+import { NOW, LATEST } from '~/data/research/now'
+import { numberWord } from '~/lib/content.mjs'
 import LoopDiagram from '~/components/site/LoopDiagram.vue'
 import NowCard from '~/components/site/NowCard.vue'
 import ModelTile from '~/components/site/ModelTile.vue'
@@ -17,9 +18,9 @@ useHead({
   ],
 })
 
-// Eight tiles on the home page, in this order. Phone shows the first four.
-const HOME_MODELS = ['M-07', 'M-06', 'M-11', 'M-10', 'M-05', 'M-03', 'M-09', 'M-01']
-const featuredModels = HOME_MODELS.map((id) => MODELS.find((m) => m.id === id)).filter(Boolean)
+// The eight home tiles and their order come from content/home.yml. Phone shows the first four.
+const featuredModels = HOME_MODELS
+const modelCount = numberWord(MODELS.length)
 
 const ERAS = [
   { label: 'All', value: 'all' },
@@ -29,13 +30,8 @@ const ERAS = [
 const era = ref('all')
 const shownModels = computed(() => era.value === 'all' ? featuredModels : featuredModels.filter((m) => m.era === era.value))
 
-const latest = [
-  { date: '18 Aug', title: 'Urban transit under a fuel shock, revised to v3', type: 'Model', id: 'M-07', to: '/models/M-07' },
-  { date: '15 Aug', title: 'Why my epidemic model was wrong by eleven days', type: 'Post-mortem', id: 'E-08', to: '/essays/E-08' },
-  { date: '14 Aug', title: 'Corridor throughput under three fare regimes', type: 'Experiment', id: 'S-05', to: '/experiments/S-05' },
-  { date: '06 Aug', title: 'How long a seed-stage runway really lasts', type: 'Experiment', id: 'S-04', to: '/experiments/S-04' },
-  { date: '02 Aug', title: 'Land titling is an information problem before it is a legal one', type: 'Essay', id: 'E-09', to: '/essays/E-09' },
-]
+// Newest model revisions, runs and essays, built from content/.
+const latest = LATEST
 
 const fieldwork = PROJECTS.filter((p) => p.featured).sort((a, b) => a.featured - b.featured)
 const fieldworkCols = [fieldwork.slice(0, 3), fieldwork.slice(3, 6)]
@@ -65,7 +61,7 @@ const fieldworkCols = [fieldwork.slice(0, 3), fieldwork.slice(3, 6)]
     </section>
 
     <section class="sec w">
-      <div class="sh"><h2>Models</h2><p>Twelve systems, mapped the same nine ways.</p><NuxtLink to="/models">All models →</NuxtLink></div>
+      <div class="sh"><h2>Models</h2><p>{{ modelCount }} systems, mapped the same nine ways.</p><NuxtLink to="/models">All models →</NuxtLink></div>
       <div class="filters">
         <button v-for="e in ERAS" :key="e.value" class="chip" :class="{ on: era === e.value }" type="button" :aria-pressed="era === e.value ? 'true' : 'false'" @click="era = e.value">{{ e.label }}</button>
       </div>

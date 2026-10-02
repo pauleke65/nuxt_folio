@@ -20,7 +20,7 @@ const latest = EXPERIMENTS[0]
 const facts = [
   { k: 'Published', v: `${EXPERIMENTS.length} runs` },
   { k: 'Waiting', v: '2 runs, until their predictions resolve' },
-  { k: 'Latest', v: `${latest.id} · ${latest.date}` },
+  { k: 'Latest', v: latest ? `${latest.id} · ${latest.date}` : 'None yet' },
 ]
 </script>
 

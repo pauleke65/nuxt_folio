@@ -1,0 +1,37 @@
+id: S-01
+title: Population growth with variable migration
+iso: 2026-06-21
+kind: System dynamics
+runs: 50 years
+lede: My first model. One stock, three flows, fifty years. Kept published because the point of it was to learn that a stock cannot be reasoned about from its flows alone.
+rows:
+  - k: Start
+    v: 1,000,000
+  - k: Birth rate
+    v: 2.5%
+  - k: Death rate
+    v: 1.0%
+  - k: Migration
+    v: variable
+  - k: Horizon
+    v: 50 years
+stats:
+  - k: Year 50
+    v: 2.1M
+  - k: Doubling
+    v: yr 47
+  - k: Migration swing
+    v: ±14%
+code: |-
+  pop = 1_000_000
+  for year in range(50):
+      births = pop * 0.025
+      deaths = pop * 0.010
+      net_migration = migration(year)
+      pop += births - deaths + net_migration
+      record(year, pop)
+finding: "Nothing surprising in the output, everything surprising in the exercise: I had been treating growth rate as the interesting number when the stock and its delay do all the work. Every model since starts by naming the stocks."
+produced:
+  - n: "0"
+    label: outputs
+    note: Nothing. It was practice, and it stays up as practice.

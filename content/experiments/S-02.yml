@@ -1,0 +1,45 @@
+id: S-02
+title: Railway mania — backtest of the capital loop
+iso: 2026-07-09
+kind: Historical backtest
+runs: 1844–47
+relatedModel: M-11
+lede: Can my reinforcing-loop model reproduce a bubble whose ending is already known? Capital in, prospectus out, subscription up, capital in again, with construction delay as the only brake. Fitted on 1844, run forward blind.
+summary: The loop reproduces the shape of the bubble and misses the timing, all of it in the delay term.
+headline:
+  value: 8 months
+  label: Timing error on the peak
+rows:
+  - k: Period
+    v: 1844–1847
+  - k: Fitted on
+    v: 1844 only
+  - k: Delay
+    v: 22 months
+  - k: Loop
+    v: R1 reinforcing
+  - k: Brake
+    v: construction capacity
+stats:
+  - k: Peak, modelled
+    v: Q2 1846
+  - k: Peak, actual
+    v: Q4 1846
+  - k: Error
+    v: 8 months
+code: |-
+  capital, authorised = fit(1844)
+  for q in quarters(1844, 1850):
+      sentiment = f(returns(q - delay))
+      subscriptions = capital * sentiment
+      authorised += subscriptions * conversion
+      capital = subscriptions - construction_draw(q)
+      if capital < 0: collapse(q)
+finding: "The loop reproduces the shape and misses the timing by eight months, all of it in the delay term. Useful failure: it says the mechanism is right and my delay estimates are the weak part of every model I build, not just this one."
+produced:
+  - n: "1"
+    label: essay
+    note: E-06 · on 1840s infrastructure.
+  - n: "2"
+    label: models recalibrated
+    note: Delay calibration note applied to M-07, M-03.

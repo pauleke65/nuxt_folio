@@ -15,7 +15,7 @@ const sorted = [...ESSAYS].sort((a, b) => b.iso.localeCompare(a.iso))
 const facts = [
   { k: 'Published', v: `${ESSAYS.length} notes` },
   { k: 'Post-mortems', v: String(ESSAYS.filter((e) => e.kind === 'Post-mortem').length) },
-  { k: 'Latest', v: `${sorted[0].id} · ${sorted[0].date}` },
+  { k: 'Latest', v: sorted[0] ? `${sorted[0].id} · ${sorted[0].date}` : 'None yet' },
 ]
 
 const FILTERS = [

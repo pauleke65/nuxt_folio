@@ -5,6 +5,7 @@ import FactList from '~/components/site/FactList.vue'
 import SidebarBlock from '~/components/site/SidebarBlock.vue'
 import PrevNext from '~/components/site/PrevNext.vue'
 import DiagramM07 from '~/components/site/DiagramM07.vue'
+import { numberWord } from '~/lib/content.mjs'
 
 definePageMeta({ layout: 'research' })
 
@@ -34,7 +35,7 @@ const stubFacts = computed(() => model.value ? [
 
 // Previous / next in id order. The ends link back to the full list.
 const byId = [...MODELS].sort((a, b) => a.id.localeCompare(b.id))
-const ALL = { to: '/models', title: 'Twelve systems, mapped the same nine ways' }
+const ALL = { to: '/models', title: `${numberWord(MODELS.length)} systems, mapped the same nine ways` }
 const pn = computed(() => {
   const i = byId.findIndex((m) => m.id === route.params.id)
   const prev = byId[i - 1]

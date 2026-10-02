@@ -1,0 +1,47 @@
+id: S-03
+title: Epidemic spread with two mixing clusters
+iso: 2026-07-28
+kind: SIR, revised
+runs: 2,000 runs
+relatedModel: M-09
+lede: A re-run of the model behind a prediction I lost. The original used one averaged mixing rate. This one splits the population into two groups with a tunable coupling and asks how far the peak moves as coupling falls.
+summary: Split the population in two and the peak moves by the eleven days I got wrong.
+headline:
+  value: 11 days
+  label: Peak shift at low coupling
+rows:
+  - k: Population
+    v: 400,000
+  - k: R₀
+    v: "1.8"
+  - k: Clusters
+    v: "2"
+  - k: Coupling
+    v: 0.02 – 0.30
+  - k: Seed cases
+    v: "40"
+stats:
+  - k: Peak, coupled
+    v: wk 6
+  - k: Peak, split
+    v: wk 7.6
+  - k: Error
+    v: 11 days
+code: |-
+  for c in linspace(0.02, 0.30, 15):
+      S, I, R = split_population(400_000, groups=2)
+      for week in range(0, 40):
+          for g in (0, 1):
+              other = 1 - g
+              force = beta * (I[g] + c * I[other]) / N[g]
+              new = force * S[g]
+              S[g] -= new; I[g] += new - gamma * I[g]
+      record(c, argmax(total_I))
+finding: Coupling below 0.08 pushes the peak out by roughly eleven days — precisely the error I made. The structure was never wrong; averaging two populations into one parameter was. I now check for clustering before I trust any single mixing rate.
+produced:
+  - n: "1"
+    label: essay
+    note: E-08 · post-mortem.
+  - n: "1"
+    label: model revised
+    note: M-09 · two-cluster default.

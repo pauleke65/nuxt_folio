@@ -27,7 +27,7 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ['~/assets/css/tailwind.css', '~/assets/css/site.css', '~/assets/css/site-dark.css'],
+  css: ['~/assets/css/tailwind.css', '~/assets/css/site.css', '~/assets/css/site-dark.css', '~/assets/css/site-copy.css'],
 
   modules: [
     '@nuxtjs/apollo',
@@ -52,6 +52,14 @@ export default defineNuxtConfig({
     public: {
       // Can be overridden via NUXT_PUBLIC_DISQUS_SHORTNAME env var
       disqusShortname: 'paulimoke',
+    },
+  },
+
+  // Drafts (draft: true in content/) show in `yarn dev` and on Netlify
+  // deploy previews, never on the production site.
+  vite: {
+    define: {
+      __SHOW_DRAFTS__: JSON.stringify(process.env.NODE_ENV !== 'production' || ['deploy-preview', 'branch-deploy'].includes(process.env.CONTEXT)),
     },
   },
 

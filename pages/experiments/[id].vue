@@ -6,6 +6,7 @@ import FactList from '~/components/site/FactList.vue'
 import SidebarBlock from '~/components/site/SidebarBlock.vue'
 import PrevNext from '~/components/site/PrevNext.vue'
 import BarChart from '~/components/site/BarChart.vue'
+import { numberWord } from '~/lib/content.mjs'
 
 definePageMeta({ layout: 'research' })
 
@@ -39,8 +40,7 @@ const code = computed(() => (exp.value?.code ?? '')
   .replace(/\b(for|in)\b/g, '<i>$1</i>'))
 
 // The list runs newest first, so "previous" is the older run.
-const WORDS = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten']
-const ALL = { to: '/experiments', title: `${WORDS[EXPERIMENTS.length] ?? EXPERIMENTS.length} runs, two more waiting` }
+const ALL = { to: '/experiments', title: `${numberWord(EXPERIMENTS.length)} runs, two more waiting` }
 const pn = computed(() => {
   const older = EXPERIMENTS[index.value + 1]
   const newer = EXPERIMENTS[index.value - 1]

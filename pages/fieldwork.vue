@@ -2,6 +2,7 @@
 import { PROJECTS, ACHIEVEMENTS } from '~/data/research/projects'
 import PageHead from '~/components/site/PageHead.vue'
 import ExternalArrow from '~/components/site/ExternalArrow.vue'
+import { numberWord } from '~/lib/content.mjs'
 
 definePageMeta({ layout: 'research' })
 
@@ -24,8 +25,7 @@ const jobs = PROJECTS.map((p) => {
 
 const achievements = [...ACHIEVEMENTS].sort((a, b) => parseInt(b.year, 10) - parseInt(a.year, 10))
 
-const WORDS = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve']
-const countWord = WORDS[PROJECTS.length] ?? String(PROJECTS.length)
+const countWord = numberWord(PROJECTS.length)
 </script>
 
 <template>
