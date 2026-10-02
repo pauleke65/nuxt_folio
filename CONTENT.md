@@ -8,6 +8,8 @@ Everything you write on the site lives in `content/` as plain text files: one fi
 | **GitHub's web editor** | A quick typo fix: open the file on github.com, press the pencil, commit. |
 | **Locally, or by asking Claude** | Bigger changes, new page types, anything in the page layouts. |
 
+Most content is still demo content. To replace it with the real thing, work through [`docs/QUESTIONNAIRE.md`](docs/QUESTIONNAIRE.md) with Claude: it interviews you and turns your answers into these files.
+
 Because every change is a commit, the repository's history is a public, timestamped record of what changed and when. That is what backs the footer line "Nothing here is edited after the fact".
 
 ## Signing in to `/admin` (once)
