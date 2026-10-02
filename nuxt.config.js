@@ -6,8 +6,7 @@ export default defineNuxtConfig({
   // _redirects file with "/* /404.html 404". That file overrides netlify.toml,
   // so every deep link (/essays/E-09, /work…) was served with a 404 status.
   // The plain static preset leaves routing to netlify.toml. `yarn generate`
-  // also clears .output first: Netlify carries it over between builds, and
-  // Nuxt doesn't remove stale files such as an old _redirects.
+  // also clears stale output first (scripts/clean-output.mjs).
   nitro: { preset: 'static' },
 
   app: {
