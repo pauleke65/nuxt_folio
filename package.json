@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
-    "generate": "node scripts/check-content.mjs && nuxt generate && node scripts/cms-branch.mjs",
+    "generate": "node -e \"for (const d of ['.output', 'dist']) require('fs').rmSync(d, { recursive: true, force: true })\" && node scripts/check-content.mjs && nuxt generate && node scripts/cms-branch.mjs",
     "preview": "nuxt preview",
     "lint": "eslint . --ext .vue,.js",
     "lint:fix": "eslint . --ext .vue,.js --fix",
