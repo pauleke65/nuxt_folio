@@ -6,6 +6,12 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# The editor. Without this, "/admin" (no slash) would fall through to the site.
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
