@@ -37,7 +37,6 @@ export const CATEGORIES = [
   { key: 'ai', label: 'AI & Automation' },
   { key: 'web3', label: 'Web3' },
   { key: 'backend', label: 'Backend & Infra' },
-  { key: 'studio', label: 'PIE Drops Studio' },
 ]
 
 const careerProjects = [
@@ -96,7 +95,7 @@ const careerProjects = [
   {
     slug: 'agtrail',
     name: 'Agtrail',
-    tagline: 'Agricultural food traceability on Stellar and IPFS, integrated with NAFDAC. The product demo secured $20K from the Stellar Development Foundation.',
+    tagline: 'Agricultural food traceability on Stellar and IPFS, integrated with NAFDAC. The product demo secured $60K from the Stellar Development Foundation.',
     label: 'Agritech · Web3 & Web',
     role: 'Lead Developer',
     org: 'Agrolinking Solutions',
@@ -108,7 +107,7 @@ const careerProjects = [
     featured: true,
     accent: '#94C11F',
     impact: [
-      { num: '$20K', label: 'Funding from the Stellar Development Foundation, secured with a product demo' },
+      { num: '$60K', label: 'Funding from the Stellar Development Foundation, secured with a product demo' },
     ],
     sections: [
       {
@@ -124,7 +123,7 @@ const careerProjects = [
       'Migrated the Lovable MVP to a production-grade Next.js application, improving maintainability, performance and scalability.',
       'Built and deployed an Express.js server integrating with third-party regulatory bodies including NAFDAC, enabling full product traceability.',
       'Integrated the Stellar blockchain and IPFS (via Pinata) for immutable, decentralised storage of food supply-chain records.',
-      'Contributed to the product demo that secured $20,000 in funding from the Stellar Development Foundation.',
+      'Contributed to the product demo that secured $60,000 in funding from the Stellar Development Foundation.',
     ],
   },
   {
@@ -241,7 +240,7 @@ const careerProjects = [
   {
     slug: 'applybetter',
     name: 'ApplyBetter',
-    tagline: 'Pulls together your online presence into a profile, then applies to jobs on your behalf.',
+    tagline: 'Resume building, job discovery and automatic applications in one place. It builds your profile from your online presence, then applies to matched jobs for you.',
     label: 'AI · Job automation',
     role: 'Lead Engineer (backend)',
     org: 'Tecmie LLC',
@@ -250,6 +249,19 @@ const careerProjects = [
     categories: ['ai', 'backend'],
     stack: ['Next.js', 'Supabase', 'Schema design'],
     accent: '#1C7ED6',
+    cover: { type: 'image', src: '/work/applybetter/cover.jpg', alt: 'ApplyBetter generated professional profile with added keywords and skills' },
+    links: [{ label: 'Tecmie case study', url: 'https://www.tecmie.com/portfolio/applybetter' }],
+    gallery: [{ src: '/work/applybetter/cover.jpg', alt: 'ApplyBetter generated professional profile with added keywords and skills' }],
+    sections: [
+      {
+        kicker: 'The brief',
+        heading: 'Take the repetitive work out of job hunting.',
+        body: [
+          'ApplyBetter combines resume building, job discovery and automated applications in a single platform, built for skilled job seekers, particularly in Africa.',
+          'It reads a user’s online presence to build a professional profile, adds the keywords and skills their target roles look for, and uses AI recommendations to find hyper-relevant matches it can apply to automatically.',
+        ],
+      },
+    ],
     highlights: [
       'Built the backend and database schema for ApplyBetter.co.',
       'The product aggregates a user’s online presence to build a profile automatically, then applies to jobs on their behalf.',
@@ -283,29 +295,6 @@ const careerProjects = [
       'Worked through SDK design, cross-platform compatibility and developer-experience best practices.',
     ],
   },
-  {
-    slug: 'tecmie-website',
-    name: 'Tecmie Website',
-    tagline: 'A redesign and rebuild of tecmie.com that modernised the brand and improved performance.',
-    label: 'Web · Studio site',
-    role: 'Lead Engineer',
-    org: 'Tecmie LLC',
-    period: 'Nov 2023 – Jul 2025',
-    location: 'USA · Remote',
-    categories: ['web'],
-    stack: ['Frontend', 'Web performance'],
-    accent: '#F59F00',
-    cover: { type: 'image', src: '/work/tecmie-website/web-hero.jpg', alt: 'Tecmie website hero: launch your next big thing' },
-    links: [{ label: 'Visit tecmie.com', url: 'https://www.tecmie.com' }],
-    gallery: shots('tecmie-website', [
-      ['web-hero', 'Tecmie website hero'],
-      ['web-product', 'Tecmie website product showcase'],
-    ]),
-    highlights: [
-      'Redesigned and rebuilt the official Tecmie website, modernising the brand and improving performance.',
-    ],
-  },
-
   // ─── MEST Africa ───────────────────────────────────────────────────────────
   {
     slug: 'sagebrief-legal',
@@ -522,11 +511,32 @@ const careerProjects = [
   },
 ]
 
-export const projects = [...careerProjects, ...studioProjects]
+const FEATURED = ['blia', 'agtrail', 'hairstyle-try-on', 'trial-manager', 'amtap-fitness', 'ankara-chain']
 
-export const featuredProjects = [
-  'blia', 'agtrail', 'hairstyle-try-on', 'trial-manager', 'amtap-fitness', 'ankara-chain',
-].map(slug => projects.find(p => p.slug === slug))
+// Everything else, client and studio work mixed together.
+const MORE = [
+  'runshelf', 'wootiv', 'keep', 'sagebrief-legal', 'geisha-mama', 'regwand-legal',
+  'sapa-radar', 'applybetter', 'attest-protocol-sdk', 'youthful-treat', 'gradgap', 'wstc-mobile',
+  'pie-drops-brand', 'menji', 'levelup', 'zuri-chat', 'foodbag', 'troopa',
+  'budget-pro', 'campaigner',
+]
+
+const all = [...careerProjects, ...studioProjects]
+const bySlug = slug => {
+  const p = all.find(x => x.slug === slug)
+  if (!p) throw new Error(`Unknown project slug in order list: ${slug}`)
+  return p
+}
+
+// Site-wide order: case studies first, then the rest. Previous/next links follow this.
+export const projects = [...FEATURED, ...MORE].map(bySlug)
+if (projects.length !== all.length) {
+  const missing = all.filter(p => !projects.includes(p)).map(p => p.slug)
+  throw new Error(`Projects missing from the order lists: ${missing.join(', ')}`)
+}
+
+export const featuredProjects = FEATURED.map(bySlug)
+export const moreProjects = MORE.map(bySlug)
 
 export { studioProjects }
 

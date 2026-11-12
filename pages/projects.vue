@@ -1,5 +1,5 @@
 <script setup>
-import { projects, featuredProjects, studioProjects, CATEGORIES, categoryCount } from '~/data/projects'
+import { projects, featuredProjects, moreProjects, CATEGORIES, categoryCount } from '~/data/projects'
 
 const route = useRoute()
 const router = useRouter()
@@ -25,7 +25,6 @@ function setFocus(key) {
 }
 
 const featuredSlugs = new Set(featuredProjects.map(p => p.slug))
-const moreWork = computed(() => projects.filter(p => !featuredSlugs.has(p.slug) && !p.studio))
 const filtered = computed(() => {
   const matches = projects.filter(p => p.categories.includes(focus.value))
   // Case studies first, then the original order
@@ -54,7 +53,7 @@ const facts = [
   { value: '9+', label: 'years shipping software' },
   { value: String(projects.length), label: 'projects in this portfolio' },
   { value: '4', label: 'countries of remote teams led' },
-  { value: '$20K', label: 'Stellar funding won with a demo' },
+  { value: '$60K', label: 'Stellar funding won with a demo' },
 ]
 
 const experience = [
@@ -179,44 +178,13 @@ const skills = [
       <section class="pb-20" aria-labelledby="more-work">
         <div class="flex items-end justify-between gap-6 mb-8">
           <h2 id="more-work" class="text-white font-semibold text-2xl sm:text-3xl">More work</h2>
-          <p class="text-white/40 text-sm hidden sm:block">Client, product and open-source work across my career.</p>
+          <p class="text-white/40 text-sm hidden sm:block">Client, studio, product and open-source work.</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          <ProjectCard v-for="project in moreWork" :key="project.slug" :project="project" />
+          <ProjectCard v-for="project in moreProjects" :key="project.slug" :project="project" />
         </div>
       </section>
 
-      <!-- Studio band -->
-      <section class="pb-20" aria-labelledby="studio-band">
-        <NuxtLink
-          to="/studio"
-          class="group block rounded-3xl overflow-hidden border border-white/10 hover:border-[#C0392B]/60 transition-colors duration-300 relative"
-          style="background: radial-gradient(80% 140% at 0% 100%, rgba(192,57,43,0.35) 0%, rgba(192,57,43,0.08) 45%, #0b0b0b 80%);"
-        >
-          <div class="grid lg:grid-cols-[1fr_1.2fr] gap-10 p-8 sm:p-12">
-            <div class="flex flex-col">
-              <div class="flex items-center gap-3 mb-8">
-                <img src="/work/pie-drops-brand/mark.svg" alt="" class="h-7 w-auto" />
-                <span class="text-white/80 text-sm font-semibold tracking-wide">PIE Drops Studio</span>
-              </div>
-              <h2 id="studio-band" class="text-white font-bold leading-tight" style="font-size: clamp(1.75rem, 3.5vw, 2.75rem);">
-                I also run a studio.
-              </h2>
-              <p class="text-white/60 text-sm sm:text-base leading-relaxed mt-4 max-w-md">
-                PIE Drops Studio builds the systems, tools and products growing businesses run on. {{ studioProjects.length }} projects so far, from an App Store AI app to Stellar smart contracts.
-              </p>
-              <span class="mt-8 inline-flex items-center gap-2 text-white text-sm font-medium">
-                See the studio <span class="group-hover:translate-x-1 transition-transform" aria-hidden="true">→</span>
-              </span>
-            </div>
-            <div class="grid grid-cols-2 gap-3 self-center">
-              <div v-for="p in studioProjects.slice(0, 4)" :key="p.slug" class="aspect-[16/10] rounded-xl overflow-hidden border border-white/10">
-                <img :src="p.cover.src" :alt="p.cover.alt" class="w-full h-full object-cover" />
-              </div>
-            </div>
-          </div>
-        </NuxtLink>
-      </section>
     </main>
 
     <!-- ── Filtered view ─────────────────────────────────────────────────── -->

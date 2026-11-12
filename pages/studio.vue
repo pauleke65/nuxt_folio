@@ -79,7 +79,7 @@ const client = studioProjects.filter(p => !p.org.startsWith('PIE Drops'))
           <p class="text-white/40 text-sm max-w-sm">Products the studio designs, builds and runs: AI, fintech, developer tools and brand.</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <ProjectCard v-for="p in own" :key="p.slug" :project="p" size="lg" :show-studio-badge="false" />
+          <ProjectCard v-for="p in own" :key="p.slug" :project="p" size="lg" />
         </div>
       </section>
 
@@ -93,7 +93,7 @@ const client = studioProjects.filter(p => !p.org.startsWith('PIE Drops'))
           <p class="text-white/40 text-sm max-w-sm">Campaign sites and brands for consumer businesses in Ghana and Nigeria.</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <ProjectCard v-for="p in client" :key="p.slug" :project="p" size="lg" :show-studio-badge="false" />
+          <ProjectCard v-for="p in client" :key="p.slug" :project="p" size="lg" />
         </div>
       </section>
 

@@ -3,8 +3,6 @@ defineProps({
   project: { type: Object, required: true },
   // 'lg' = case-study card, 'md' = grid card
   size: { type: String, default: 'md' },
-  // The studio page lists only studio work, so the badge would be noise there
-  showStudioBadge: { type: Boolean, default: true },
 })
 </script>
 
@@ -15,10 +13,6 @@ defineProps({
   >
     <div class="relative" :class="size === 'lg' ? 'aspect-[16/10]' : 'aspect-[16/11]'">
       <ProjectCover :project="project" />
-      <span
-        v-if="project.studio && showStudioBadge"
-        class="absolute top-3 left-3 text-[10px] tracking-widest uppercase bg-black/70 backdrop-blur-sm text-white/80 px-2.5 py-1 rounded-full border border-white/10"
-      >PIE Drops Studio</span>
       <span class="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/70 backdrop-blur-sm flex items-center justify-center text-white text-sm opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300" aria-hidden="true">↗</span>
     </div>
 
