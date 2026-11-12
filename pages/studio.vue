@@ -48,7 +48,8 @@ const client = studioProjects.filter(p => !p.org.startsWith('PIE Drops'))
           <span class="text-[#E0604F] text-xs tracking-widest uppercase font-medium">The studio I run</span>
         </div>
 
-        <img src="/work/pie-drops-brand/mark.svg" alt="PIE Drops Studio logo" class="h-12 sm:h-16 w-auto mb-10" />
+        <img src="/work/pie-drops-brand/mark.svg" alt="PIE Drops Studio logo" class="only-dark h-12 sm:h-16 w-auto mb-10" />
+        <img src="/work/pie-drops-brand/mark-on-light.svg" alt="PIE Drops Studio logo" class="only-light h-12 sm:h-16 w-auto mb-10" />
 
         <h1 class="text-white font-bold leading-[0.95] tracking-tight max-w-4xl" style="font-size: clamp(2.5rem, 6.5vw, 5.25rem);">
           Systems, MVPs and products for growing businesses<span class="text-[#C0392B]">.</span>
@@ -58,7 +59,7 @@ const client = studioProjects.filter(p => !p.org.startsWith('PIE Drops'))
         </p>
 
         <div class="flex flex-wrap gap-3 mt-10">
-          <a href="https://piedrops.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#C0392B] text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-[#D44535] transition-colors">
+          <a href="https://piedrops.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#C0392B] text-paper font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-[#D44535] transition-colors">
             Visit piedrops.com <span aria-hidden="true">↗</span>
           </a>
           <a href="mailto:hello@piedrops.com" class="inline-flex items-center gap-2 text-white text-sm px-5 py-2.5 rounded-full border border-white/25 hover:bg-white hover:text-black transition-colors">

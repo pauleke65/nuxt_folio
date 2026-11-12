@@ -98,7 +98,7 @@ function dismissPopup() {
       <div v-if="categories.length" class="flex flex-wrap gap-2 mt-8">
         <button
           class="text-xs px-4 py-1.5 rounded-full border transition-all duration-200"
-          :class="selectedCategory === null ? 'bg-yellow-500 border-yellow-500 text-black font-semibold' : 'border-white/15 text-white/50 hover:border-white/40 hover:text-white'"
+          :class="selectedCategory === null ? 'bg-yellow-500 border-yellow-500 text-ink font-semibold' : 'border-white/15 text-white/50 hover:border-white/40 hover:text-white'"
           @click="setCategory(null)"
         >
           All
@@ -107,7 +107,7 @@ function dismissPopup() {
           v-for="cat in categories"
           :key="cat.id"
           class="text-xs px-4 py-1.5 rounded-full border transition-all duration-200"
-          :class="selectedCategory === cat.name ? 'bg-yellow-500 border-yellow-500 text-black font-semibold' : 'border-white/15 text-white/50 hover:border-white/40 hover:text-white'"
+          :class="selectedCategory === cat.name ? 'bg-yellow-500 border-yellow-500 text-ink font-semibold' : 'border-white/15 text-white/50 hover:border-white/40 hover:text-white'"
           @click="setCategory(cat.name)"
         >
           {{ cat.name }}
@@ -230,7 +230,7 @@ function dismissPopup() {
           <button
             type="submit"
             :disabled="subscribeStatus === 'loading'"
-            class="bg-yellow-500 hover:bg-yellow-400 disabled:opacity-60 text-black font-semibold text-sm px-6 py-3 rounded-full transition-colors duration-200 shrink-0 flex items-center gap-2"
+            class="bg-yellow-500 hover:bg-yellow-400 disabled:opacity-60 text-ink font-semibold text-sm px-6 py-3 rounded-full transition-colors duration-200 shrink-0 flex items-center gap-2"
           >
             <svg v-if="subscribeStatus === 'loading'" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
@@ -255,7 +255,7 @@ function dismissPopup() {
         />
 
         <!-- Card -->
-        <div class="relative z-10 w-full max-w-md bg-[#0d0d0d] border border-white/10 rounded-2xl p-8 shadow-2xl">
+        <div class="relative z-10 w-full max-w-md bg-black border border-white/10 rounded-2xl p-8 shadow-2xl">
 
           <!-- Close -->
           <button
@@ -297,7 +297,7 @@ function dismissPopup() {
             <button
               type="submit"
               :disabled="subscribeStatus === 'loading'"
-              class="w-full bg-yellow-500 hover:bg-yellow-400 disabled:opacity-60 text-black font-semibold text-sm px-6 py-3 rounded-full transition-colors duration-200 flex items-center justify-center gap-2"
+              class="w-full bg-yellow-500 hover:bg-yellow-400 disabled:opacity-60 text-ink font-semibold text-sm px-6 py-3 rounded-full transition-colors duration-200 flex items-center justify-center gap-2"
             >
               <svg v-if="subscribeStatus === 'loading'" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>

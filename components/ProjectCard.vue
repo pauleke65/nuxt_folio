@@ -13,7 +13,7 @@ defineProps({
   >
     <div class="relative" :class="size === 'lg' ? 'aspect-[16/10]' : 'aspect-[16/11]'">
       <ProjectCover :project="project" />
-      <span class="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/70 backdrop-blur-sm flex items-center justify-center text-white text-sm opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300" aria-hidden="true">↗</span>
+      <span class="absolute top-3 right-3 w-9 h-9 rounded-full bg-ink/70 backdrop-blur-sm flex items-center justify-center text-paper text-sm opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300" aria-hidden="true">↗</span>
     </div>
 
     <div class="flex flex-col flex-1" :class="size === 'lg' ? 'p-6 sm:p-7' : 'p-5 sm:p-6'">

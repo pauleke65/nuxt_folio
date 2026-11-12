@@ -32,7 +32,7 @@ const loading = computed(() => (props.eager ? 'eager' : 'lazy'))
       <div
         v-for="(src, i) in cover.srcs.slice(0, 2)"
         :key="src"
-        class="cover-zoom relative w-[34%] aspect-[9/19] rounded-t-[1.1rem] overflow-hidden border-[3px] border-b-0 border-white/15 bg-black shadow-2xl shadow-black/60"
+        class="cover-zoom relative w-[34%] aspect-[9/19] rounded-t-[1.1rem] overflow-hidden border-[3px] border-b-0 border-paper/15 bg-ink shadow-2xl shadow-ink/60"
         :class="i === 1 ? 'phone-offset' : ''"
       >
         <img
@@ -83,7 +83,7 @@ const loading = computed(() => (props.eager ? 'eager' : 'lazy'))
           <li
             v-for="(tech, i) in project.stack.slice(0, 3)"
             :key="tech"
-            :class="['text-white', 'text-white/45', 'text-white/20'][i]"
+            :class="['text-paper', 'text-paper/45', 'text-paper/20'][i]"
           >{{ tech }}</li>
         </ul>
       </div>

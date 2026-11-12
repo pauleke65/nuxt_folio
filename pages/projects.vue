@@ -53,7 +53,7 @@ const facts = [
   { value: '9+', label: 'years shipping software' },
   { value: String(projects.length), label: 'projects in this portfolio' },
   { value: '4', label: 'countries of remote teams led' },
-  { value: '$60K', label: 'Stellar funding won with a demo' },
+  { value: '$60K+', label: 'Stellar funding won with a demo' },
 ]
 
 const experience = [
@@ -104,7 +104,7 @@ const skills = [
           <div class="flex flex-wrap items-center gap-3 mt-6">
             <a
               href="mailto:pauleke65@gmail.com"
-              class="inline-flex items-center gap-2 bg-yellow-500 text-black font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-yellow-400 transition-colors"
+              class="inline-flex items-center gap-2 bg-yellow-500 text-ink font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-yellow-400 transition-colors"
             >Email me <span aria-hidden="true">↗</span></a>
             <a
               v-if="siteData.resumeLink?.url"
@@ -168,7 +168,7 @@ const skills = [
       <section class="pt-16 pb-20" aria-labelledby="case-studies">
         <div class="flex items-end justify-between gap-6 mb-8">
           <h2 id="case-studies" class="text-white font-semibold text-2xl sm:text-3xl">Case studies</h2>
-          <p class="text-white/40 text-sm hidden sm:block">The work I’d point a hiring manager to first.</p>
+          <p class="text-white/40 text-sm hidden sm:block">Start with these.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <ProjectCard v-for="project in featuredProjects" :key="project.slug" :project="project" size="lg" />

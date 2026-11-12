@@ -44,7 +44,7 @@
 <script setup>
 const stats = [
   { value: '9+',   label: 'Years of professional software engineering' },
-  { value: '$60K', label: 'Secured in Stellar Development Foundation funding' },
+  { value: '$60K+', label: 'Secured in Stellar Development Foundation funding' },
   { value: '4',    label: 'Countries led remote engineering teams across — Nigeria, Ghana, UAE & USA' },
   { value: '95%',  label: 'Reduction in manual server monitoring time at SEC Nigeria' },
 ]
@@ -62,8 +62,8 @@ const achievements = [
   },
   {
     icon: '⛓️',
-    title: '$60K Stellar Development Foundation Grant',
-    detail: 'Contributed to a product demo at Agrolinking Solutions that secured $60,000 in funding from the Stellar Foundation.',
+    title: '$60K+ Stellar Development Foundation Grant',
+    detail: 'Contributed to a product demo at Agrolinking Solutions that secured $60K+ in funding from the Stellar Foundation.',
   },
   {
     icon: '🌍',

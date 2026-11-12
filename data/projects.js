@@ -95,7 +95,7 @@ const careerProjects = [
   {
     slug: 'agtrail',
     name: 'Agtrail',
-    tagline: 'Agricultural food traceability on Stellar and IPFS, integrated with NAFDAC. The product demo secured $60K from the Stellar Development Foundation.',
+    tagline: 'Agricultural food traceability on Stellar and IPFS, integrated with NAFDAC. The product demo secured $60K+ from the Stellar Development Foundation.',
     label: 'Agritech · Web3 & Web',
     role: 'Lead Developer',
     org: 'Agrolinking Solutions',
@@ -107,7 +107,7 @@ const careerProjects = [
     featured: true,
     accent: '#94C11F',
     impact: [
-      { num: '$60K', label: 'Funding from the Stellar Development Foundation, secured with a product demo' },
+      { num: '$60K+', label: 'Funding from the Stellar Development Foundation, secured with a product demo' },
     ],
     sections: [
       {
@@ -123,7 +123,7 @@ const careerProjects = [
       'Migrated the Lovable MVP to a production-grade Next.js application, improving maintainability, performance and scalability.',
       'Built and deployed an Express.js server integrating with third-party regulatory bodies including NAFDAC, enabling full product traceability.',
       'Integrated the Stellar blockchain and IPFS (via Pinata) for immutable, decentralised storage of food supply-chain records.',
-      'Contributed to the product demo that secured $60,000 in funding from the Stellar Development Foundation.',
+      'Contributed to the product demo that secured $60K+ in funding from the Stellar Development Foundation.',
     ],
   },
   {

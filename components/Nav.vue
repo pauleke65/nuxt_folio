@@ -52,22 +52,25 @@ function sectionLink(hash) {
         </li>
       </ul>
 
-      <!-- Desktop CTA -->
-      <a
-        href="mailto:pauleke65@gmail.com"
-        class="hidden md:inline-flex items-center gap-1 text-sm text-white border border-white/30 rounded-full px-5 py-2 hover:bg-white hover:text-black transition-all duration-200"
-      >
-        Get in touch <span class="text-base">↗</span>
-      </a>
+      <!-- Theme switch + desktop CTA -->
+      <div class="flex items-center gap-4">
+        <ThemeToggle />
+        <a
+          href="mailto:pauleke65@gmail.com"
+          class="hidden md:inline-flex items-center gap-1 text-sm text-white border border-white/30 rounded-full px-5 py-2 hover:bg-white hover:text-black transition-all duration-200"
+        >
+          Get in touch <span class="text-base">↗</span>
+        </a>
 
-      <!-- Mobile hamburger -->
-      <button
-        @click="toggleNav"
-        class="md:hidden text-white text-3xl leading-none"
-        :aria-label="toggled ? 'Close menu' : 'Open menu'"
-      >
-        <i :class="toggled ? 'bx bx-x' : 'bx bx-menu'"></i>
-      </button>
+        <!-- Mobile hamburger -->
+        <button
+          @click="toggleNav"
+          class="md:hidden text-white text-3xl leading-none"
+          :aria-label="toggled ? 'Close menu' : 'Open menu'"
+        >
+          <i :class="toggled ? 'bx bx-x' : 'bx bx-menu'"></i>
+        </button>
+      </div>
     </nav>
 
     <!-- Mobile drawer -->

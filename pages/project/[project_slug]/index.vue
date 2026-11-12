@@ -67,7 +67,7 @@ function scrollStrip(dir) {
           <NuxtLink
             v-if="project.studio"
             to="/studio"
-            class="text-xs tracking-widest uppercase text-white/70 border border-[#C0392B]/60 rounded-full px-3 py-1 hover:bg-[#C0392B] hover:text-white transition-colors"
+            class="text-xs tracking-widest uppercase text-white/70 border border-[#C0392B]/60 rounded-full px-3 py-1 hover:bg-[#C0392B] hover:text-paper transition-colors"
           >A PIE Drops Studio project</NuxtLink>
         </div>
 
@@ -88,7 +88,7 @@ function scrollStrip(dir) {
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 text-sm px-5 py-2.5 rounded-full transition-colors"
             :class="i === 0
-              ? 'bg-yellow-500 text-black font-semibold hover:bg-yellow-400'
+              ? 'bg-yellow-500 text-ink font-semibold hover:bg-yellow-400'
               : 'text-white border border-white/20 hover:bg-white hover:text-black'"
           >{{ link.label }} <span aria-hidden="true">↗</span></a>
         </div>

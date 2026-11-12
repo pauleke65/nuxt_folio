@@ -102,7 +102,7 @@ const authorInitial = computed(() => post.value?.author?.name?.[0]?.toUpperCase(
 
             <!-- Author row -->
             <div class="flex items-center gap-4 mb-8">
-              <div class="w-11 h-11 rounded-full bg-yellow-500 flex items-center justify-center text-black font-bold text-base shrink-0">
+              <div class="w-11 h-11 rounded-full bg-yellow-500 flex items-center justify-center text-ink font-bold text-base shrink-0">
                 {{ authorInitial }}
               </div>
               <div>

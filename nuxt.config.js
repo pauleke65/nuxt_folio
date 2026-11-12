@@ -29,6 +29,10 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:image', content: 'https://paulimoke.com/og-image.png' },
       ],
+      // Apply the saved theme before first paint so light mode doesn't flash dark.
+      script: [
+        { innerHTML: "try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light')}catch(e){}", tagPosition: 'head' },
+      ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/paul-favicon.png' },
         // Boxicons icon font (moved here from inline template <link> tags)

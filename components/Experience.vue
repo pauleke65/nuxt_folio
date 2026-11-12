@@ -24,12 +24,12 @@ const experiences = [
     company: 'Agrolinking Solutions',
     location: 'Kaduna, Nigeria · Remote',
     period: 'Dec 2025 – Mar 2026',
-    summary: 'Production Next.js migration + Stellar Blockchain integration. Demo secured $60K in funding.',
+    summary: 'Production Next.js migration + Stellar Blockchain integration. Demo secured $60K+ in funding.',
     bullets: [
       'Migrated an MVP built with Lovable to a production-grade Next.js application.',
       'Built an Express.js server integrating with NAFDAC for full agricultural product traceability.',
       'Implemented Stellar Blockchain and IPFS (via Pinata) for immutable, decentralised supply chain records.',
-      'Contributed to a product demo that secured $60,000 in funding from the Stellar Development Foundation.',
+      'Contributed to a product demo that secured $60K+ in funding from the Stellar Development Foundation.',
     ],
     tags: ['Next.js', 'Web3', 'Stellar', 'IPFS', 'Express.js'],
   },
@@ -198,7 +198,7 @@ const experiences = [
 
               <!-- Yellow circle arrow -->
               <div class="md:col-span-2 flex items-end justify-end">
-                <div class="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center text-black font-bold text-base shrink-0">
+                <div class="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center text-ink font-bold text-base shrink-0">
                   ↗
                 </div>
               </div>

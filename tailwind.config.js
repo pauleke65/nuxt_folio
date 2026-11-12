@@ -11,6 +11,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      // white/black are swapped by the light-mode switch (see assets/css/tailwind.css).
+      // ink/paper never change: use them on things that sit on fixed colours,
+      // like text on yellow buttons or labels on top of images.
+      colors: {
+        white: 'rgb(var(--c-white) / <alpha-value>)',
+        black: 'rgb(var(--c-black) / <alpha-value>)',
+        ink: '#000000',
+        paper: '#ffffff',
+      },
       zIndex: {
         '100': '100',
       },
