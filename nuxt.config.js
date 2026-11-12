@@ -1,4 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { projects } from './data/projects'
+
+// Netlify answers unknown paths with 404.html (status 404), so link previews treat
+// shared case-study URLs as broken. Writing a shell page for every project route
+// makes each one a real file that returns 200.
+const projectRoutes = projects.flatMap(p => [p.slug, ...(p.aliases ?? [])]).map(slug => `/project/${slug}`)
 export default defineNuxtConfig({
   ssr: false,
 
@@ -60,6 +66,12 @@ export default defineNuxtConfig({
   },
 
   components: true,
+
+  nitro: {
+    prerender: {
+      routes: ['/projects', '/studio', ...projectRoutes],
+    },
+  },
 
   compatibilityDate: '2024-11-01',
 })
