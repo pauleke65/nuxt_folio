@@ -6,6 +6,8 @@ defineProps({
   },
 })
 
+import { projects } from '~/data/projects'
+
 const year = new Date().getFullYear()
 </script>
 
@@ -50,8 +52,8 @@ const year = new Date().getFullYear()
           </div>
           <div class="w-px bg-white/10"></div>
           <div>
-            <p class="text-white text-3xl font-bold leading-tight">+16</p>
-            <p class="text-yellow-500 text-xs tracking-wide mt-1">Projects completed</p>
+            <p class="text-white text-3xl font-bold leading-tight">{{ projects.length }}</p>
+            <p class="text-yellow-500 text-xs tracking-wide mt-1">Projects shipped</p>
           </div>
         </div>
 

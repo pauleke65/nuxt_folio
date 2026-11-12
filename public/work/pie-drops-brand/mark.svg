@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102 44" fill="none">
+  <!-- PIE construct mark — for use on dark backgrounds -->
+  <!-- P: circle -->
+  <circle cx="22" cy="22" r="20" fill="#F6F4F0"/>
+  <!-- I: vertical pill -->
+  <rect x="52" y="7" width="8" height="30" rx="4" fill="#C0392B"/>
+  <!-- E: three slabs -->
+  <rect x="70" y="6"  width="30" height="8"  rx="2" fill="#F6F4F0"/>
+  <rect x="70" y="18" width="22" height="8"  rx="2" fill="#F6F4F0"/>
+  <rect x="70" y="30" width="30" height="8"  rx="2" fill="#F6F4F0"/>
+</svg>

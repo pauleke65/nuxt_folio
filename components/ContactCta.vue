@@ -18,7 +18,7 @@
         <div class="flex flex-wrap items-center gap-4 mb-16">
           <a
             href="mailto:pauleke65@gmail.com"
-            class="inline-flex items-center gap-2 bg-yellow-500 text-black font-semibold text-sm px-7 py-3.5 rounded-full hover:bg-yellow-400 transition-colors duration-200"
+            class="inline-flex items-center gap-2 bg-yellow-500 text-ink font-semibold text-sm px-7 py-3.5 rounded-full hover:bg-yellow-400 transition-colors duration-200"
           >
             Send me an email ↗
           </a>

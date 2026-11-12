@@ -4,9 +4,47 @@
 
 @tailwind utilities;
 
+/* Theme: white/black in Tailwind read these, so one class flips the site. */
+:root {
+  --c-white: 255 255 255;
+  --c-black: 0 0 0;
+  color-scheme: dark;
+}
+html.light {
+  --c-white: 20 18 15;
+  --c-black: 247 244 237;
+  color-scheme: light;
+}
+
 /* Fix: was stray text in pages/index.vue outside any tag */
 html {
   scroll-behavior: smooth;
+  background: rgb(var(--c-black));
+}
+
+/* Light mode touch-ups */
+html.light .invert {
+  filter: none; /* black social icons no longer need flipping */
+}
+html.light .text-yellow-500,
+html.light .hover\:text-yellow-500:hover,
+html.light .group:hover .group-hover\:text-yellow-500 {
+  color: #a16207; /* yellow-500 is unreadable on cream */
+}
+html.light .text-yellow-500\/80 {
+  color: rgb(161 98 7 / 0.8);
+}
+
+/* Swap artwork that only works on one background */
+.only-light { display: none; }
+html.light .only-light { display: block; }
+html.light .only-dark { display: none; }
+
+/* Theme switch: the new theme grows out of the toggle as a circle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 /* Offset anchor scrolling so fixed navbar doesn't cover section headings */

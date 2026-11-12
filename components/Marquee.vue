@@ -4,8 +4,8 @@
       <!-- Duplicated for seamless loop -->
       <span v-for="n in 2" :key="n" class="flex items-center shrink-0">
         <template v-for="item in items" :key="item">
-          <span class="text-black font-semibold text-sm tracking-widest uppercase mx-6">{{ item }}</span>
-          <span class="text-black/40 text-lg">·</span>
+          <span class="text-ink font-semibold text-sm tracking-widest uppercase mx-6">{{ item }}</span>
+          <span class="text-ink/40 text-lg">·</span>
         </template>
       </span>
     </div>

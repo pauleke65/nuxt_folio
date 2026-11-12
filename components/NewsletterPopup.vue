@@ -4,9 +4,16 @@ const email = ref('')
 const submitted = ref(false)
 const loading = ref(false)
 
+const route = useRoute()
+// Portfolio pages get shared with hiring managers, so keep them free of popups.
+const quietRoutes = ['/projects', '/project/', '/studio']
+
 onMounted(() => {
+  if (quietRoutes.some(r => route.path.startsWith(r))) return
   if (localStorage.getItem('newsletter_dismissed')) return
-  setTimeout(() => { visible.value = true }, 3000)
+  setTimeout(() => {
+    if (!quietRoutes.some(r => route.path.startsWith(r))) visible.value = true
+  }, 3000)
 })
 
 function dismiss() {
@@ -40,7 +47,7 @@ async function subscribe() {
       />
 
       <!-- Card -->
-      <div class="relative w-full max-w-md bg-[#0a0a0a] border border-white/10 rounded-2xl p-8 shadow-2xl">
+      <div class="relative w-full max-w-md bg-black border border-white/10 rounded-2xl p-8 shadow-2xl">
 
         <!-- Close -->
         <button
@@ -88,7 +95,7 @@ async function subscribe() {
             <button
               type="submit"
               :disabled="loading"
-              class="w-full bg-yellow-500 text-black font-semibold text-sm py-3 rounded-xl hover:bg-yellow-400 transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              class="w-full bg-yellow-500 text-ink font-semibold text-sm py-3 rounded-xl hover:bg-yellow-400 transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               <span v-if="loading" class="w-4 h-4 rounded-full border-2 border-black border-t-transparent animate-spin"></span>
               <span>{{ loading ? 'Subscribing…' : 'Subscribe →' }}</span>
