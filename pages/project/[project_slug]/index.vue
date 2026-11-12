@@ -41,6 +41,11 @@ const facts = computed(() => {
 
 // Studio galleries are four art-directed images; CMS galleries are loose screenshots.
 const curatedGallery = computed(() => project.value?.studio && project.value?.gallery?.length === 4)
+
+const strip = ref(null)
+function scrollStrip(dir) {
+  strip.value?.scrollBy({ left: dir * strip.value.clientWidth * 0.8, behavior: 'smooth' })
+}
 </script>
 
 <template>
@@ -168,7 +173,13 @@ const curatedGallery = computed(() => project.value?.studio && project.value?.ga
 
         <!-- ── Gallery ───────────────────────────────────────────────────── -->
         <section v-if="project.gallery?.length" class="py-16">
-          <h2 class="text-white font-semibold text-xl mb-6">{{ curatedGallery ? 'Inside the build' : 'Screens' }}</h2>
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-white font-semibold text-xl">{{ curatedGallery ? 'Inside the build' : 'Screens' }}</h2>
+            <div v-if="!curatedGallery && project.gallery.length > 2" class="flex gap-2">
+              <button type="button" class="w-10 h-10 rounded-full border border-white/15 text-white/70 hover:text-white hover:border-white/40 transition-colors" aria-label="Previous screens" @click="scrollStrip(-1)">←</button>
+              <button type="button" class="w-10 h-10 rounded-full border border-white/15 text-white/70 hover:text-white hover:border-white/40 transition-colors" aria-label="More screens" @click="scrollStrip(1)">→</button>
+            </div>
+          </div>
 
           <!-- Curated 4-up: tall left, two stacked right, wide bottom -->
           <div v-if="curatedGallery" class="grid grid-cols-1 sm:grid-cols-[0.9fr_1fr] gap-4">
@@ -179,7 +190,7 @@ const curatedGallery = computed(() => project.value?.studio && project.value?.ga
           </div>
 
           <!-- Screenshot strip -->
-          <div v-else class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6 gallery-strip">
+          <div v-else ref="strip" class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6 gallery-strip">
             <img
               v-for="(img, i) in project.gallery"
               :key="img.src + i"

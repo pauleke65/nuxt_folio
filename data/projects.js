@@ -28,6 +28,7 @@ import studioProjects from './studio'
 
 const CMS = 'https://us-east-1.graphassets.com/Aoz44GCmaTPi6p6zRcusoz/'
 const cms = id => CMS + id
+const shots = (slug, items) => items.map(([file, alt]) => ({ src: `/work/${slug}/${file}.jpg`, alt }))
 
 export const CATEGORIES = [
   { key: 'all', label: 'All work' },
@@ -50,12 +51,29 @@ const careerProjects = [
     org: 'BLIA — Buy Land in Africa',
     period: 'Oct 2024 – Present',
     location: 'USA · Remote',
-    platform: 'React Native mobile app, web frontend, custom backend',
-    status: 'In production',
+    platform: 'React Native mobile app (iOS and Android), web frontend, custom backend',
+    status: 'Live on the App Store and Google Play',
     categories: ['mobile', 'web', 'ai', 'backend'],
     stack: ['React Native', 'Node.js', 'Bull MQ', 'WhatsApp Business API', 'Matrix', 'OpenAI API'],
     featured: true,
     accent: '#2F9E44',
+    cover: { type: 'image', src: '/work/blia/web-app.jpg', alt: 'BLIA website section showing the mobile app on two phones' },
+    hero: { src: '/work/blia/web-hero.jpg', alt: 'BLIA website: the best of African real estate, now unlocked' },
+    links: [
+      { label: 'Visit blia.africa', url: 'https://www.blia.africa' },
+      { label: 'App Store', url: 'https://apps.apple.com/app/id6760596849' },
+      { label: 'Google Play', url: 'https://play.google.com/store/apps/details?id=africa.blia.app' },
+    ],
+    gallery: shots('blia', [
+      ['web-hero', 'BLIA website hero'],
+      ['web-app', 'BLIA website section announcing the iOS and Android apps'],
+      ['web-listings', 'Curated property listings on the BLIA website'],
+      ['app-browse', 'BLIA app: browse verified properties'],
+      ['app-property', 'BLIA app: property details'],
+      ['app-deals', 'BLIA app: track deals in real time'],
+      ['app-toolkit', 'BLIA app: agent toolkit menu'],
+      ['app-requests', 'BLIA app: buyer property requests'],
+    ]),
     sections: [
       {
         kicker: 'The brief',
@@ -119,10 +137,27 @@ const careerProjects = [
     period: 'Sep 2023 – Sep 2025',
     location: 'Accra, Ghana · Remote (Contract)',
     platform: 'Cross-platform mobile app with its own backend server',
+    status: 'Live on Google Play',
     categories: ['mobile', 'backend'],
     stack: ['Flutter', 'Django', 'PostgreSQL', 'REST API'],
     featured: true,
     accent: '#4263EB',
+    cover: { type: 'phones', srcs: ['/work/trial-manager/app-home.jpg', '/work/trial-manager/app-cases.jpg'], alt: 'Trial Manager home and cases screens' },
+    hero: { src: '/work/trial-manager/web-hero.jpg', alt: 'Trial Manager website: own your trial process' },
+    links: [
+      { label: 'Visit trialmanagergh.com', url: 'https://trialmanagergh.com/' },
+      { label: 'Google Play', url: 'https://play.google.com/store/apps/details?id=africa.trialmanager.app' },
+    ],
+    gallery: shots('trial-manager', [
+      ['app-home', 'Trial Manager home screen with cases, calendar, clients and lawyers'],
+      ['app-cases', 'Trial Manager case list'],
+      ['app-calendar', 'Trial Manager court calendar'],
+      ['app-case', 'Trial Manager case detail with the next court date'],
+      ['app-stage', 'Trial Manager case stage and deadlines'],
+      ['app-considerations', 'Trial Manager stage considerations checklist'],
+      ['web-hero', 'Trial Manager website hero'],
+      ['web-why', 'Trial Manager website: why Trial Manager'],
+    ]),
     sections: [
       {
         kicker: 'The brief',
@@ -188,10 +223,18 @@ const careerProjects = [
     period: 'Nov 2023 – Jul 2025',
     location: 'USA · Remote',
     categories: ['ai', 'backend', 'web'],
-    stack: ['TypeScript', 'Node.js', 'AI agents'],
+    stack: ['Next.js', 'TypeScript', 'Supabase', 'Express.js', 'Bull MQ', 'AI agents'],
     accent: '#7048E8',
+    cover: { type: 'image', src: '/work/wootiv/web-dashboard.jpg', alt: 'Wootiv inbox and pipeline dashboard' },
+    hero: { src: '/work/wootiv/web-dashboard.jpg', alt: 'Wootiv inbox and pipeline dashboard' },
+    links: [{ label: 'View the product site', url: 'https://dev-wootiv.netlify.app' }],
+    gallery: shots('wootiv', [
+      ['web-hero', 'Wootiv website hero'],
+      ['web-dashboard', 'Wootiv conversations and outreach pipeline'],
+      ['web-mailbox', 'Wootiv: a mailbox that manages itself'],
+    ]),
     highlights: [
-      'Engineered Wootiv, an AI-powered email automation product.',
+      'Engineered Wootiv, an AI-powered email automation product, with a Next.js and Supabase app and a TypeScript Express server running Bull MQ job queues.',
       'Companies configure intelligent mailbox agents, for example for hiring or sales, that handle incoming communication on their own based on custom rules.',
     ],
   },
@@ -205,7 +248,7 @@ const careerProjects = [
     period: 'Nov 2023 – Jul 2025',
     location: 'USA · Remote',
     categories: ['ai', 'backend'],
-    stack: ['Node.js', 'Schema design', 'Automation'],
+    stack: ['Next.js', 'Supabase', 'Schema design'],
     accent: '#1C7ED6',
     highlights: [
       'Built the backend and database schema for ApplyBetter.co.',
@@ -215,17 +258,28 @@ const careerProjects = [
   {
     slug: 'attest-protocol-sdk',
     name: 'Attest Protocol SDK',
-    tagline: 'The TypeScript SDK and full developer documentation for attest-protocol.org.',
-    label: 'Developer tools · SDK',
+    tagline: 'The TypeScript SDK and developer docs for Attest Protocol, an on-chain attestation layer on Stellar: add proof to anything without writing a smart contract.',
+    label: 'Web3 · Developer tools',
     role: 'Lead Engineer',
     org: 'Tecmie LLC',
     period: 'Nov 2023 – Jul 2025',
     location: 'USA · Remote',
     categories: ['web3', 'backend'],
-    stack: ['TypeScript', 'SDK design', 'Technical docs'],
+    stack: ['TypeScript', 'Stellar', 'Soroban', 'SDK design', 'Technical docs'],
     accent: '#0CA678',
+    cover: { type: 'image', src: '/work/attest-protocol-sdk/web-hero.jpg', alt: 'Attest Protocol website: on-chain proof, no coding required' },
+    links: [
+      { label: 'Visit attestprotocol.org', url: 'https://www.attestprotocol.org' },
+      { label: 'Read the docs', url: 'https://docs.attest.so/introduction' },
+    ],
+    gallery: shots('attest-protocol-sdk', [
+      ['web-hero', 'Attest Protocol website hero with a one-line verify call'],
+      ['docs', 'Attest Protocol documentation introduction'],
+      ['web-use-cases', 'Attest Protocol use cases with SDK code'],
+      ['web-one-line', 'One-line verification in a React component, a backend and a smart contract'],
+    ]),
     highlights: [
-      'Developed the TypeScript SDK and its full technical documentation for attest-protocol.org.',
+      'Developed the TypeScript SDK and its full technical documentation for Attest Protocol.',
       'Worked through SDK design, cross-platform compatibility and developer-experience best practices.',
     ],
   },
@@ -241,7 +295,12 @@ const careerProjects = [
     categories: ['web'],
     stack: ['Frontend', 'Web performance'],
     accent: '#F59F00',
-    links: [{ label: 'Visit tecmie.com', url: 'https://tecmie.com' }],
+    cover: { type: 'image', src: '/work/tecmie-website/web-hero.jpg', alt: 'Tecmie website hero: launch your next big thing' },
+    links: [{ label: 'Visit tecmie.com', url: 'https://www.tecmie.com' }],
+    gallery: shots('tecmie-website', [
+      ['web-hero', 'Tecmie website hero'],
+      ['web-product', 'Tecmie website product showcase'],
+    ]),
     highlights: [
       'Redesigned and rebuilt the official Tecmie website, modernising the brand and improving performance.',
     ],
@@ -282,7 +341,12 @@ const careerProjects = [
     categories: ['ai', 'web'],
     stack: ['Angular', 'Django', 'PostgreSQL', 'Firebase', 'OpenAI API'],
     accent: '#5F3DC4',
-    cover: { type: 'logo', src: cms('XFW3AEHSS1SEku2of6R6'), alt: 'RegWand logo', bg: '#F8F9FA' },
+    cover: { type: 'image', src: '/work/regwand-legal/web-hero.jpg', alt: 'RegWand website: launch, thrive and expand across African markets' },
+    gallery: shots('regwand-legal', [
+      ['web-hero', 'RegWand website hero with the AI legal assistant'],
+      ['web-advice', 'RegWand: on-demand legal advice tailored to your business'],
+      ['web-services', 'RegWand business services'],
+    ]),
     links: [{ label: 'View live', url: 'https://regwand.paulimoke.com/' }],
     video: 'https://www.youtube.com/embed/msFe0q4Ao4E',
     highlights: [
@@ -381,7 +445,7 @@ const careerProjects = [
     period: 'Jun 2022 – Aug 2022',
     location: 'Remote (Contract)',
     categories: ['mobile'],
-    stack: ['Mobile', 'Animation'],
+    stack: ['Flutter', 'Animation'],
     accent: '#E03131',
     highlights: [
       'Worked with the mobile team to architect and build the Foodbag food-ordering app.',
@@ -396,9 +460,8 @@ const careerProjects = [
     role: 'Mobile Developer',
     org: 'Troopa',
     categories: ['mobile'],
-    stack: ['Mobile'],
+    stack: ['Flutter'],
     accent: '#FD7E14',
-    links: [{ label: 'Visit troopa.org', url: 'https://troopa.org' }],
     highlights: ['Built the rider-facing mobile app for Troopa’s package delivery platform.'],
   },
   {
