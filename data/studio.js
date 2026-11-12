@@ -139,28 +139,28 @@ export default [
     cover: {
       type: "image",
       src: "/work/ankara-chain/card.jpg",
-      alt: "Ankara Chain landing page headline with asset template and Stellar testnet panels"
+      alt: "Ankara Chain website: real-world asset infrastructure you own"
     },
     hero: {
       src: "/work/ankara-chain/hero.jpg",
-      alt: "Ankara Chain landing page and developer docs on a dark green grid"
+      alt: "Ankara Chain landing page with the TypeScript SDK code sample"
     },
     gallery: [
       {
         src: "/work/ankara-chain/g1.jpg",
-        alt: "The six Ankara Chain asset templates: farmland, commodity receipts, real estate, invoices, carbon credits and mining rights"
+        alt: "Ankara Chain landing page on a phone"
       },
       {
         src: "/work/ankara-chain/g2.jpg",
-        alt: "Ankara Chain MCP server documentation with tool names"
+        alt: "Asset templates for farmland, real estate, invoices, carbon and mining rights"
       },
       {
         src: "/work/ankara-chain/g3.jpg",
-        alt: "Seven Soroban contracts deployed on Stellar testnet"
+        alt: "Pricing: open-source core SDK, a dashboard and compliance modules"
       },
       {
         src: "/work/ankara-chain/g4.jpg",
-        alt: "The Ankara Chain SDK, CLI and MCP server side by side"
+        alt: "Built with Ankara: escrow, remittance and warehouse-receipt loan examples"
       }
     ],
     sections: [

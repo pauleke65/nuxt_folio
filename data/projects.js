@@ -186,7 +186,16 @@ const careerProjects = [
     categories: ['mobile', 'backend'],
     stack: ['Flutter', 'Firebase', 'Video transcoding', 'Streaming'],
     featured: true,
-    accent: '#F76707',
+    accent: '#D9F574',
+    cover: { type: 'image', src: '/work/amtap-fitness/cover.jpg', alt: 'AMTAP cover: as many trainers as possible' },
+    hero: { src: '/work/amtap-fitness/cover.jpg', alt: 'AMTAP cover: as many trainers as possible' },
+    gallery: shots('amtap-fitness', [
+      ['home', 'Home feed of training programmes with a 14-day free trial'],
+      ['program', 'Programme page with price, reviews and who it suits'],
+      ['workout', 'Workout player with sets, reps, weight and rest timer'],
+      ['trainer-dashboard', 'Trainer dashboard with sales, subscribers and payouts'],
+      ['signin', 'Sign in with email, biometrics, Google or Facebook'],
+    ]),
     sections: [
       {
         kicker: 'The brief',
@@ -208,6 +217,7 @@ const careerProjects = [
       'Designed the full application schema and backend architecture: data modelling, API structure and storage strategy.',
       'Solved video processing and streaming: coach uploads are transcoded and delivered efficiently, then bundled into purchasable training programmes.',
       'Built the cross-platform mobile experience that lets trainers monetise content and clients reach their programmes.',
+      'Two-sided product: clients follow trainers, subscribe or buy programmes and track sets and reps; trainers get a dashboard for sales, subscribers and payouts.',
     ],
   },
 
@@ -444,14 +454,25 @@ const careerProjects = [
   {
     slug: 'troopa',
     name: 'Troopa Rider',
-    tagline: 'The rider app for Troopa, a logistics platform for package delivery.',
+    tagline: 'The rider app for Troopa Smart Delivery: go online, accept orders, navigate to pickup and drop-off, and track earnings and ratings.',
     label: 'Logistics · Mobile',
     role: 'Mobile Developer',
     org: 'Troopa',
     categories: ['mobile'],
-    stack: ['Flutter'],
-    accent: '#FD7E14',
-    highlights: ['Built the rider-facing mobile app for Troopa’s package delivery platform.'],
+    stack: ['Flutter', 'Maps', 'Realtime'],
+    accent: '#FF7A00',
+    cover: { type: 'phones', srcs: ['/work/troopa/home.jpg', '/work/troopa/routing.jpg'], alt: 'Troopa rider home and live routing screens' },
+    gallery: shots('troopa', [
+      ['home', 'Rider home with earnings, rating and the Go Online button'],
+      ['orders', 'Orders with pickup and drop-off addresses'],
+      ['routing', 'Live routing to the pickup with delivery progress'],
+      ['rating', 'Rider rating overview and customer reviews'],
+      ['welcome', 'Registration complete: welcome to Troopa'],
+    ]),
+    highlights: [
+      'Built the rider-facing mobile app for Troopa’s package delivery platform.',
+      'Riders register with vehicle and document details, go online, accept or reassign orders, follow live routing to pickup and drop-off, and see earnings and ratings.',
+    ],
   },
   {
     slug: 'zuri-chat',
@@ -493,6 +514,29 @@ const careerProjects = [
     ],
   },
   {
+    slug: 'fjmusa',
+    name: 'FJM Portfolio',
+    tagline: 'A portfolio site for an Abuja content creator, brand marketer and signed model: featured work, brand collaborations, public appearances and services.',
+    label: 'Personal brand · Web',
+    role: 'Design & build',
+    org: 'Favour Joseph Musa (client)',
+    categories: ['web'],
+    stack: ['Web design', 'Responsive', 'Netlify'],
+    accent: '#E8E2D6',
+    cover: { type: 'image', src: '/work/fjmusa/web-hero.jpg', alt: 'FJM portfolio site hero with an editorial name lockup and portrait' },
+    links: [{ label: 'Visit the site', url: 'https://fjmusa.netlify.app' }],
+    gallery: shots('fjmusa', [
+      ['web-hero', 'Editorial hero with the name lockup and portrait'],
+      ['web-work', 'Featured work grid'],
+      ['web-collabs', 'Recent brand collaborations'],
+      ['mobile', 'Hero on a phone'],
+    ]),
+    highlights: [
+      'Designed and built an editorial portfolio for a content creator, brand marketer and signed model based in Abuja.',
+      'Sections for featured work, recent brand collaborations, public appearances and services, built to work well on a phone.',
+    ],
+  },
+  {
     slug: 'campaigner',
     name: 'Campaigner',
     tagline: 'A student campaign and voting app, built in Flutter from a Behance case study by Pakhi Mangal.',
@@ -516,7 +560,7 @@ const FEATURED = ['blia', 'agtrail', 'hairstyle-try-on', 'trial-manager', 'amtap
 // Everything else, client and studio work mixed together.
 const MORE = [
   'runshelf', 'wootiv', 'keep', 'sagebrief-legal', 'geisha-mama', 'regwand-legal',
-  'sapa-radar', 'applybetter', 'attest-protocol-sdk', 'youthful-treat', 'gradgap', 'wstc-mobile',
+  'sapa-radar', 'fjmusa', 'applybetter', 'attest-protocol-sdk', 'youthful-treat', 'gradgap', 'wstc-mobile',
   'pie-drops-brand', 'menji', 'levelup', 'zuri-chat', 'foodbag', 'troopa',
   'budget-pro', 'campaigner',
 ]
