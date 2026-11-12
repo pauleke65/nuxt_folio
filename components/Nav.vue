@@ -31,9 +31,14 @@ function sectionLink(hash) {
           </a>
         </li>
         <li>
-          <a :href="sectionLink('#portfolio')" class="text-white/60 hover:text-white text-sm tracking-wide transition-colors duration-200">
-            Portfolio
-          </a>
+          <NuxtLink to="/projects" class="text-white/60 hover:text-white text-sm tracking-wide transition-colors duration-200" active-class="!text-white">
+            Work
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/studio" class="text-white/60 hover:text-white text-sm tracking-wide transition-colors duration-200" active-class="!text-white">
+            Studio
+          </NuxtLink>
         </li>
         <li>
           <a :href="sectionLink('#services')" class="text-white/60 hover:text-white text-sm tracking-wide transition-colors duration-200">
@@ -79,7 +84,10 @@ function sectionLink(hash) {
             <a @click="toggleNav" :href="sectionLink('#services')" class="text-white text-2xl">Services</a>
           </li>
           <li>
-            <a @click="toggleNav" :href="sectionLink('#portfolio')" class="text-white text-2xl">Portfolio</a>
+            <NuxtLink @click="toggleNav" to="/projects" class="text-white text-2xl">Work</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink @click="toggleNav" to="/studio" class="text-white text-2xl">Studio</NuxtLink>
           </li>
           <li>
             <NuxtLink @click="toggleNav" to="/blog" class="text-white text-2xl">

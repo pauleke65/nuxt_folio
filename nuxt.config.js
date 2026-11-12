@@ -9,8 +9,19 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'Paul Imoke – Full Stack Developer' },
+        { name: 'description', content: 'Paul Imoke – Lead Software Engineer. Mobile apps, web platforms, AI automation and Web3.' },
         { name: 'format-detection', content: 'telephone=no' },
+        // The site is a client-rendered SPA, so link previews (LinkedIn, Slack, email)
+        // only ever see these static tags. Keep them generic enough for every page.
+        { property: 'og:type', content: 'website' },
+        { property: 'og:site_name', content: 'Paul Imoke' },
+        { property: 'og:title', content: 'Paul Imoke – Lead Software Engineer' },
+        { property: 'og:description', content: 'Selected work: mobile apps, web platforms, AI automation and Web3, shipped for startups in Africa, the Middle East and the USA.' },
+        { property: 'og:image', content: 'https://paulimoke.com/og-image.png' },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:image', content: 'https://paulimoke.com/og-image.png' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/paul-favicon.png' },

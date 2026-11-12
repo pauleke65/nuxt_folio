@@ -23,7 +23,8 @@ function sectionLink(hash) {
           Home
         </a>
         <a :href="sectionLink('#experience')" class="text-white/60 text-sm hover:text-white transition-colors duration-200">About Me</a>
-        <a :href="sectionLink('#portfolio')" class="text-white/60 text-sm hover:text-white transition-colors duration-200">Portfolio</a>
+        <NuxtLink to="/projects" class="text-white/60 text-sm hover:text-white transition-colors duration-200">Work</NuxtLink>
+        <NuxtLink to="/studio" class="text-white/60 text-sm hover:text-white transition-colors duration-200">Studio</NuxtLink>
         <a :href="sectionLink('#services')" class="text-white/60 text-sm hover:text-white transition-colors duration-200">Services</a>
         <NuxtLink to="/blog" class="text-white/60 text-sm hover:text-white transition-colors duration-200">Blog</NuxtLink>
       </nav>

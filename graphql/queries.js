@@ -88,54 +88,6 @@ export const ALL_CATEGORIES_QUERY = gql`
   }
 `
 
-// ─── Projects ─────────────────────────────────────────────────────────────────
-
-export const ALL_PROJECTS_QUERY = gql`
-  query AllProjects {
-    projects {
-      id
-      name
-      image {
-        url
-      }
-      subtitle
-      slug
-      tools {
-        id
-        name
-        image {
-          url
-        }
-      }
-    }
-  }
-`
-
-export const PROJECT_QUERY = gql`
-  query Project($slug: String = "") {
-    project(where: { slug: $slug }) {
-      name
-      description
-      slug
-      url
-      image {
-        id
-        url
-      }
-      tools {
-        name
-        image {
-          url
-        }
-      }
-      project_image {
-        url
-      }
-      project_videos
-    }
-  }
-`
-
 // ─── Certificates ─────────────────────────────────────────────────────────────
 
 export const ALL_CERTIFICATES_QUERY = gql`

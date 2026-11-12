@@ -1,247 +1,217 @@
 <script setup>
-import { useKeenSlider } from 'keen-slider/vue'
-import 'keen-slider/keen-slider.min.css'
-import { useApolloClient } from '@vue/apollo-composable'
-import { PROJECT_QUERY } from '~/graphql/queries'
+import { projects, getProject } from '~/data/projects'
+
+definePageMeta({
+  // Old slugs (e.g. menji-driver) resolve to the merged project; keep the URL canonical.
+  middleware: (to) => {
+    const match = getProject(to.params.project_slug)
+    if (match && match.slug !== to.params.project_slug) {
+      return navigateTo(`/project/${match.slug}`, { replace: true })
+    }
+  },
+})
 
 const route = useRoute()
-const { resolveClient } = useApolloClient()
-
-const { data: project, error } = await useAsyncData(
-  `project-${route.params.project_slug}`,
-  async () => {
-    const client = resolveClient()
-    const res = await client.query({
-      query: PROJECT_QUERY,
-      variables: { slug: route.params.project_slug },
-    })
-    return res.data.project
-  }
-)
+const project = computed(() => getProject(route.params.project_slug))
 
 useHead(computed(() => ({
-  title: project.value?.name ? `${project.value.name} | Paul Imoke` : 'Project | Paul Imoke',
+  title: project.value ? `${project.value.name} – Paul Imoke` : 'Project not found – Paul Imoke',
   meta: [
-    { name: 'description', content: project.value?.description ?? '' },
-    { property: 'og:title', content: project.value?.name ?? 'Paul Imoke' },
-    { property: 'og:image', content: project.value?.image?.url ?? '' },
+    { name: 'description', content: project.value?.tagline ?? '' },
+    { property: 'og:title', content: project.value ? `${project.value.name} – Paul Imoke` : 'Paul Imoke' },
+    { property: 'og:description', content: project.value?.tagline ?? '' },
   ],
 })))
 
-const hasMedia = computed(() =>
-  (project.value?.project_videos?.length > 0) || (project.value?.project_image?.length > 0)
-)
+const index = computed(() => projects.findIndex(p => p.slug === project.value?.slug))
+const prev = computed(() => projects[(index.value - 1 + projects.length) % projects.length])
+const next = computed(() => projects[(index.value + 1) % projects.length])
 
-// Mouse wheel plugin — maps wheel/trackpad events to horizontal slider drag
-function WheelControls(slider) {
-  let touchTimeout
-  let position
-  let wheelActive
-
-  function dispatch(e, name) {
-    position.x -= e.deltaX
-    position.y -= e.deltaY
-    slider.container.dispatchEvent(
-      new CustomEvent(name, { detail: { x: position.x, y: position.y } })
-    )
-  }
-
-  function wheelStart(e) {
-    position = { x: e.pageX, y: e.pageY }
-    dispatch(e, 'ksDragStart')
-  }
-
-  function wheel(e) { dispatch(e, 'ksDrag') }
-  function wheelEnd(e) { dispatch(e, 'ksDragEnd') }
-
-  function eventWheel(e) {
-    e.preventDefault()
-    if (!wheelActive) { wheelStart(e); wheelActive = true }
-    wheel(e)
-    clearTimeout(touchTimeout)
-    touchTimeout = setTimeout(() => { wheelActive = false; wheelEnd(e) }, 50)
-  }
-
-  slider.on('created', () => slider.container.addEventListener('wheel', eventWheel, { passive: false }))
-  slider.on('destroyed', () => slider.container.removeEventListener('wheel', eventWheel))
-}
-
-const [sliderRef, slider] = useKeenSlider(
-  {
-    loop: false,
-    mode: 'free-snap',
-    renderMode: 'performance',
-    drag: true,
-    slides: { perView: 'auto', spacing: 20 },
-  },
-  [WheelControls],
-)
-
-const currentSlide = ref(0)
-const slideCount = computed(() =>
-  (project.value?.project_videos?.length ?? 0) + (project.value?.project_image?.length ?? 0)
-)
-
-onMounted(() => {
-  slider.value?.on('slideChanged', (s) => {
-    currentSlide.value = s.track.details.rel
-  })
+const facts = computed(() => {
+  const p = project.value
+  if (!p) return []
+  return [
+    { label: 'Role', value: p.role },
+    { label: p.studio ? 'Client' : 'Company', value: p.org },
+    { label: p.studio ? 'Year' : 'When', value: p.timeline ?? p.period },
+    { label: 'Platform', value: p.platform ?? p.location },
+    { label: 'Status', value: p.status },
+  ].filter(f => f.value)
 })
+
+// Studio galleries are four art-directed images; CMS galleries are loose screenshots.
+const curatedGallery = computed(() => project.value?.studio && project.value?.gallery?.length === 4)
 </script>
 
 <template>
   <div class="bg-black min-h-screen">
     <Nav />
 
-    <!-- Error -->
-    <div v-if="error" class="flex items-center justify-center h-screen">
-      <div class="text-center">
-        <p class="text-red-400 text-sm mb-4">Failed to load project.</p>
-        <NuxtLink to="/projects" class="text-white/50 text-sm underline underline-offset-4 hover:text-white">
-          ← Back to projects
-        </NuxtLink>
-      </div>
+    <!-- Not found -->
+    <div v-if="!project" class="max-w-7xl mx-auto px-6 pt-40 pb-32">
+      <p class="text-white/40 text-sm mb-4">404</p>
+      <h1 class="text-white text-4xl font-bold mb-6">That project isn’t here.</h1>
+      <NuxtLink to="/projects" class="text-yellow-500 text-sm hover:underline underline-offset-4">← See all work</NuxtLink>
     </div>
 
-    <!-- Loading -->
-    <div v-else-if="!project" class="flex items-center justify-center h-screen">
-      <div class="flex flex-col items-center gap-3">
-        <div class="w-6 h-6 rounded-full border-2 border-yellow-500 border-t-transparent animate-spin"></div>
-        <p class="text-white/30 text-sm">Loading project…</p>
-      </div>
-    </div>
-
-    <!-- Project content -->
-    <div v-else>
-
-      <!-- Hero image -->
-      <div class="relative w-full h-[50vh] min-h-64 overflow-hidden">
-        <img
-          v-if="project.image?.url"
-          :src="project.image.url"
-          :alt="project.name"
-          class="w-full h-full object-cover object-top"
-          width="1400"
-          height="600"
-          loading="eager"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-
-        <!-- Back link -->
-        <div class="absolute top-24 left-6 max-w-7xl">
+    <article v-else>
+      <!-- ── Header ──────────────────────────────────────────────────────── -->
+      <header class="max-w-7xl mx-auto px-6 pt-28 sm:pt-32">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-10">
+          <NuxtLink to="/projects" class="text-white/50 text-sm hover:text-white transition-colors">← All work</NuxtLink>
           <NuxtLink
-            to="/projects"
-            class="inline-flex items-center gap-2 text-white/60 text-sm hover:text-white transition-colors duration-200"
-          >
-            ← All Projects
-          </NuxtLink>
+            v-if="project.studio"
+            to="/studio"
+            class="text-xs tracking-widest uppercase text-white/70 border border-[#C0392B]/60 rounded-full px-3 py-1 hover:bg-[#C0392B] hover:text-white transition-colors"
+          >A PIE Drops Studio project</NuxtLink>
         </div>
-      </div>
 
-      <!-- Main content -->
-      <div class="max-w-7xl mx-auto px-6 -mt-20 relative z-10">
+        <p class="text-yellow-500 text-xs tracking-widest uppercase font-medium mb-4">{{ project.label }}</p>
+        <h1 class="text-white font-bold leading-[0.95] tracking-tight" style="font-size: clamp(2.5rem, 7vw, 5.5rem);">
+          {{ project.name }}
+        </h1>
+        <p class="text-white/65 mt-6 max-w-3xl leading-snug" style="font-size: clamp(1.1rem, 2vw, 1.45rem);">
+          {{ project.tagline }}
+        </p>
 
-        <!-- Header -->
-        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-12 border-b border-white/10">
-          <div>
-            <h1 class="text-white font-bold leading-tight mb-3" style="font-size: clamp(2rem, 5vw, 4rem);">
-              {{ project.name }}
-            </h1>
-            <!-- Tool icons row -->
-            <div class="flex items-center gap-3 flex-wrap">
-              <span class="text-white/30 text-xs">Built with</span>
-              <div class="flex items-center gap-2 flex-wrap">
-                <div
-                  v-for="tool in project.tools"
-                  :key="tool.name"
-                  class="flex items-center gap-1.5 bg-white/5 px-2.5 py-1 rounded-full"
-                >
-                  <img
-                    :src="tool.image.url"
-                    :alt="tool.name"
-                    class="w-4 h-4 object-contain"
-                    width="16"
-                    height="16"
-                  />
-                  <span class="text-white/60 text-xs">{{ tool.name }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- CTA -->
+        <div v-if="project.links?.length" class="flex flex-wrap gap-3 mt-8">
           <a
-            v-if="project.url"
-            :href="project.url"
+            v-for="(link, i) in project.links"
+            :key="link.url"
+            :href="link.url"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 bg-yellow-500 text-black font-semibold text-sm px-6 py-3 rounded-full hover:bg-yellow-400 transition-colors duration-200 w-fit shrink-0"
-          >
-            View Live ↗
-          </a>
+            class="inline-flex items-center gap-2 text-sm px-5 py-2.5 rounded-full transition-colors"
+            :class="i === 0
+              ? 'bg-yellow-500 text-black font-semibold hover:bg-yellow-400'
+              : 'text-white border border-white/20 hover:bg-white hover:text-black'"
+          >{{ link.label }} <span aria-hidden="true">↗</span></a>
         </div>
 
-        <!-- Description -->
-        <div class="py-12 border-b border-white/10 max-w-3xl">
-          <p class="text-white/60 text-base leading-loose">
-            {{ project.description }}
-          </p>
+        <!-- Facts -->
+        <dl class="grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-6 mt-12 pt-8 border-t border-white/10">
+          <div v-for="fact in facts" :key="fact.label" :class="fact.label === 'Platform' || fact.label === 'Status' ? 'col-span-2 lg:col-span-1' : ''">
+            <dt class="text-white/35 text-xs tracking-widest uppercase mb-2">{{ fact.label }}</dt>
+            <dd class="text-white/85 text-sm leading-relaxed">{{ fact.value }}</dd>
+          </div>
+        </dl>
+      </header>
+
+      <!-- ── Hero ────────────────────────────────────────────────────────── -->
+      <div class="max-w-7xl mx-auto px-6 mt-12">
+        <div class="rounded-3xl overflow-hidden border border-white/10 aspect-[16/10] sm:aspect-[16/8]">
+          <img
+            v-if="project.hero"
+            :src="project.hero.src"
+            :alt="project.hero.alt"
+            class="w-full h-full object-cover"
+            loading="eager"
+          />
+          <ProjectCover v-else :project="project" size="hero" eager />
         </div>
+      </div>
 
-        <!-- Screenshots / Videos gallery -->
-        <div v-if="hasMedia" class="py-12">
-          <div class="flex items-center justify-between mb-8">
-            <h2 class="text-white font-semibold text-lg">Screenshots & Demos</h2>
-            <!-- Slide counter -->
-            <span class="text-white/30 text-sm font-mono">
-              {{ currentSlide + 1 }} / {{ slideCount }}
-            </span>
+      <div class="max-w-7xl mx-auto px-6">
+        <!-- ── Impact ────────────────────────────────────────────────────── -->
+        <section v-if="project.impact?.length" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 py-16 border-b border-white/10" aria-label="Impact">
+          <div v-for="m in project.impact" :key="m.num">
+            <p class="text-yellow-500 font-bold leading-none" style="font-size: clamp(2.75rem, 6vw, 4.5rem);">{{ m.num }}</p>
+            <p class="text-white/60 text-sm mt-3 max-w-xs leading-relaxed">{{ m.label }}</p>
           </div>
+        </section>
 
-          <div ref="sliderRef" class="keen-slider" style="height: 560px; overflow: visible;">
-            <!-- Videos -->
-            <div
-              v-for="videoUrl in project.project_videos"
-              :key="videoUrl"
-              class="keen-slider__slide rounded-2xl overflow-hidden bg-white/5"
-              style="min-width: 75%;"
-            >
-              <iframe
-                :src="videoUrl"
-                class="w-full h-full"
-                allowfullscreen
-                title="Project demo video"
-              />
-            </div>
+        <!-- ── Story sections ────────────────────────────────────────────── -->
+        <section
+          v-for="section in project.sections"
+          :key="section.heading"
+          class="grid lg:grid-cols-[1fr_1.4fr] gap-6 lg:gap-16 py-16 border-b border-white/10"
+        >
+          <div>
+            <p class="text-white/35 text-xs tracking-widest uppercase mb-3">{{ section.kicker }}</p>
+            <h2 class="text-white font-semibold leading-tight" style="font-size: clamp(1.5rem, 3vw, 2.25rem);">{{ section.heading }}</h2>
+          </div>
+          <div class="space-y-5">
+            <p v-for="(para, i) in section.body" :key="i" class="text-white/65 leading-relaxed">{{ para }}</p>
+          </div>
+        </section>
 
-            <!-- Images — wrapper sizes to fit-content so the slide is as wide as the image naturally is at 560px tall -->
-            <div
-              v-for="img in project.project_image"
-              :key="img.url"
-              class="keen-slider__slide rounded-2xl overflow-hidden bg-white/5"
-              style="width: fit-content; min-width: fit-content; height: 560px;"
-            >
-              <img
-                :src="img.url"
-                :alt="`${project.name} screenshot`"
-                style="height: 560px; width: auto; display: block;"
-              />
+        <!-- ── What I did ────────────────────────────────────────────────── -->
+        <section class="grid lg:grid-cols-[1fr_1.4fr] gap-6 lg:gap-16 py-16 border-b border-white/10">
+          <div>
+            <p class="text-white/35 text-xs tracking-widest uppercase mb-3">{{ project.studio ? 'The solution' : 'What I did' }}</p>
+            <h2 class="text-white font-semibold leading-tight" style="font-size: clamp(1.5rem, 3vw, 2.25rem);">
+              {{ project.highlightsHeading ?? `${project.role}, ${project.org}` }}
+            </h2>
+            <div class="flex flex-wrap gap-1.5 mt-6">
+              <span v-for="tech in project.stack" :key="tech" class="text-xs px-3 py-1 rounded-full border border-white/15 text-white/60">{{ tech }}</span>
             </div>
           </div>
-
-          <!-- Slider nav dots -->
-          <div v-if="slideCount > 1" class="flex gap-2 mt-6">
-            <button
-              v-for="i in slideCount"
+          <ol class="space-y-0">
+            <li
+              v-for="(item, i) in project.highlights"
               :key="i"
-              class="h-1 rounded-full transition-all duration-300"
-              :class="currentSlide === i - 1 ? 'bg-yellow-500 w-6' : 'bg-white/20 w-3'"
-              @click="slider?.moveToIdx(i - 1)"
+              class="grid grid-cols-[2.25rem_1fr] gap-2 py-4 border-t border-white/10 first:border-t-0 first:pt-0"
+            >
+              <span class="text-yellow-500/80 text-xs font-mono pt-1">{{ String(i + 1).padStart(2, '0') }}</span>
+              <span class="text-white/75 leading-relaxed">{{ item }}</span>
+            </li>
+          </ol>
+        </section>
+
+        <!-- ── Video ─────────────────────────────────────────────────────── -->
+        <section v-if="project.video" class="py-16 border-b border-white/10">
+          <h2 class="text-white font-semibold text-xl mb-6">Demo</h2>
+          <div class="aspect-video rounded-2xl overflow-hidden bg-white/5 border border-white/10">
+            <iframe :src="project.video" class="w-full h-full" allowfullscreen loading="lazy" :title="`${project.name} demo video`"></iframe>
+          </div>
+        </section>
+
+        <!-- ── Gallery ───────────────────────────────────────────────────── -->
+        <section v-if="project.gallery?.length" class="py-16">
+          <h2 class="text-white font-semibold text-xl mb-6">{{ curatedGallery ? 'Inside the build' : 'Screens' }}</h2>
+
+          <!-- Curated 4-up: tall left, two stacked right, wide bottom -->
+          <div v-if="curatedGallery" class="grid grid-cols-1 sm:grid-cols-[0.9fr_1fr] gap-4">
+            <img :src="project.gallery[0].src" :alt="project.gallery[0].alt" loading="lazy" class="w-full h-full object-cover rounded-2xl border border-white/10 sm:row-span-2" />
+            <img :src="project.gallery[1].src" :alt="project.gallery[1].alt" loading="lazy" class="w-full h-full object-cover rounded-2xl border border-white/10" />
+            <img :src="project.gallery[2].src" :alt="project.gallery[2].alt" loading="lazy" class="w-full h-full object-cover rounded-2xl border border-white/10" />
+            <img :src="project.gallery[3].src" :alt="project.gallery[3].alt" loading="lazy" class="w-full rounded-2xl border border-white/10 sm:col-span-2" />
+          </div>
+
+          <!-- Screenshot strip -->
+          <div v-else class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6 gallery-strip">
+            <img
+              v-for="(img, i) in project.gallery"
+              :key="img.src + i"
+              :src="img.src"
+              :alt="`${img.alt} ${i + 1}`"
+              loading="lazy"
+              class="snap-start h-[420px] sm:h-[520px] w-auto max-w-none rounded-2xl border border-white/10 bg-white/5 shrink-0"
             />
           </div>
-        </div>
-
+        </section>
       </div>
-    </div>
+
+      <!-- ── Prev / next ─────────────────────────────────────────────────── -->
+      <nav class="border-t border-white/10 mt-8" aria-label="More projects">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2">
+          <NuxtLink :to="`/project/${prev.slug}`" class="group py-10 pr-4 border-r border-white/10">
+            <span class="text-white/35 text-xs tracking-widest uppercase">← Previous</span>
+            <span class="block text-white text-lg sm:text-2xl font-semibold mt-2 group-hover:text-yellow-500 transition-colors">{{ prev.name }}</span>
+          </NuxtLink>
+          <NuxtLink :to="`/project/${next.slug}`" class="group py-10 pl-4 sm:pl-8 text-right">
+            <span class="text-white/35 text-xs tracking-widest uppercase">Next →</span>
+            <span class="block text-white text-lg sm:text-2xl font-semibold mt-2 group-hover:text-yellow-500 transition-colors">{{ next.name }}</span>
+          </NuxtLink>
+        </div>
+      </nav>
+    </article>
   </div>
 </template>
+
+<style scoped>
+.gallery-strip {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+</style>

@@ -4,9 +4,16 @@ const email = ref('')
 const submitted = ref(false)
 const loading = ref(false)
 
+const route = useRoute()
+// Portfolio pages get shared with hiring managers, so keep them free of popups.
+const quietRoutes = ['/projects', '/project/', '/studio']
+
 onMounted(() => {
+  if (quietRoutes.some(r => route.path.startsWith(r))) return
   if (localStorage.getItem('newsletter_dismissed')) return
-  setTimeout(() => { visible.value = true }, 3000)
+  setTimeout(() => {
+    if (!quietRoutes.some(r => route.path.startsWith(r))) visible.value = true
+  }, 3000)
 })
 
 function dismiss() {

@@ -11,7 +11,6 @@ import {
   SITE_DATA_QUERY,
   ALL_TOOLS_QUERY,
   ALL_POSTS_QUERY,
-  ALL_PROJECTS_QUERY,
   ALL_CERTIFICATES_QUERY,
   ALL_CATEGORIES_QUERY,
 } from '~/graphql/queries'
@@ -42,14 +41,6 @@ export function useCategories() {
   const { result, loading, error } = useQuery(ALL_CATEGORIES_QUERY)
   const categories = computed(() => result.value?.categories ?? [])
   return { categories, loading, error }
-}
-
-// ─── Projects ─────────────────────────────────────────────────────────────────
-
-export function useProjects() {
-  const { result, loading, error } = useQuery(ALL_PROJECTS_QUERY)
-  const projects = computed(() => result.value?.projects ?? [])
-  return { projects, loading, error }
 }
 
 // ─── Certificates ─────────────────────────────────────────────────────────────
